@@ -2,10 +2,10 @@ import React ,{useState,useEffect} from 'react';
 import {Box,TextField, MenuItem} from '@mui/material'
 import axios from 'axios';
 
-
 const CourseInput =()=>{
     const [itemslist, setitemslist] = useState([]);
     const [item,setitem] = useState('');
+    
     useEffect(()=>{
         const fetchitemList = async () => {
       

@@ -32,7 +32,7 @@ import useWindowDimensions from "../customhooks/useWindowDimensions";
 import TraditionalCard from "../components/TraditionalCard";
 
 
-const TraditionalRoutine = () => {
+const TraditionalRoutine = (props) => {
   const tablular_rtine = {
     sun: { 1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: '' },
     mon: { 1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: '' },
@@ -76,7 +76,8 @@ const TraditionalRoutine = () => {
   
 
   
-  const { id } = useParams();
+  //const { id } = useParams();
+  const id=props.id;
   const periodsarray = useRef([]);
   const [tabular_object,set_tO] = useState({...tablular_rtine});
   const [routine_obj, setRO] = useState({
@@ -118,11 +119,11 @@ const TraditionalRoutine = () => {
     console.log("inside renderNextKey",myObject);
   if(myObject===''){
     console.log('empty')
-    return(<TableCell>{""}</TableCell>)
+    return(<TableCell style={{minWidth:"200px"}}>{""}</TableCell>)
   }else{
     console.log('myObject',myObject)
     return(
-      <TableCell>
+      <TableCell >
         <PeriodCard 
                     teacher_list={myObject.teacher} 
                     subject={myObject.subject}

@@ -19,6 +19,7 @@ import { useContext } from 'react';
 //import Routine from './pages/Routine';
 import TraditionalRoutine from './pages/TraditionalRoutine'
 import TTeacherRoutine from './pages/TTeacherRoutine';
+import ClassRoutine from './pages/ClassRoutine';
 
 
 function App() {
@@ -56,7 +57,7 @@ function App() {
         <Route path="/add_subject" element={<AddSubject/>}/>
         <Route path="/add_period" element={<AddPeriod/>}/>
         <Route path="/view_routine_t/:id" element={<TTeacherRoutine/>}/>
-        <Route path="/view_routine_course/:id" element={<TraditionalRoutine/>}/>
+        <Route path="/view_routine_course/:id" element={<ClassRoutine/>}/>
       </Routes>
     </AuthProvider>
     </ThemeProvider>

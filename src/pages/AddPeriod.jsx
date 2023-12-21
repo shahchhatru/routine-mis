@@ -22,13 +22,14 @@ import TeacherInput from "../components/TeacherInput";
 import SubjectInput from "../components/SubjectInput";
 import DayInput from "../components/DayInput";
 import CourseInput from "../components/CourseInput";
+import StartPeriodInput from "../components/startPeriod";
+import NumPeriodINput from "../components/numPeriod";
 import LectureTypeInp from "../components/LectureTypeInp";
 
 
 const AddPeriod = () => {
 
-  const [starttime,setStartTime]=useState(null);
-  const [endtime,setEndTime]=useState(null);
+  const [error,setError]=useState();
   let handleSubmit = async (e) => {
     e.preventDefault();
     const formdata = new FormData(e.currentTarget);
@@ -38,24 +39,35 @@ const AddPeriod = () => {
       session_type:formdata.get("session_type"),
       course:formdata.get("course"),
       day:formdata.get('day'),
-      time_start:formdata.get('time_start'),
-      time_end:formdata.get('time_end'),
+      starting_period_value:formdata.get('starting_period_no'),
+      no_of_period_value:formdata.get('num_periods'),
       room_number:formdata.get("room_number"),
+      season: "winter",
       year:4
       
     });
-    const response = await axios.post('http://127.0.0.1:8000/api/routines/',
-    {
-      subject: formdata.get("subject"),
-      teacher: [formdata.get("teacher")],
-      session_type:formdata.get("session_type"),
-      course:formdata.get("course"),
-      day:formdata.get('day'),
-      time_start:formdata.get('time_start'),
-      time_end:formdata.get('time_end'),
-      room_number:formdata.get("room_number"),
-      year:4 
-    })
+    const requestData = {
+      "teacher": [formdata.get("teacher")],
+      "subject": formdata.get("subject"),
+      "year": "1st Year",
+      "course": formdata.get("course"),
+      "day": formdata.get("day"),
+      "session_type": formdata.get("session_type"),
+      "room_number": formdata.get("room_number"),
+      "season": "winter",
+      "starting_period_value": formdata.get('starting_period_no'),
+      "no_of_period_value": formdata.get('num_periods')
+    };
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/api/routines/', requestData);
+      console.log("Success:", response.data);
+    } catch (error) {
+      console.error("Error occurred while making the POST request:", error.response.data);
+      setError(error.response.data);
+    }
+ 
+
+    
     
   };
   return (
@@ -121,36 +133,16 @@ const AddPeriod = () => {
                   </Box>
                   </Grid>
                   <Grid item xs={12} md={6}>
-                    <Box >
-                    <TextField
-                    type="time"
-                      required
-                      fullWidth
-                      id="time_start"
-                      label="time start"
-                      name="time_start"
-                      autoComplete="time_start"
-                      autoFocus
-                    />
-                    </Box>
+                   <StartPeriodInput/>
                   </Grid>
                   <Grid item xs={12} md={6}>
-                    <Box fullWidth>
-                    <TextField
-                    type="time"
-                      required
-                      fullWidth
-                      id="time_end"
-                      label="time end"
-                      name="time_end"
-                      autoComplete="time_end"
-                      autoFocus
-                    />
-                    </Box>
+                  <NumPeriodINput/>
                   </Grid>
                 
               </Grid>
-
+              <Box>
+                {error?Object.keys(error).map((item)=><p color="red">{`${item}:${error[item]}`}</p>):''}
+              </Box>
               <Button
                 type="submit"
                 fullWidth

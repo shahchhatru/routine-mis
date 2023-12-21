@@ -118,7 +118,7 @@ const TTeacherRoutine = () => {
     console.log("inside renderNextKey",myObject);
   if(myObject===''){
     console.log('empty')
-    return(<TableCell>{""}</TableCell>)
+    return(<TableCell style={{minWidth:"200px"}}>{""}</TableCell>)
   }else{
     console.log('myObject',myObject)
     return(

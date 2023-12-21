@@ -1,51 +1,81 @@
 import React ,{useState,useEffect} from 'react';
 import {Box,TextField, MenuItem} from '@mui/material'
+import axios from 'axios';
 
 const itemslist=[{
     id:1,
-    name:"Lecture",
-    url:"lecture"
+    name:"1",
+    url:1
 },
 {
     id:2,
-    name:"Lab",
-    url:"lab"
+    name:"2",
+    url:2
 },
 {
     id:3,
-    name:"Tutorial",
-    url:"tutorial"
+    name:"3",
+    url:3
 }
+,
+{
+    id:4,
+    name:"4",
+    url:4
+},
 
+{
+    id:5,
+    name:"5",
+    url:5
+},
+{
+    id:6,
+    name:"6",
+    url:6
+},
+
+{
+    id:7,
+    name:"7",
+    url:7
+},
+{
+    id:8,
+    name:"8",
+    url:8
+}
 ]
 
-const LectureTypeInp =()=>{
+
+const StartPeriodInput =()=>{
+    
     const [item,setitem] = useState('');
     const handleChange=(e)=>{
         setitem(e.target.value);
         console.log(e.target.value);
-    }    
+    }
 
     return (
         <Box sx={{mb:2}}>
             <TextField
             required
-            label='Session Type'
+            label='Select Starting Period'
             select
-            id='session_type'
-            name="session_type"
+            id='starting_period_no'
+            name="starting_period_no"
             value={item}
             onChange={handleChange}
             fullWidth
-            > 
-            { 
+            >
+          
+          { 
             (itemslist.length>0?itemslist.map((item) => (
               <MenuItem key={item.id} value={item.url}>
                 {item.name}
               </MenuItem>
             )):null)
           }
-         
 
         </TextField>
         </Box>
@@ -53,4 +83,4 @@ const LectureTypeInp =()=>{
 
 }
 
-export default LectureTypeInp;
+export default  StartPeriodInput;

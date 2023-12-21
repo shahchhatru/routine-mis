@@ -32,7 +32,7 @@ import useWindowDimensions from "../customhooks/useWindowDimensions";
 import TraditionalCard from "../components/TraditionalCard";
 import TraditionalRoutine from "../components/TraditionalRoutine";
 
-const Routine = () => {
+const Routine = (props) => {
   const tablular_rtine = {
     sun: {
       1: {},
@@ -132,7 +132,8 @@ const Routine = () => {
   }, [width]);
 
   const ele = useRef();
-  const { id } = useParams();
+  //const { id } = useParams();
+  const id = props.id;
   const periodsarray = useRef([]);
 
   const [routine_obj, setRO] = useState({
@@ -197,40 +198,32 @@ const Routine = () => {
 
   // }
 
-  const renderNextKey=({myObject})=>{
-    if(myObject){
-      if(Object.keys(myObject).length>0){
-        const {teacher,subject,starting_period_value,no_of_period_value}=myobject;
+  // const renderNextKey=({myObject})=>{
+  //   if(myObject){
+  //     if(Object.keys(myObject).length>0){
+  //       const {teacher,subject,starting_period_value,no_of_period_value}=myobject;
         
-        return(
-          <TableCell>
-            <TraditionalCard name={teacher[0]} subject={subject}/>
-          </TableCell>
-        )
-      }else{
-        return(
-          <TableCell>
-            {""}
-          </TableCell>
-        )
-      }
-    }
+  //       return(
+  //         <TableCell>
+  //           <TraditionalCard name={teacher[0]} subject={subject}/>
+  //         </TableCell>
+  //       )
+  //     }else{
+  //       return(
+  //         <TableCell >
+  //           {""}
+  //         </TableCell>
+  //       )
+  //     }
+  //   }
    
-  }
+  // }
   return (
     <>
       <Box sx={{ width: "100%", typography: "body1" }}>
-        <TabContext value={value}>
-          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-            <TabList onChange={handleChange} aria-label="lab API tabs example">
-              <Tab label="Swipable View" value="2" />
-              <Tab label="Traditional View" value="1" />
-              <Tab label="Item Three" value="3" />
-            </TabList>
-          </Box>
-          <TabPanel value="2">
-            <CssBaseline />
-            <Typography></Typography>
+       
+         
+         
             <Grid
               container
               style={{
@@ -507,81 +500,10 @@ const Routine = () => {
                 )}
               </Grid>
             </Grid>
-          </TabPanel>
-          <TabPanel value="1">
-            <Grid
-              container
-              style={{
-                background: colors["white-purple"],
-                width: "80vw",
-                height: "fit-content",
-                borderRadius: 8,
-              }}
-            >
-              <TableContainer>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Days \ Time</TableCell>
-                      <TableCell align="right">
-                        <Typography>10:15 to 11:00</Typography>
-                        <Divider />
-                        <Typography>10:15 to 11:05</Typography>
-                      </TableCell>
-                      <TableCell align="right">
-                        {" "}
-                        <Typography>11:00 to 11:45</Typography>
-                        <Divider />
-                        <Typography>10:15 to 11:05</Typography>
-                      </TableCell>
-                      <TableCell align="right">
-                        {" "}
-                        <Typography>11:45 to 12:30</Typography>
-                        <Divider />
-                        <Typography>10:15 to 11:05</Typography>
-                      </TableCell>
-                      <TableCell align="right">
-                        {" "}
-                        <Typography>12:30 to 1</Typography>
-                        <Divider />
-                        <Typography>10:15 to 11:05</Typography>
-                      </TableCell>
-                      <TableCell align="right">
-                        {" "}
-                        <Typography>1 to 1:45</Typography>
-                        <Divider />
-                        <Typography>10:15 to 11:05</Typography>
-                      </TableCell>
-                      <TableCell align="right">
-                        {" "}
-                        <Typography>1:45 to 2:30</Typography>
-                        <Divider />
-                        <Typography>10:15 to 11:05</Typography>
-                      </TableCell>
-                      <TableCell align="right">
-                        {" "}
-                        <Typography>2:30 to 3:15</Typography>
-                        <Divider />
-                        <Typography>10:15 to 11:05</Typography>
-                      </TableCell>
-                      <TableCell align="right">
-                        {" "}
-                        <Typography> 3:15 to 4:00</Typography>
-                        <Divider />
-                        <Typography>10:15 to 11:05</Typography>
-                      </TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    <TraditionalRoutine classid={id}/>
-                    
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </Grid>
-          </TabPanel>
-          <TabPanel value="3">Item Three</TabPanel>
-        </TabContext>
+         
+          
+              
+                  
       </Box>
     </>
   );
