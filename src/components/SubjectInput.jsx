@@ -3,9 +3,11 @@ import {Box,TextField, MenuItem} from '@mui/material'
 import axios from 'axios';
 
 
-const SubjectInput =()=>{
+const SubjectInput =({value,dispatch})=>{
     const [itemslist, setitemslist] = useState([]);
-    const [item,setitem] = useState('');
+    /*
+    const [item,setitem] = useState(props.value);
+    */
     useEffect(()=>{
         const fetchitemList = async () => {
       
@@ -21,8 +23,9 @@ const SubjectInput =()=>{
         fetchitemList();
       },[]);
     const handleChange=(e)=>{
-        setitem(e.target.value);
-        console.log(e.target.value);
+        // setitem(e.target.value);
+        // console.log(e.target.value);
+        dispatch({type:"UPDATE",payload:{subject:e.target.value}})
     }
 
     return (
@@ -33,7 +36,7 @@ const SubjectInput =()=>{
             select
             id='select_item'
             name="subject"
-            value={item}
+            value={value}
             onChange={handleChange}
             fullWidth
             >

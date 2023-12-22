@@ -43,12 +43,13 @@ const itemslist=[{
 ]
 
 
-const DayInput =()=>{
+const DayInput =({value,dispatch})=>{
     
-    const [item,setitem] = useState('');
+    // *const [item,setitem] = useState(''); */
     const handleChange=(e)=>{
-        setitem(e.target.value);
-        console.log(e.target.value);
+        /* setitem(e.target.value);
+        console.log(e.target.value);*/
+        dispatch({type:"UPDATE",payload:{'day':e.target.value}})
     }
 
     return (
@@ -59,7 +60,7 @@ const DayInput =()=>{
             select
             id='day'
             name="day"
-            value={item}
+            value={value}
             onChange={handleChange}
             fullWidth
             >

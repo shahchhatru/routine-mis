@@ -2,9 +2,10 @@ import React ,{useState,useEffect} from 'react';
 import {Box,TextField, MenuItem} from '@mui/material'
 import axios from 'axios';
 
-const CourseInput =()=>{
+const CourseInput =({value,dispatch})=>{
+  
     const [itemslist, setitemslist] = useState([]);
-    const [item,setitem] = useState('');
+    /*const [item,setitem] = useState('');*/
     
     useEffect(()=>{
         const fetchitemList = async () => {
@@ -21,8 +22,9 @@ const CourseInput =()=>{
         fetchitemList();
       },[]);
     const handleChange=(e)=>{
-        setitem(e.target.value);
-        console.log(e.target.value);
+        // setitem(e.target.value);
+        // console.log(e.target.value);
+        dispatch({type:"UPDATE",payload:{'course':e.target.value}})
     }
 
     return (
@@ -33,7 +35,7 @@ const CourseInput =()=>{
             select
             id='select_course'
             name="course"
-            value={item}
+            value={value}
             onChange={handleChange}
             fullWidth
             >

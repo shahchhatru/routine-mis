@@ -48,12 +48,11 @@ const itemslist=[{
 ]
 
 
-const StartPeriodInput =()=>{
+const StartPeriodInput =({value,dispatch})=>{
     
-    const [item,setitem] = useState('');
+   // const [item,setitem] = useState('');
     const handleChange=(e)=>{
-        setitem(e.target.value);
-        console.log(e.target.value);
+        dispatch({type:'UPDATE',payload:{'starting_period_value':e.target.value}})
     }
 
     return (
@@ -64,7 +63,7 @@ const StartPeriodInput =()=>{
             select
             id='starting_period_no'
             name="starting_period_no"
-            value={item}
+            value={value}
             onChange={handleChange}
             fullWidth
             >

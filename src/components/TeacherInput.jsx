@@ -3,9 +3,9 @@ import {Box,TextField, MenuItem} from '@mui/material'
 import axios from 'axios';
 
 
-const TeacherInput =()=>{
+const TeacherInput =({value,dispatch})=>{
     const [teacherslist, setTeacherslist] = useState([]);
-    const [teacher,setTeacher] = useState('');
+    //* const [teacher,setTeacher] = useState('');*/
     useEffect(()=>{
         const fetchTeacherList = async () => {
       
@@ -21,8 +21,9 @@ const TeacherInput =()=>{
         fetchTeacherList();
       },[]);
     const handleChange=(e)=>{
-        setTeacher(e.target.value);
-        console.log(e.target.value);
+        // setTeacher(e.target.value);
+        // console.log(e.target.value);
+        dispatch({type:"UPDATE",payload:{"teacher":e.target.value}})
     }
 
     return (
@@ -33,7 +34,7 @@ const TeacherInput =()=>{
             select
             id='select_teacher'
             name="teacher"
-            value={teacher}
+            value={value}
             onChange={handleChange}
             fullWidth
             > 

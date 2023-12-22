@@ -29,12 +29,13 @@ const itemslist=[{
 ]
 
 
-const NumPeriodINput =()=>{
+const NumPeriodINput =({value,dispatch})=>{
     
-    const [item,setitem] = useState('');
+    //const [item,setitem] = useState('');
     const handleChange=(e)=>{
-        setitem(e.target.value);
-        console.log(e.target.value);
+        // setitem(e.target.value);
+        // console.log(e.target.value);
+        dispatch({type:"UPDATE",payload:{no_of_period_value:e.target.value}})
     }
 
     return (
@@ -45,7 +46,7 @@ const NumPeriodINput =()=>{
             select
             id='num_periods'
             name="num_periods"
-            value={item}
+            value={value}
             onChange={handleChange}
             fullWidth
             >

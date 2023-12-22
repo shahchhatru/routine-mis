@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useReducer } from "react";
 
 import {
   Typography,
   TextField,
   Button,
-  Checkbox,
   CssBaseline,
   Grid,
   Box,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
+  
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
@@ -25,51 +21,119 @@ import CourseInput from "../components/CourseInput";
 import StartPeriodInput from "../components/startPeriod";
 import NumPeriodINput from "../components/numPeriod";
 import LectureTypeInp from "../components/LectureTypeInp";
+import YearInput from "../components/YearInput";
+import YearPartInput from "../components/PartYear";
 
+const initialState = {
+  teacher: "",
+  subject: "",
+  session_type: "",
+  starting_period_value: "",
+  no_of_period_value: "",
+};
+
+const initialStateGlobal={
+  year:"",
+  course:"",
+  day:"",
+  room_number:"",
+  semester:"",
+}
+
+const reducerfunction = (state, action) => {
+  console.log("dispatch called");
+  switch (action.type) {
+    case "UPDATE":
+      return {
+        ...state,
+        ...action.payload,
+      };
+    case "CLEAR":
+      return {
+        teacher: "",
+        subject: "",
+        year: "",
+        course: "",
+        day: "",
+        session_type: "",
+        room_number: "",
+        season: "",
+        starting_period_value: "",
+        no_of_period_value: "",
+      };
+    default:
+      return {
+        ...state,
+      };
+  }
+};
+
+const reducerfunction2 = (state, action) => {
+  console.log("dispatch2 called");
+  switch (action.type) {
+    case "UPDATE":
+      return {
+        ...state,
+        ...action.payload,
+      };
+    case "CLEAR":
+      return {
+        
+        year: "",
+        course: "",
+        day: "",
+        
+        room_number: "",
+        semester:""
+      };
+    default:
+      return {
+        ...state,
+      };
+  }
+};
 
 const AddPeriod = () => {
-
-  const [error,setError]=useState();
+  const [formstate, dispatch] = useReducer(reducerfunction, initialState);
+  const [formstate2,dispatch2]=useReducer(reducerfunction2,initialStateGlobal);
+  const [error, setError] = useState();
   let handleSubmit = async (e) => {
     e.preventDefault();
     const formdata = new FormData(e.currentTarget);
     console.log({
       subject: formdata.get("subject"),
       teacher: [formdata.get("teacher")],
-      session_type:formdata.get("session_type"),
-      course:formdata.get("course"),
-      day:formdata.get('day'),
-      starting_period_value:formdata.get('starting_period_no'),
-      no_of_period_value:formdata.get('num_periods'),
-      room_number:formdata.get("room_number"),
+      session_type: formdata.get("session_type"),
+      course: formdata.get("course"),
+      day: formdata.get("day"),
+      starting_period_value: formdata.get("starting_period_no"),
+      no_of_period_value: formdata.get("num_periods"),
+      room_number: formdata.get("room_number"),
       season: "winter",
-      year:4
-      
+      year: 4,
     });
     const requestData = {
-      "teacher": [formdata.get("teacher")],
-      "subject": formdata.get("subject"),
-      "year": "1st Year",
-      "course": formdata.get("course"),
-      "day": formdata.get("day"),
-      "session_type": formdata.get("session_type"),
-      "room_number": formdata.get("room_number"),
-      "season": "winter",
-      "starting_period_value": formdata.get('starting_period_no'),
-      "no_of_period_value": formdata.get('num_periods')
+      teacher: [formdata.get("teacher")],
+      subject: formdata.get("subject"),
+      year: "1st Year",
+      course: formdata.get("course"),
+      day: formdata.get("day"),
+      session_type: formdata.get("session_type"),
+      room_number: formdata.get("room_number"),
+      season: "winter",
+      starting_period_value: formdata.get("starting_period_no"),
+      no_of_period_value: formdata.get("num_periods"),
     };
-    try {
-      const response = await axios.post('http://127.0.0.1:8000/api/routines/', requestData);
-      console.log("Success:", response.data);
-    } catch (error) {
-      console.error("Error occurred while making the POST request:", error.response.data);
-      setError(error.response.data);
-    }
- 
-
-    
-    
+    // try {
+    //   const response = await axios.post('http://127.0.0.1:8000/api/routines/', requestData);
+    //   console.log("Success:", response.data);
+    // } catch (error) {
+    //   console.error("Error occurred while making the POST request:", error.response.data);
+    //   setError(error.response.data);
+    // }
   };
+  console.log("formstate:", formstate);
+  console.log("formstate2:",formstate2);
   return (
     <>
       <CssBaseline />
@@ -101,24 +165,21 @@ const AddPeriod = () => {
             </Typography>
             <Box
               component="form"
-              onSubmit={handleSubmit}
+              // onSubmit={handleSubmit}
               noValidate
               sx={{ mt: 1 }}
             >
-
-              <SubjectInput />
-              <TeacherInput />
-
               <Grid container spacing={2}>
-                <Grid item xs={12} md={6}>
-                  <DayInput />
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <CourseInput />
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <LectureTypeInp />
-                </Grid>
+              <Grid item xs={12} md={4}>
+                  <YearInput value={formstate2.year} dispatch={dispatch2} />
+              </Grid>
+              <Grid item xs={12} md={4}>
+                  <YearPartInput value={formstate2.semester} dispatch={dispatch2} />
+              </Grid> 
+              <Grid item xs={12} md={4}>
+                  <CourseInput value={formstate2.course} dispatch={dispatch2} />
+              </Grid>
+              
                 <Grid item xs={12} md={6}>
                   <Box sx={{ mb: 2 }}>
                     <TextField
@@ -129,29 +190,97 @@ const AddPeriod = () => {
                       name="room_number"
                       autoComplete="room_number"
                       autoFocus
+                      value={formstate2.room_number}
+                      onChange={(e) =>
+                        dispatch2({
+                          type: "UPDATE",
+                          payload: { room_number: e.target.value },
+                        })
+                      }
                     />
-                  </Box>
-                  </Grid>
-                  <Grid item xs={12} md={6}>
-                   <StartPeriodInput/>
-                  </Grid>
-                  <Grid item xs={12} md={6}>
-                  <NumPeriodINput/>
-                  </Grid>
+                    </Box>
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                  <DayInput value={formstate2.day} dispatch={dispatch2} />
+              </Grid>
+                  
+              
+              <Grid item sx={6}>
+                  <Button
+                    onClick={(e) => dispatch2({ type: "CLEAR", payload: {} })}
+                    variant="contained"
+                    style={{ color: "#fff", background: "#f0f" }}
+                    sx={{ mt: 1, mb: 1, fontSize: 16, pt: 3, pb: 3 }}
+                  >
+                    CLEAR
+                  </Button>
+                </Grid>
+              </Grid>
+
+            </Box>
+            <Box
+              component="form"
+              onSubmit={handleSubmit}
+              noValidate
+              sx={{ mt: 1 }}
+            >
+              <SubjectInput value={formstate.subject} dispatch={dispatch} />
+              <TeacherInput value={formstate.teacher} dispatch={dispatch} />
+
+              <Grid container spacing={2}>
+               
+                <Grid item xs={12} md={4}>
+                  <LectureTypeInp
+                    value={formstate.session_type}
+                    dispatch={dispatch}
+                  />
+                </Grid>
                 
+                <Grid item xs={12} md={4}>
+                  <StartPeriodInput
+                    value={formstate.starting_period_value}
+                    dispatch={dispatch}
+                  />
+                </Grid>
+                <Grid item xs={12} md={4}>
+                  <NumPeriodINput
+                    value={formstate.no_of_period_value}
+                    dispatch={dispatch}
+                  />
+                </Grid>
               </Grid>
               <Box>
-                {error?Object.keys(error).map((item)=><p color="red">{`${item}:${error[item]}`}</p>):''}
+                {error
+                  ? Object.keys(error).map((item) => (
+                      <p color="red">{`${item}:${error[item]}`}</p>
+                    ))
+                  : ""}
               </Box>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                style={{ color: "#fff" }}
-                sx={{ mt: 3, mb: 2, fontSize: 16, pt: 3, pb: 3 }}
-              >
-                ADD
-              </Button>
+
+              <Grid item container fullWidth spacing={2}>
+                <Grid item sx={6}>
+                  <Button
+                    onClick={(e) => dispatch({ type: "CLEAR", payload: {} })}
+                    variant="contained"
+                    style={{ color: "#fff", background: "#f0f" }}
+                    sx={{ mt: 3, mb: 2, fontSize: 16, pt: 3, pb: 3 }}
+                  >
+                    CLEAR
+                  </Button>
+                </Grid>
+                <Grid item sx={6}>
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    style={{ color: "#fff",minWidth:"100px" }}
+                    sx={{ mt: 3, mb: 2, fontSize: 16, pt: 3, pb: 3 }}
+                  >
+                    ADD
+                  </Button>
+                </Grid>
+              </Grid>
+
               <Box>
                 <Typography variant="h6" align="right" sx={{ marginTop: 4 }}>
                   Back to Home page

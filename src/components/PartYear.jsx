@@ -3,28 +3,22 @@ import {Box,TextField, MenuItem} from '@mui/material'
 
 const itemslist=[{
     id:1,
-    name:"Lecture",
-    url:"lecture"
+    name:"1st Part",
+    url:"1st Part",
 },
 {
     id:2,
-    name:"Lab",
-    url:"lab"
+    name:"2nd Part",
+    url:"2nd Part"
 },
-{
-    id:3,
-    name:"Tutorial",
-    url:"tutorial"
-}
-
 ]
 
-const LectureTypeInp =({value,dispatch})=>{
+const YearPartInput=({value,dispatch})=>{
     /* const [item,setitem] = useState('');*/
     const handleChange=(e)=>{
         // setitem(e.target.value);
         // console.log(e.target.value);
-        dispatch({type:"UPDATE",payload:{'session_type':e.target.value}})
+        dispatch({type:"UPDATE",payload:{'semester':e.target.value}})
 
     }    
 
@@ -32,10 +26,10 @@ const LectureTypeInp =({value,dispatch})=>{
         <Box sx={{mb:2}}>
             <TextField
             required
-            label='Session Type'
+            label='Year Part Input'
             select
-            id='session_type'
-            name="session_type"
+            id='year_part'
+            name="Part"
             value={value}
             onChange={handleChange}
             fullWidth
@@ -55,4 +49,4 @@ const LectureTypeInp =({value,dispatch})=>{
 
 }
 
-export default LectureTypeInp;
+export default YearPartInput;
