@@ -4,12 +4,12 @@ import {Box,TextField, MenuItem} from '@mui/material'
 const itemslist=[{
     id:1,
     name:"1st Part",
-    url:"1st Part",
+    url:"1",
 },
 {
     id:2,
     name:"2nd Part",
-    url:"2nd Part"
+    url:"2"
 },
 ]
 
