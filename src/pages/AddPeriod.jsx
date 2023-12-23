@@ -30,6 +30,7 @@ const initialState = {
   session_type: "",
   starting_period_value: "",
   no_of_period_value: "",
+  season:"winter"
 };
 
 const initialStateGlobal={
@@ -37,7 +38,7 @@ const initialStateGlobal={
   course:"",
   day:"",
   room_number:"",
-  semester:"",
+  year_part:"",
 }
 
 const reducerfunction = (state, action) => {
@@ -52,12 +53,8 @@ const reducerfunction = (state, action) => {
       return {
         teacher: "",
         subject: "",
-        year: "",
-        course: "",
-        day: "",
         session_type: "",
-        room_number: "",
-        season: "",
+        season: "winter",
         starting_period_value: "",
         no_of_period_value: "",
       };
@@ -84,7 +81,7 @@ const reducerfunction2 = (state, action) => {
         day: "",
         
         room_number: "",
-        semester:""
+        year_part:""
       };
     default:
       return {
@@ -112,25 +109,29 @@ const AddPeriod = () => {
       season: "winter",
       year: 4,
     });
-    const requestData = {
-      teacher: [formdata.get("teacher")],
-      subject: formdata.get("subject"),
-      year: "1st Year",
-      course: formdata.get("course"),
-      day: formdata.get("day"),
-      session_type: formdata.get("session_type"),
-      room_number: formdata.get("room_number"),
-      season: "winter",
-      starting_period_value: formdata.get("starting_period_no"),
-      no_of_period_value: formdata.get("num_periods"),
-    };
-    // try {
-    //   const response = await axios.post('http://127.0.0.1:8000/api/routines/', requestData);
-    //   console.log("Success:", response.data);
-    // } catch (error) {
-    //   console.error("Error occurred while making the POST request:", error.response.data);
-    //   setError(error.response.data);
-    // }
+    // const requestData = {
+    //   teacher: [formdata.get("teacher")],
+    //   subject: formdata.get("subject"),
+    //   year: "1st Year",
+    //   course: formdata.get("course"),
+    //   day: formdata.get("day"),
+    //   session_type: formdata.get("session_type"),
+    //   room_number: formdata.get("room_number"),
+    //   season: "winter",
+    //   starting_period_value: formdata.get("starting_period_no"),
+    //   no_of_period_value: formdata.get("num_periods"),
+    // };
+
+    const requestData={
+      ...formstate,...formstate2,teacher:[formstate.teacher]
+    }
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/api/routines/', requestData);
+      console.log("Success:", response.data);
+    } catch (error) {
+      console.error("Error occurred while making the POST request:", error.response.data);
+      setError(error.response.data);
+    }
   };
   console.log("formstate:", formstate);
   console.log("formstate2:",formstate2);
@@ -174,7 +175,7 @@ const AddPeriod = () => {
                   <YearInput value={formstate2.year} dispatch={dispatch2} />
               </Grid>
               <Grid item xs={12} md={4}>
-                  <YearPartInput value={formstate2.semester} dispatch={dispatch2} />
+                  <YearPartInput value={formstate2.year_part} dispatch={dispatch2} />
               </Grid> 
               <Grid item xs={12} md={4}>
                   <CourseInput value={formstate2.course} dispatch={dispatch2} />

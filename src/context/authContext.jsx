@@ -58,7 +58,7 @@ export const AuthProvider = ({children})=>{
             }
         )
 
-        const response= await axios.post('http://127.0.0.1:8001/user/register/',{
+        const response= await axios.post('http://127.0.0.1:8000/user/register/',{
         name:formdata.get('name'),
         email: formdata.get('email'),
         password: formdata.get('password'),
@@ -86,7 +86,7 @@ export const AuthProvider = ({children})=>{
         email: formdata.get('email'),
         password: formdata.get('password'),
         });
-    const response= await axios.post('http://127.0.0.1:8001/user/login/',{
+    const response= await axios.post('http://127.0.0.1:8000/user/login/',{
         email: formdata.get('email'),
         password: formdata.get('password'),
     })
@@ -133,6 +133,7 @@ export const AuthProvider = ({children})=>{
  
      },[tokendata,loading])
 
+     console.log(contextData);
      return(
         <AuthContext.Provider value={contextData}>
             {children}

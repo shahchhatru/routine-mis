@@ -18,7 +18,7 @@ const YearPartInput=({value,dispatch})=>{
     const handleChange=(e)=>{
         // setitem(e.target.value);
         // console.log(e.target.value);
-        dispatch({type:"UPDATE",payload:{'semester':e.target.value}})
+        dispatch({type:"UPDATE",payload:{'year_part':e.target.value}})
 
     }    
 
