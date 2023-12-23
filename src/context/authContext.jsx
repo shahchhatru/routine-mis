@@ -73,7 +73,7 @@ export const AuthProvider = ({children})=>{
         if(response.status === 201){
             console.log("ok response")
             alert('registration succesful')
-            history('/login');
+            history('/signup');
         }
 
 

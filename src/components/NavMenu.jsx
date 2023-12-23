@@ -110,6 +110,12 @@ export default function NavMenu() {
           </Button>
         </MenuItem>
         <MenuItem onClick={handleClose} disableRipple>
+          <ArchiveIcon />
+          <Button onClick={()=>navigate('/signup')}>
+            Add User
+          </Button>
+        </MenuItem>
+        <MenuItem onClick={handleClose} disableRipple>
           <MoreHorizIcon />
           More
         </MenuItem>

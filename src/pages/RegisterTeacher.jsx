@@ -1,4 +1,4 @@
-import React from 'react'
+import React ,{useReducer} from 'react'
 import {
     Typography,
     TextField,
@@ -12,23 +12,54 @@ import {
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import UserInput from '../components/UserInput';
 
 const RegisterTeacher = () => {
-    let handleSubmit = async (e)=>{
-        e.preventDefault();
-        const formdata = new FormData(e.currentTarget);
-        console.log({
-            "name":formdata.get("name"),
+  const initialState={
+    name:'',
+    email:'',
+    address:'',
+    phone:'',
+    user:'',
+  }
+  const reducer=(state,action)=>{
+    switch(action.type){
+      case "UPDATE":
+        return {
+          ...state,
+          ...action.payload
+        }
+      case "CLEAR":
+        return{
+          name:'',
+          email:'',
+          address:'',
+          phone:'',
+          user:''
+        }
+      default:
+        return{
+          ...state
+        }
+    }
+  }
+  /**
+   *  "name":formdata.get("name"),
             "email":formdata.get("email"),
             "address":formdata.get("address"),
             "phone":formdata.get("phone")
+   */
+
+  const [formstate,dispatch]=useReducer(reducer,initialState);
+    let handleSubmit = async (e)=>{
+        e.preventDefault();
+       // const formdata = new FormData(e.currentTarget);
+        console.log({
+           ...formstate
         })
         const response= await axios.post("http://127.0.0.1:8000/api/teachers/",
         {
-            "name":formdata.get("name"),
-            "email":formdata.get("email"),
-            "address":formdata.get("address"),
-            "phone":formdata.get("phone")
+            ...formstate
         }
         )
 
@@ -79,6 +110,8 @@ const RegisterTeacher = () => {
               label="Name"
               name="name"
               autoComplete="name"
+              value={formstate.name}
+              onChange={(e)=>dispatch({type:"UPDATE",payload:{name:e.target.value}})}
               autoFocus
             />
             <TextField
@@ -90,31 +123,36 @@ const RegisterTeacher = () => {
               type="email"
               id="email"
               autoComplete="email"
+              value={formstate.email}
+              onChange={(e)=>dispatch({type:"UPDATE",payload:{email:e.target.value}})}
               
             />
             <TextField
               margin="normal"
-              required
               fullWidth
               name="address"
               label="Address"
               type="address"
               id="address"
               autoComplete='address'
+              value={formstate.address}
+              onChange={(e)=>dispatch({type:"UPDATE",payload:{address:e.target.value}})}
+              
             />
             <TextField
               margin="normal"
-              required
               fullWidth
               name="phone"
               label="phone"
               type="tel"
               id="phone"
               autoComplete='phone'
-
+              value={formstate.phone}
+              onChange={(e)=>dispatch({type:"UPDATE",payload:{phone:e.target.value}})}
+              
               
             />
-           
+           <UserInput value={formstate.user} dispatch={dispatch}/>
             
             <Button
               type="submit"

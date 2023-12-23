@@ -91,7 +91,7 @@ const LoginPage = () => {
                 Sign In
               </Button>
               <Box>
-                <Typography variant="h6" align="right" >Don't have an account ?<Link to="/signup" style={{"color":"orange"}}>create one</Link> </Typography>
+                <Typography variant="h6" align="right" >Don't have an account ?<Link to="/" style={{"color":"orange"}}>Request Admin</Link> </Typography>
               </Box>
             </Box>
           </Grid>

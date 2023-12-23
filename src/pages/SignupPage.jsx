@@ -48,7 +48,7 @@ const SignUpPage = () => {
     <Grid container  style={{margin:"0 0 0 20",position:"absolute",top:"50%",left:"50%",transform:"translate(-50%,-50%)"}}>
     <Grid item sm={0} md={3}/>
     <Grid item md={6}>
-      <Typography variant="h1" color="white" align='center'>Signup</Typography>
+      <Typography variant="h1" color="white" align='center'>Add User</Typography>
       <Box component="form" onSubmit={registerUser} noValidate sx={{ mt: 1 }}>
       <TextField
               margin="normal"
@@ -99,12 +99,12 @@ const SignUpPage = () => {
               style={{color:'#fff'}}
               sx={{ mt: 3, mb: 2,fontSize:16,pt:3,pb:3 }}
             >
-              Sign Up
+              Create User
             </Button>
             
-            <Box>
+            {/* <Box>
                 <Typography variant="h6" align="right" >Already have an account?<Link to="/login" style={{"color":"orange"}}>Sign In</Link> </Typography>
-              </Box>
+              </Box> */}
     </Box>
     </Grid>
     </Grid>
