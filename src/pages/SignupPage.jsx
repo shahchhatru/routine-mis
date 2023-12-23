@@ -8,6 +8,7 @@ import { Typography,TextField,Button,Checkbox, CssBaseline } from '@mui/material
 import FormControlLabel from '@mui/material/FormControlLabel';
 import AuthContext from '../context/authContext';
 import { useContext } from 'react';
+import AdminInput from '../components/AdminInput';
 
 
 
@@ -89,6 +90,7 @@ const SignUpPage = () => {
               id="password2"
               autoComplete="current-password"
             />
+            <AdminInput/>
         
             <Button
               type="submit"
@@ -99,6 +101,7 @@ const SignUpPage = () => {
             >
               Sign Up
             </Button>
+            
             <Box>
                 <Typography variant="h6" align="right" >Already have an account?<Link to="/login" style={{"color":"orange"}}>Sign In</Link> </Typography>
               </Box>

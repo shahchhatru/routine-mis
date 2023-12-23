@@ -15,6 +15,7 @@ import RegisterTeacher from './pages/RegisterTeacher'
 import AddSubject from './pages/AddSubject'
 import AddPeriod from './pages/AddPeriod'
 import AuthContext from "./context/authContext";
+import AddUser from './pages/AddUser';
 import { useContext } from 'react';
 
 import ViewTeacherRoutine from './pages/ViewTeacherRoutine';
@@ -59,6 +60,7 @@ function App() {
         <Route path="/view_routine_t/:id" element={<ViewTeacherRoutine/>}/>
         <Route path="/view_routine_course/:id" element={<ClassRoutine/>}/>
         <Route path="/changepassword" element={<ResetPassword/>} />
+        <Route path="/add_user" element={<AddUser/>} />
       </Routes>
     </AuthProvider>
     </ThemeProvider>

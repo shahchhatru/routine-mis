@@ -53,8 +53,8 @@ export const AuthProvider = ({children})=>{
                 name:formdata.get('name'),
                 email:formdata.get("email"),
                 password:formdata.get("password"),
-                password2:formdata.get("password2")
-                
+                password2:formdata.get("password2"),
+                tc:formdata.get('is_admin')
             }
         )
 
@@ -63,7 +63,7 @@ export const AuthProvider = ({children})=>{
         email: formdata.get('email'),
         password: formdata.get('password'),
         password2:formdata.get("password2"),
-        tc:true,
+        tc:formdata.get('is_admin')
         })
 
         let data =response.data.token;
