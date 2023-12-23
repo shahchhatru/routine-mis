@@ -150,7 +150,7 @@ const Routine = (props) => {
       const course_id = id;
       try {
         const response = await axios.get(
-          `http://127.0.0.1:8000/api/routines/get_routines_by_course_and_year/?course_id=${course_id}&year=4`
+          `http://127.0.0.1:8000/api/routines/get_routines_by_course_and_year/?course_id=${course_id}&year=5`
         );
 
         console.log(response.data);

@@ -21,7 +21,7 @@ import useWindowDimensions from "../customhooks/useWindowDimensions";
 
 
 
-const ViewRoutine = () => {
+const ViewRoutine = (props) => {
 
 const routine_oobj = {
   sun: [],
@@ -64,7 +64,8 @@ const set_routine_oobj = (perArray) => {
   },[width])
   
   const ele=useRef();
-  const { id } = useParams();
+  //const { id } = useParams();
+  const id = props.id;
   const periodsarray=useRef([])
   //const [periodsarray, setPeriodsArray] = useState([]);
   const [routine_obj,setRO]=useState({

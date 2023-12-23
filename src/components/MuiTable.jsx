@@ -75,7 +75,7 @@ const MuiTable = () => {
     ]
   return (
    <Box align="center">
-        <Typography variant='h1'>Dashboard</Typography>
+        <Typography variant='h2'>Routine MIS</Typography>
         <Paper sx={{width:"80%",marginTop:10}}>
              <TableContainer>
                 <Table>

@@ -32,7 +32,7 @@ import useWindowDimensions from "../customhooks/useWindowDimensions";
 import TraditionalCard from "../components/TraditionalCard";
 
 
-const TTeacherRoutine = () => {
+const TTeacherRoutine = (props) => {
   const tablular_rtine = {
     sun: { 1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: '' },
     mon: { 1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: '' },
@@ -76,7 +76,8 @@ const TTeacherRoutine = () => {
   
 
   
-  const { id } = useParams();
+  //const { id } = useParams();
+  const id = props.id;
   const periodsarray = useRef([]);
   const [tabular_object,set_tO] = useState({...tablular_rtine});
   const [routine_obj, setRO] = useState({

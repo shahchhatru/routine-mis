@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import MuiTable from "../components/MuiTable";
 import AuthContext from "../context/authContext";
 import { Button, CssBaseline, Grid } from "@mui/material";
+import NavBar from "../components/Navbar";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -15,21 +16,23 @@ const Home = () => {
         return navigate("/login");
       }
     }
+    else{
+      if(user){
+        if(user.tc==false){
+          return navigate(`/view_routine_t/${user.user_id}`)
+        }
+      }
+    }
   });
   return(
 
     <>
+    <NavBar/>
     <CssBaseline/>
-      <Grid container spacing={4}>
-        <Grid item sx={3}>
-          <Link to="/add_period">ADD PERIOD</Link>
-        </Grid>
-        <Grid item sx={3}>
-          <Link to="/add_subject">ADD SUBJECT</Link>
-        </Grid>
-      </Grid>
+     
+      
       <MuiTable />
-      <Button onClick={logoutUser}>Logout</Button>
+      
     </>
   ) 
   ;
