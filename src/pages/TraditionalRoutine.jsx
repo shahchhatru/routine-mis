@@ -78,6 +78,9 @@ const TraditionalRoutine = (props) => {
   
   //const { id } = useParams();
   const id=props.id;
+  const section=props.section;
+  const year=props.year;
+  const year_part=props.year_part;
   const periodsarray = useRef([]);
   const [tabular_object,set_tO] = useState({...tablular_rtine});
   const [routine_obj, setRO] = useState({
@@ -94,7 +97,7 @@ const TraditionalRoutine = (props) => {
       const course_id = id;
       try {
         const response = await axios.get(
-          `http://127.0.0.1:8000/api/routines/get_routines_by_course_and_year/?course_id=${course_id}&year=5`
+          `http://127.0.0.1:8000/api/routines/get_routines_by_course_and_year_section_part/?course_id=${course_id}&year=${year}&year_part=${year_part}&section=${section}`
         );
 
         console.log(response.data);

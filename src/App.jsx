@@ -59,7 +59,7 @@ function App() {
         <Route path="/add_subject" element={<AddSubject/>}/>
         <Route path="/add_period" element={<AddPeriod/>}/>
         <Route path="/view_routine_t/:id" element={<ViewTeacherRoutine/>}/>
-        <Route path="/view_routine_course/:id/:section" element={<ClassRoutine/>}/>
+        <Route path="/view_routine_course/:id/:section/:year/:year_part" element={<ClassRoutine/>}/>
         <Route path="/changepassword" element={<ResetPassword/>} />
         <Route path="/add_user" element={<AddUser/>} />
         <Route path="/edit_period/:id" element={<EditRoutine/>} />

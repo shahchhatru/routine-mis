@@ -29,17 +29,49 @@ function createData(id,name, url) {
     createData('002','076BCTAB','/routine'),
     createData('003','076BCTCD','/routine')
   ]
+
+  const courses=[
+    {
+    id:1,
+    year:'4th',
+    name:'BCTAB',
+    section:'AB',
+    year_id:5,
+    course_id:1,
+    part:2,
+    },
+    {
+      id:2,
+      year:'4th',
+      name:'BCTCD',
+      section:'CD',
+      year_id:5,
+      course_id:1,
+      part:2,
+    },
+    {
+      id:3,
+      year:'4th',
+      name:"BEI",
+      section:"AB",
+      course_id:2,
+      part:2,
+      year_id:5,
+
+    }
+
+  ]
 const MuiTable = () => {
     const [teacherslist,setTeacherList]=useState([])
-    const [courses,setCourses]=useState([]);
+    //const [courses,setCourses]=useState([]);
     useEffect(()=>{
       const fetchTeacherList = async () => {
     
         try {
           const response = await axios.get('http://127.0.0.1:8000/api/teachers/');
-          const response2= await axios.get('http://127.0.0.1:8000/api/courses/');
+          //const response2= await axios.get('http://127.0.0.1:8000/api/courses/');
           setTeacherList(response.data);
-          setCourses(response2.data);
+          //setCourses(response2.data);
           console.log(teacherslist);
         } catch (error) {
           console.error('Error fetching teacher list:', error);
@@ -66,6 +98,11 @@ const MuiTable = () => {
         {
             id:'id',
             name:"Course Id",
+
+        },
+        {
+          id:'year',
+          name:"Year"
         },
         {
             id:"ClassId",
@@ -157,9 +194,10 @@ const MuiTable = () => {
               <TableCell component="th" scope="row">
                 {row.id}
               </TableCell>
-              <TableCell align="right"><Typography>{row.name}</Typography></TableCell>
+              <TableCell><Typography>{row.year}</Typography></TableCell>
+              <TableCell><Typography>{row.name}</Typography></TableCell>
               <TableCell align='center'>
-                <Link to={`/view_routine_course/${row.id}/AB`} >
+                <Link to={`/view_routine_course/${row.course_id}/${row.section}/${row.year_id}/${row.part}`} >
                     <Button variant="outlined" startIcon={<CalendarMonthIcon/>}>
                                    View Routine
                     </Button>

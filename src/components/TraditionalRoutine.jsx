@@ -43,7 +43,7 @@ const TraditionalRoutine = (props) => {
           7:{},
           8:{}
         },
-        thrus: {
+        thu: {
           1: {},
           2: {},
           3: {},
@@ -61,7 +61,7 @@ const TraditionalRoutine = (props) => {
         mon: [],
         tue: [],
         wed: [],
-        thrus: [],
+        thu: [],
         fri: [],
         sat: [],
       };
