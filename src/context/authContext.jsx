@@ -12,6 +12,7 @@ export const AuthProvider = ({children})=>{
     let [tokendata,setTokendata]=useState(localStorage.getItem("authTokens")?JSON.parse(localStorage.getItem("authTokens")):null)
     const [user,setUser]=useState(localStorage.getItem("authTokens")?jwtDecode(JSON.parse(localStorage.getItem("authTokens")).access):null);
     const [loading,setLoading]=useState(true);
+    const [error,setError]=useState('');
 
     let history=useNavigate();
 
@@ -58,6 +59,7 @@ export const AuthProvider = ({children})=>{
             }
         )
 
+        
         const response= await axios.post('http://127.0.0.1:8000/user/register/',{
         name:formdata.get('name'),
         email: formdata.get('email'),

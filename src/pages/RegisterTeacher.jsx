@@ -1,4 +1,4 @@
-import React ,{useReducer} from 'react'
+import React ,{useReducer,useState} from 'react'
 import {
     Typography,
     TextField,
@@ -14,6 +14,7 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import UserInput from '../components/UserInput';
 
 const RegisterTeacher = () => {
+  const [error,setError]=useState()
   const initialState={
     name:'',
     email:'',
@@ -42,13 +43,7 @@ const RegisterTeacher = () => {
         }
     }
   }
-  /**
-   *  "name":formdata.get("name"),
-            "email":formdata.get("email"),
-            "address":formdata.get("address"),
-            "phone":formdata.get("phone")
-   */
-
+ 
   const [formstate,dispatch]=useReducer(reducer,initialState);
     let handleSubmit = async (e)=>{
         e.preventDefault();

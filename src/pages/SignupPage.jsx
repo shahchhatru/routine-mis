@@ -42,6 +42,7 @@ const SignUpPage = () => {
   const [userstate,dispatch]=useReducer(reducer,initailState);
   const handleSubmit=(e)=>{
     registerUser(e)
+    dispatch({type:"CLEAR"})
   }
 
   return (
@@ -62,7 +63,7 @@ const SignUpPage = () => {
     <Grid item sm={0} md={3}/>
     <Grid item md={6}>
       <Typography variant="h1" color="white" align='center'>Add User</Typography>
-      <Box component="form" onSubmit={registerUser} noValidate sx={{ mt: 1 }}>
+      <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
       <TextField
               margin="normal"
               required
@@ -72,6 +73,7 @@ const SignUpPage = () => {
               name="name"
               autoComplete="name"
               value={userstate.name}
+              onChange={(e)=>dispatch({type:"UPDATE",payload:{name:e.target.value}})}
               autoFocus
             />
             <TextField
@@ -83,6 +85,7 @@ const SignUpPage = () => {
               name="email"
               autoComplete="email"
               value={userstate.email}
+              onChange={(e)=>dispatch({type:"UPDATE",payload:{email:e.target.value}})}
               autoFocus
             />
             <TextField
@@ -94,6 +97,7 @@ const SignUpPage = () => {
               type="password"
               id="password"
               value={userstate.password}
+              onChange={(e)=>dispatch({type:"UPDATE",payload:{password:e.target.value}})}
               autoComplete="current-password"
             />
              <TextField
@@ -105,6 +109,7 @@ const SignUpPage = () => {
               type="password"
               id="password2"
               value={userstate.password2}
+              onChange={(e)=>dispatch({type:"UPDATE",payload:{password2:e.target.value}})}
               autoComplete="current-password"
             />
             <AdminInput value={userstate.tc} dispatch={dispatch}/>

@@ -95,7 +95,7 @@ const Routine = (props) => {
     fri: [],
     sat: [],
   };
-  const days = ["sun", "mon", "tue", "wed", "thrus", "fri", "sat"];
+  const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 
   const set_routine_oobj = (perArray) => {
     perArray.forEach((period) => {
@@ -372,7 +372,7 @@ const Routine = (props) => {
               <></>
             )}
 
-            {routine_obj["thrus"].length > 0 ? (
+            {routine_obj["thu"].length > 0 ? (
               <Grid item container p={2} sx={{ width: "100%" }}>
                 <Typography>Thrusday</Typography>
                 <Swiper
@@ -385,9 +385,9 @@ const Routine = (props) => {
                   ]}
                   spaceBetween={25}
                   slidesPerView={
-                    routine_obj["thrus"].length > slide_per_view.current
+                    routine_obj["thu"].length > slide_per_view.current
                       ? slide_per_view.current
-                      : routine_obj["thrus"].length
+                      : routine_obj["thu"].length
                   }
                   navigation
                   pagination={{ clickable: true }}
@@ -395,7 +395,7 @@ const Routine = (props) => {
                   onSwiper={(swiper) => console.log(swiper)}
                   onSlideChange={() => console.log("slide change")}
                 >
-                  {routine_obj["thrus"].map((rtine) => (
+                  {routine_obj["thu"].map((rtine) => (
                     <SwiperSlide key={rtine.url}>
                       <PeriodCard
                         url={rtine.url}

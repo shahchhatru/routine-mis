@@ -32,7 +32,7 @@ const routine_oobj = {
   fri: [],
   sat: [],
 };
-const days = ["sun", "mon", "tue", "wed", "thrus", "fri", "sat"];
+const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 const remove_duplicates=()=>{
 
 }
@@ -286,7 +286,7 @@ const set_routine_oobj = (perArray) => {
           )}
 
 
-           { routine_obj["thrus"].length > 0 ? (
+           { routine_obj["thu"].length > 0 ? (
             <Grid item container p={2} sx={{width:'100%'}}>
               <Typography>Thrusday</Typography>
               <Swiper
@@ -298,14 +298,14 @@ const set_routine_oobj = (perArray) => {
                   EffectCoverflow,
                 ]}
                 spaceBetween={25}
-                slidesPerView={routine_obj["thrus"].length>slide_per_view.current?slide_per_view.current:routine_obj["thrus"].length}
+                slidesPerView={routine_obj["thu"].length>slide_per_view.current?slide_per_view.current:routine_obj["thu"].length}
                 navigation
                 pagination={{ clickable: true }}
                 scrollbar={{ draggable: true }}
                 onSwiper={(swiper) => console.log(swiper)}
                 onSlideChange={() => console.log("slide change")}
               >
-                {routine_obj["thrus"].map((rtine) => (
+                {routine_obj["thu"].map((rtine) => (
                   <SwiperSlide key={rtine.url}>
                     <PeriodCard url={rtine.url} 
                     teacher_list={rtine.teacher} 

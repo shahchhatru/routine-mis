@@ -253,8 +253,8 @@ const TTeacherRoutine = (props) => {
            <TableRow>
             <TableCell>Thrusday</TableCell>
             { 
-                Object.keys(tabular_object['thrus']).length>0?
-                Object.keys(tabular_object['thrus']).map((item)=>renderNextKey(tabular_object['thrus'][item])):''
+                Object.keys(tabular_object["thu"]).length>0?
+                Object.keys(tabular_object["thu"]).map((item)=>renderNextKey(tabular_object["thu"][item])):''
                // renderNextKey(tabular_object['fri'][1])
             }
            </TableRow>
