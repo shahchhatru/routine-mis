@@ -27,7 +27,7 @@ const itemslist=[{
 {
     id:5,
     name:"thrusday",
-    url:"thrus"
+    url:"thu"
 },
 {
     id:6,
