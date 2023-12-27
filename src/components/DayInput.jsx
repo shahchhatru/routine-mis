@@ -15,7 +15,7 @@ const itemslist=[{
 {
     id:3,
     name:"tueday",
-    url:"twe"
+    url:"tue"
 }
 ,
 {

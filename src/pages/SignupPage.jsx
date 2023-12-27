@@ -7,29 +7,42 @@ import Grid from '@mui/material/Grid';
 import { Typography,TextField,Button,Checkbox, CssBaseline } from '@mui/material';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import AuthContext from '../context/authContext';
-import { useContext } from 'react';
+import { useContext,useReducer } from 'react';
 import AdminInput from '../components/AdminInput';
 
 
+const initailState={
+  'name':'',
+  'email':'',
+  'password':'',
+  'password2':'',
+  'tc':'',
+}
+const reducer=(state,action)=>{
+  switch(action.type){
+    case "UPDATE":
+      return{
+        ...state,
+        ...action.payload
+      }
+    case 'CLEAR':
+      return{
+        ...initailState
+      }
+    default:
+      return {
+        ...state
+      }
 
+  }
+}
 
 const SignUpPage = () => {
   const {registerUser}=useContext(AuthContext);
-
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   const data = new FormData(event.currentTarget);
-  //   console.log({
-  //     email: data.get('email'),
-  //     password: data.get('password'),
-  //   });
-  //  const response= await axios.post('http://127.0.0.1:8000/api/user/login/',{
-  //   email: data.get('email'),
-  //   password: data.get('password'),
-  //  })
-   
-  //  console.log("result::",response.data)
-  // };
+  const [userstate,dispatch]=useReducer(reducer,initailState);
+  const handleSubmit=(e)=>{
+    registerUser(e)
+  }
 
   return (
     <>
@@ -58,6 +71,7 @@ const SignUpPage = () => {
               label="Name"
               name="name"
               autoComplete="name"
+              value={userstate.name}
               autoFocus
             />
             <TextField
@@ -68,6 +82,7 @@ const SignUpPage = () => {
               label="Email Address"
               name="email"
               autoComplete="email"
+              value={userstate.email}
               autoFocus
             />
             <TextField
@@ -78,6 +93,7 @@ const SignUpPage = () => {
               label="Password"
               type="password"
               id="password"
+              value={userstate.password}
               autoComplete="current-password"
             />
              <TextField
@@ -88,9 +104,10 @@ const SignUpPage = () => {
               label="Confirm Password"
               type="password"
               id="password2"
+              value={userstate.password2}
               autoComplete="current-password"
             />
-            <AdminInput/>
+            <AdminInput value={userstate.tc} dispatch={dispatch}/>
         
             <Button
               type="submit"

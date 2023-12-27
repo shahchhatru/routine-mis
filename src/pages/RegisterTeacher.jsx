@@ -3,7 +3,6 @@ import {
     Typography,
     TextField,
     Button,
-    Checkbox,
     CssBaseline,
     Grid,
     Box,
@@ -66,6 +65,7 @@ const RegisterTeacher = () => {
        
 
         console.log(response)
+        dispatch({type:"CLEAR",payload:{}})
         
     }
   return (

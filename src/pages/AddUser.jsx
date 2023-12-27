@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import {useReducer} from 'react';
 import {
     Typography,
     TextField,
@@ -14,6 +15,29 @@ import axios from 'axios';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 const AddUser = () => {
+  const initailState={
+            "name":'',
+            "email":'',
+            "address":'',
+            "phone":''
+  }
+
+  const reducerfunction=(state,action)=>{
+    switch(action.type){
+      case "UPDATE":
+        return {
+          ...state,
+          ...action.payload,
+        };
+      case "CLEAR":
+        return {
+          ...initailState,
+        }
+      default:
+        return state
+    }
+  }
+  //const [userstate,dispatch]=useReducer(reducerfunction,initailState)
     let handleSubmit = async (e)=>{
         e.preventDefault();
         const formdata = new FormData(e.currentTarget);

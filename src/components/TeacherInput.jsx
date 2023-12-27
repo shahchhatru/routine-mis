@@ -30,7 +30,6 @@ const TeacherInput =({value,dispatch})=>{
         <Box sx={{mb:2}}>
             <TextField
             label='Select Teacher'
-            required
             select
             id='select_teacher'
             name="teacher"
