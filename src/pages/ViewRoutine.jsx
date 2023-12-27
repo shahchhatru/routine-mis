@@ -156,7 +156,7 @@ const set_routine_oobj = (perArray) => {
               >
                 {routine_obj["sun"].map((rtine) => (
                   <SwiperSlide key={rtine.url}>
-                    <PeriodCard 
+                    <PeriodCard url={rtine.url} 
                     teacher_list={rtine.teacher} 
                     subject={rtine.subject}
                     start_time={rtine.time_start}
@@ -193,7 +193,7 @@ const set_routine_oobj = (perArray) => {
               >
                 {routine_obj["mon"].map((rtine) => (
                   <SwiperSlide key={rtine.url}>
-                    <PeriodCard 
+                    <PeriodCard url={rtine.url} 
                     teacher_list={rtine.teacher} 
                     subject={rtine.subject}
                     start_time={rtine.time_start}
@@ -231,7 +231,7 @@ const set_routine_oobj = (perArray) => {
               >
                 {routine_obj["tue"].map((rtine) => (
                   <SwiperSlide key={rtine.url}>
-                    <PeriodCard 
+                    <PeriodCard url={rtine.url} 
                     teacher_list={rtine.teacher} 
                     subject={rtine.subject}
                     start_time={rtine.time_start}
@@ -269,7 +269,7 @@ const set_routine_oobj = (perArray) => {
               >
                 {routine_obj["wed"].map((rtine) => (
                   <SwiperSlide key={rtine.url}>
-                    <PeriodCard 
+                    <PeriodCard url={rtine.url} 
                     teacher_list={rtine.teacher} 
                     subject={rtine.subject}
                     start_time={rtine.time_start}
@@ -307,7 +307,7 @@ const set_routine_oobj = (perArray) => {
               >
                 {routine_obj["thrus"].map((rtine) => (
                   <SwiperSlide key={rtine.url}>
-                    <PeriodCard 
+                    <PeriodCard url={rtine.url} 
                     teacher_list={rtine.teacher} 
                     subject={rtine.subject}
                     start_time={rtine.time_start}
@@ -343,7 +343,7 @@ const set_routine_oobj = (perArray) => {
               >
                 {routine_obj["fri"].map((rtine) => (
                   <SwiperSlide key={rtine.url}>
-                    <PeriodCard 
+                    <PeriodCard url={rtine.url} 
                       teacher_list={rtine.teacher} 
                       subject={rtine.subject}
                       start_time={rtine.time_start}

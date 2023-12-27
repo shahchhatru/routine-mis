@@ -131,6 +131,7 @@ const TraditionalRoutine = (props) => {
                     end_time={myObject.time_end}
                     session_type={myObject.session_type}
                     room_number={myObject.room_number}
+                    url={myObject.url}
                     /></TableCell>
     )
   }

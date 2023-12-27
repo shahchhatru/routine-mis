@@ -39,7 +39,6 @@ const initialStateGlobal={
   day:"",
   room_number:"",
   year_part:"",
-  section:""
 }
 
 const reducerfunction = (state, action) => {
@@ -91,7 +90,7 @@ const reducerfunction2 = (state, action) => {
   }
 };
 
-const AddPeriod = () => {
+const EditRoutine = () => {
   const [formstate, dispatch] = useReducer(reducerfunction, initialState);
   const [formstate2,dispatch2]=useReducer(reducerfunction2,initialStateGlobal);
   const [error, setError] = useState();
@@ -110,24 +109,13 @@ const AddPeriod = () => {
       season: "winter",
       year: 4,
     });
-    // const requestData = {
-    //   teacher: [formdata.get("teacher")],
-    //   subject: formdata.get("subject"),
-    //   year: "1st Year",
-    //   course: formdata.get("course"),
-    //   day: formdata.get("day"),
-    //   session_type: formdata.get("session_type"),
-    //   room_number: formdata.get("room_number"),
-    //   season: "winter",
-    //   starting_period_value: formdata.get("starting_period_no"),
-    //   no_of_period_value: formdata.get("num_periods"),
-    // };
+    
 
     const requestData={
       ...formstate,...formstate2,teacher:[formstate.teacher]
     }
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/routines/', requestData);
+      const response = await axios.put('http://127.0.0.1:8000/api/routines/', requestData);
       console.log("Success:", response.data);
     } catch (error) {
       console.error("Error occurred while making the POST request:", error.response.data);
@@ -163,11 +151,10 @@ const AddPeriod = () => {
           <Grid item sm={0} md={3} />
           <Grid item md={6}>
             <Typography variant="h1" color="white" align="center">
-              ADD PERIOD
+              EDIT PERIOD
             </Typography>
             <Box
               component="form"
-              // onSubmit={handleSubmit}
               noValidate
               sx={{ mt: 1 }}
             >
@@ -204,9 +191,10 @@ const AddPeriod = () => {
                     <Grid item xs={12} md={4}>
                   <Box sx={{ mb: 2 }}>
                     <TextField
+                     
                       fullWidth
                       id="section"
-                      label="Section"
+                      label="section"
                       name="section"
                       autoComplete="section"
                       autoFocus
@@ -214,7 +202,7 @@ const AddPeriod = () => {
                       onChange={(e) =>
                         dispatch2({
                           type: "UPDATE",
-                          payload: { section: e.target.value },
+                          payload: {section: e.target.value },
                         })
                       }
                     />
@@ -323,4 +311,4 @@ const AddPeriod = () => {
   );
 };
 
-export default AddPeriod;
+export default EditRoutine;
