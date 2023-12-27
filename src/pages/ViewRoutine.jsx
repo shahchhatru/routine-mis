@@ -28,7 +28,7 @@ const routine_oobj = {
   mon: [],
   tue: [],
   wed: [],
-  thrus: [],
+  thu: [],
   fri: [],
   sat: [],
 };
@@ -73,7 +73,7 @@ const set_routine_oobj = (perArray) => {
     mon: [],
     tue: [],
     wed: [],
-    thrus: [],
+    thu: [],
     fri: [],
     sat: [],
   })

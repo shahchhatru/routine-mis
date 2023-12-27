@@ -38,7 +38,7 @@ const TraditionalRoutine = (props) => {
     mon: { 1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: '' },
     tue: { 1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: '' },
     wed: { 1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: '' },
-    thrus: { 1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: '' },
+    thu: { 1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: '' },
     fri: { 1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: '' },
   };
   let routine_oobj = {
@@ -46,11 +46,11 @@ const TraditionalRoutine = (props) => {
     mon: [],
     tue: [],
     wed: [],
-    thrus: [],
+    thu: [],
     fri: [],
     sat: [],
   };
-  const days = ["sun", "mon", "tue", "wed", "thrus", "fri", "sat"];
+  const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 
   const set_routine_oobj = (perArray) => {
     perArray.forEach((period) => {

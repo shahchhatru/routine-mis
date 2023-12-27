@@ -159,7 +159,7 @@ const MuiTable = () => {
               </TableCell>
               <TableCell align="right"><Typography>{row.name}</Typography></TableCell>
               <TableCell align='center'>
-                <Link to={`/view_routine_course/${row.id}`} >
+                <Link to={`/view_routine_course/${row.id}/AB`} >
                     <Button variant="outlined" startIcon={<CalendarMonthIcon/>}>
                                    View Routine
                     </Button>

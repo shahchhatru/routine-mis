@@ -8,9 +8,10 @@ import Routine from './Routine';
 import TraditionalRoutine from './TraditionalRoutine';
 import { useParams } from 'react-router-dom';
 export default function ClassRoutine() {
-  const { id } = useParams()
+  const { id } = useParams();
+  /*const {section}=useParams(); */
   const [value, setValue] = React.useState('1');
-
+  //console.log(`id ${id} ,section ${section}`);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };

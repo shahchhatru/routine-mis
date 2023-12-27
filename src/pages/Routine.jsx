@@ -74,7 +74,7 @@ const Routine = (props) => {
       7: {},
       8: {},
     },
-    thrus: {
+    thu: {
       1: {},
       2: {},
       3: {},
@@ -91,7 +91,7 @@ const Routine = (props) => {
     mon: [],
     tue: [],
     wed: [],
-    thrus: [],
+    thu: [],
     fri: [],
     sat: [],
   };
@@ -140,7 +140,7 @@ const Routine = (props) => {
     mon: [],
     tue: [],
     wed: [],
-    thrus: [],
+    thu: [],
     fri: [],
     sat: [],
   });
