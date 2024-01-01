@@ -116,12 +116,12 @@ const TTeacherRoutine = (props) => {
   
 
   const renderNextKey = ( myObject ) => {
-    console.log("inside renderNextKey",myObject);
+    //console.log("inside renderNextKey",myObject);
   if(myObject===''){
-    console.log('empty')
+    //console.log('empty')
     return(<TableCell style={{minWidth:"200px"}}>{""}</TableCell>)
   }else{
-    console.log('myObject',myObject)
+    //console.log('myObject',myObject)
     return(
       <TableCell>
         <PeriodCard 

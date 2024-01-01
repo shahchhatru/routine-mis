@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useReducer } from "react";
+import React, { useEffect, useState, useReducer,useContext } from "react";
 
 import {
   Typography,
@@ -9,8 +9,8 @@ import {
   Box,
   
 } from "@mui/material";
-import { Link } from "react-router-dom";
-import { TimePicker } from "@mui/x-date-pickers/TimePicker";
+import { Link, redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
@@ -23,6 +23,7 @@ import NumPeriodINput from "../components/numPeriod";
 import LectureTypeInp from "../components/LectureTypeInp";
 import YearInput from "../components/YearInput";
 import YearPartInput from "../components/PartYear";
+import AuthContext from "../context/authContext";
 
 const initialState = {
   teacher: "",
@@ -91,9 +92,22 @@ const reducerfunction2 = (state, action) => {
 };
 
 const EditRoutine = () => {
+  const navigate =useNavigate();
+  const{user}=useContext(AuthContext);
+  useEffect(()=>{
+    const func =async()=>{
+        if(user.tc==false){
+          navigate('/');
+        }
+    }
+    func();
+  },[])
+
   const [formstate, dispatch] = useReducer(reducerfunction, initialState);
   const [formstate2,dispatch2]=useReducer(reducerfunction2,initialStateGlobal);
   const [error, setError] = useState();
+
+
   let handleSubmit = async (e) => {
     e.preventDefault();
     const formdata = new FormData(e.currentTarget);

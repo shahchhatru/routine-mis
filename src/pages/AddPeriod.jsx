@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useReducer } from "react";
-
+import MultiTeacherSelect from "../components/MultiTeacherSelect";
 import {
   Typography,
   TextField,
@@ -92,6 +92,7 @@ const reducerfunction2 = (state, action) => {
 };
 
 const AddPeriod = () => {
+  const [selectedOptions, setSelectedOptions] = useState();
   const [formstate, dispatch] = useReducer(reducerfunction, initialState);
   const [formstate2,dispatch2]=useReducer(reducerfunction2,initialStateGlobal);
   const [error, setError] = useState();
@@ -110,21 +111,10 @@ const AddPeriod = () => {
       season: "winter",
       year: 4,
     });
-    // const requestData = {
-    //   teacher: [formdata.get("teacher")],
-    //   subject: formdata.get("subject"),
-    //   year: "1st Year",
-    //   course: formdata.get("course"),
-    //   day: formdata.get("day"),
-    //   session_type: formdata.get("session_type"),
-    //   room_number: formdata.get("room_number"),
-    //   season: "winter",
-    //   starting_period_value: formdata.get("starting_period_no"),
-    //   no_of_period_value: formdata.get("num_periods"),
-    // };
+    
 
     const requestData={
-      ...formstate,...formstate2,teacher:[formstate.teacher]
+      ...formstate,...formstate2,
     }
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/routines/', requestData);
@@ -245,8 +235,8 @@ const AddPeriod = () => {
               sx={{ mt: 1 }}
             >
               <SubjectInput value={formstate.subject} dispatch={dispatch} />
-              <TeacherInput value={formstate.teacher} dispatch={dispatch} />
-
+              {/* <TeacherInput value={formstate.teacher} dispatch={dispatch} /> */}
+              <MultiTeacherSelect dispatch={dispatch}/>
               <Grid container spacing={2}>
                
                 <Grid item xs={12} md={4}>
