@@ -1,4 +1,4 @@
-import React ,{useState} from 'react'
+import React ,{useState,useEffect} from 'react'
 import {
     Typography,
     TextField,
@@ -6,6 +6,7 @@ import {
     Checkbox,
     CssBaseline,
     Grid,
+    Autocomplete,
     Box,
   } from "@mui/material";
 import { Link } from 'react-router-dom';
@@ -13,24 +14,53 @@ import axios from 'axios';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 const AddSubject = () => {
-    const [error,setError] =useState([]);
+    const [error,setError] =useState({});
+    const [subjects,setSubjects]=useState([]);
+    const [options,setOptions]=useState([]);
+    const [value,setValue]=useState({label:'',value:''})
+    useEffect(()=>{
+      const fetchSub = async ()=>{
+        try{
+          const response=await axios.get("http://127.0.0.1:8000/api/subjects/");
+          console.log(response.data);
+          const teacheroption_array=response.data.map(opt=>({label:opt.name,value:opt.name}))
+          setOptions(teacheroption_array)
+        }
+        catch(err){
+          console.log(err)
+        }
+      }
+
+      fetchSub();
+     
+
+    },[])
+    // const handleChange=(event,newValue)=>{
+    //   if (event && event.target && event.target.nodeName === 'INPUT') {
+    //     // Handle the new value here, you can add it to your options or perform any other action
+    //     console.log('New value entered:', newValue);
+    //   } else {
+    //     // Handle the selection from the existing options
+    //     console.log({newValue});
+    //   }
+
+    // }
     let handleSubmit = async (e)=>{
         e.preventDefault();
         const formdata = new FormData(e.currentTarget);
-        const response= await axios.post("http://127.0.0.1:8000/api/subjects/",
-        {
-            "name":formdata.get("subject"),
-            "year":"http://127.0.0.1:8000/api/years/4/",
-            "semester":["http://127.0.0.1:8000/api/semesters/1/","http://127.0.0.1:8000/api/semesters/2/"]
-        }
-        )
-        if(response.status==201){
-            console.log(response);
-            console.log("request success");
-        }else{
-            setError(response.data);
-            console.log(response.data);
-        }
+        // const response= await axios.post("http://127.0.0.1:8000/api/subjects/",
+        // {
+        //     "name":formdata.get("subject"),
+        // }   
+        // )
+        // if(response.status==201){
+        //     console.log(response);
+        //     console.log("request success");
+        // }else{
+        //     setError(response.data);
+        //     console.log(response.data);
+        // }
+        console.log(formdata.get("subject"))
 
        
 
@@ -71,7 +101,7 @@ const AddSubject = () => {
             noValidate
             sx={{ mt: 1 }}
           >
-            <TextField
+         <TextField
               margin="normal"
               required
               fullWidth
@@ -80,8 +110,16 @@ const AddSubject = () => {
               name="subject"
               autoComplete="subject"
               autoFocus
-            />
+            /> 
 
+<Autocomplete
+      fullWidth
+      required
+      id="combo-box-demo"
+      options={options}
+      
+      renderInput={(params) => <TextField {...params} label="Subjects" />}
+    />
             
             <Button
               type="submit"

@@ -12,9 +12,13 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import UserInput from '../components/UserInput';
+import FileUploadInput from '../components/FileUploadInput';
+import { Directions } from '@mui/icons-material';
+import SearchableUserInput from '../components/SearchableUserInput';
 
 const RegisterTeacher = () => {
-  const [error,setError]=useState()
+  const [error,setError]=useState({})
+  
   const initialState={
     name:'',
     email:'',
@@ -51,15 +55,22 @@ const RegisterTeacher = () => {
         console.log({
            ...formstate
         })
-        const response= await axios.post("http://127.0.0.1:8000/api/teachers/",
+        try{
+          const response= await axios.post("http://127.0.0.1:8000/api/teachers/",
         {
             ...formstate
         }
         )
 
+        }catch(err){
+            setError(err.response.data);
+            console.log(err.response.data);
+        }
+        
+
        
 
-        console.log(response)
+       
         dispatch({type:"CLEAR",payload:{}})
         
     }
@@ -73,7 +84,10 @@ const RegisterTeacher = () => {
         width: "100vw",
         height: "100vh",
         display: "flex",
+        flexDirection:"column",
         alignItems: "center",
+        justifyContent:"space-around",
+        
       }}
     >
       <Grid
@@ -84,6 +98,7 @@ const RegisterTeacher = () => {
           top: "50%",
           left: "50%",
           transform: "translate(-50%,-50%)",
+          height:"80vh"
         }}
       >
         <Grid item sm={0} md={3} />
@@ -109,6 +124,9 @@ const RegisterTeacher = () => {
               onChange={(e)=>dispatch({type:"UPDATE",payload:{name:e.target.value}})}
               autoFocus
             />
+            <p style={{color:"#f00"}}>
+              {error.name?(error.name):''}
+            </p>
             <TextField
               margin="normal"
               required
@@ -122,6 +140,9 @@ const RegisterTeacher = () => {
               onChange={(e)=>dispatch({type:"UPDATE",payload:{email:e.target.value}})}
               
             />
+            <p style={{color:"#f00"}}>
+              {error.email?(error.email):''}
+            </p>
             <TextField
               margin="normal"
               fullWidth
@@ -134,6 +155,9 @@ const RegisterTeacher = () => {
               onChange={(e)=>dispatch({type:"UPDATE",payload:{address:e.target.value}})}
               
             />
+            <p style={{color:"#f00"}}>
+              {error.address?(error.address):''}
+            </p>
             <TextField
               margin="normal"
               fullWidth
@@ -147,8 +171,12 @@ const RegisterTeacher = () => {
               
               
             />
-           <UserInput value={formstate.user} dispatch={dispatch}/>
-            
+            <p style={{color:"#f00"}}>
+              {error.phone?(error.phone):''}
+            </p>
+           {/* <UserInput value={formstate.user} dispatch={dispatch}/>
+             */}
+             <SearchableUserInput statevalue={formstate.user} dispatch={dispatch}/>
             <Button
               type="submit"
               fullWidth
@@ -165,6 +193,15 @@ const RegisterTeacher = () => {
             </Box>
           </Box>
         </Grid>
+      </Grid>
+      <Grid container
+       style={{
+        position:'absolute',
+        top:'10vh',
+        left:'80vw',
+       }
+       }>
+        <FileUploadInput/>
       </Grid>
     </Grid>
   </>

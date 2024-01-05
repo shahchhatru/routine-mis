@@ -30,6 +30,10 @@ export const AuthProvider = ({children})=>{
         let response = await axios.post('http://127.0.0.1:8000/user/token/refresh/',{
             'refresh':tokendata.refresh
 
+        },{
+            headers:{
+                Authorization:"Bearer"+tokendata.access,
+            }
         })
 
         let data =  response.data.token;
@@ -129,7 +133,7 @@ export const AuthProvider = ({children})=>{
              }else{
  
              }
-         },5*30000)
+         },1)
  
          return ()=>clearInterval(interval);
  
