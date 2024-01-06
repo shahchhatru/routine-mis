@@ -8,6 +8,7 @@ import { Typography,TextField,Button,Checkbox, CssBaseline } from '@mui/material
 import FormControlLabel from '@mui/material/FormControlLabel';
 import AuthContext from '../context/authContext';
 import { useContext,useReducer } from 'react';
+import UserSheetUpload from '../components/UserSheetUpload'; 
 import AdminInput from '../components/AdminInput';
 
 
@@ -16,7 +17,7 @@ const initailState={
   'email':'',
   'password':'',
   'password2':'',
-  'tc':'',
+  'tc':0,
 }
 const reducer=(state,action)=>{
   switch(action.type){
@@ -124,10 +125,11 @@ const SignUpPage = () => {
               Create User
             </Button>
             
-            {/* <Box>
-                <Typography variant="h6" align="right" >Already have an account?<Link to="/login" style={{"color":"orange"}}>Sign In</Link> </Typography>
-              </Box> */}
+         
     </Box>
+    </Grid>
+    <Grid item sm={3}>
+      <UserSheetUpload/>
     </Grid>
     </Grid>
     </Grid>

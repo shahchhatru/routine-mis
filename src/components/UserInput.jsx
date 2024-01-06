@@ -5,8 +5,7 @@ import axios from 'axios';
 const UserInput =({value,dispatch})=>{
   
     const [itemslist, setitemslist] = useState([]);
-    /*const [item,setitem] = useState('');*/
-    
+   
     useEffect(()=>{
         const fetchitemList = async () => {
       
