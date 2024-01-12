@@ -146,15 +146,14 @@ const EditRoutine = () => {
       ...formstate,...formstate2,teacher:[formstate.teacher]
     }
     try {
-      const response = await axios.patch('http://127.0.0.1:8000/api/routines/', requestData);
+      const response = await axios.put(`http://127.0.0.1:8000/api/routines/${routine_id}/`, requestData);
       console.log("Success:", response.data);
     } catch (error) {
       console.error("Error occurred while making the POST request:", error.response.data);
       setError(error.response.data);
     }
   };
-  // console.log("formstate:", formstate);
-  // console.log("formstate2:",formstate2);
+  
   return (
     <>
       <CssBaseline />
