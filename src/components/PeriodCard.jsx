@@ -6,13 +6,15 @@ import {
   Grid,
   Button,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import EngineeringIcon from "@mui/icons-material/Engineering";
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import TimerOffIcon from "@mui/icons-material/TimerOff";
 import EditNoteIcon from "@mui/icons-material/EditNote";
+import UpdatertContext from "../context/updatertContext";
+import { useContext } from "react";
 export default function PeriodCard(props) {
-  const navigate=useNavigate();
+  const {setRoutineId,toggleEditOpen,editOpen}=useContext(UpdatertContext);
+
   function initialsAfterSpace(inputString) {
     // Split the input string into words
     const words = inputString.split(" ");
@@ -37,6 +39,19 @@ export default function PeriodCard(props) {
     console.log(urlParts);
     return urlParts[urlParts.length - 1];
   }
+
+  const handleEditButton=()=>{
+   
+    if(editOpen){
+      setRoutineId('');
+      toggleEditOpen();
+    }else{
+      toggleEditOpen();
+      setRoutineId(getId(url))
+    }
+    
+ }
+
   return (
     <Card sx={{ width: "300px", background: "white" }}>
       <CardContent>
@@ -65,7 +80,7 @@ export default function PeriodCard(props) {
             </Box>
           </Grid>
           <Grid item sx={4}>
-            <Button onClick={()=>navigate(`/edit_period/${getId(url)}`)}>
+            <Button onClick={()=>handleEditButton()}>
               <EditNoteIcon />
               Edit
             </Button>

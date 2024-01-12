@@ -24,6 +24,7 @@ import LectureTypeInp from "../components/LectureTypeInp";
 import YearInput from "../components/YearInput";
 import YearPartInput from "../components/PartYear";
 import AuthContext from "../context/authContext";
+import UpdatertContext from "../context/updatertContext";
 
 const initialState = {
   teacher: "",
@@ -92,6 +93,7 @@ const reducerfunction2 = (state, action) => {
 };
 
 const EditRoutine = () => {
+  const {routine_id} = useContext(UpdatertContext);
   const navigate =useNavigate();
   const{user}=useContext(AuthContext);
   useEffect(()=>{
@@ -103,6 +105,21 @@ const EditRoutine = () => {
     func();
   },[])
 
+  useEffect(()=>{
+    const fetchPeriod=async ()=>{
+      try{
+        const data = await axios.get(`http://127.0.0.1:8000/api/routines/${routine_id}/`)
+        console.log({data:data.data})
+        const ndata=data.data;
+        dispatch({type:"UPDATE",payload:{teacher:ndata.teacher[0],subject:ndata.subject,session_type:ndata.session_type,starting_period_value:ndata.starting_period_value,no_of_period_value:ndata.no_of_period_value}})
+        dispatch2({type:"UPDATE",payload:{year:ndata.year,course:ndata.course,day:ndata.day,room_number:ndata.room_number,year_part:ndata.year_part}})
+     
+      }catch(err){
+        console.log(err);
+      }
+    }
+    fetchPeriod();
+  },[routine_id])
   const [formstate, dispatch] = useReducer(reducerfunction, initialState);
   const [formstate2,dispatch2]=useReducer(reducerfunction2,initialStateGlobal);
   const [error, setError] = useState();
@@ -111,60 +128,62 @@ const EditRoutine = () => {
   let handleSubmit = async (e) => {
     e.preventDefault();
     const formdata = new FormData(e.currentTarget);
-    console.log({
-      subject: formdata.get("subject"),
-      teacher: [formdata.get("teacher")],
-      session_type: formdata.get("session_type"),
-      course: formdata.get("course"),
-      day: formdata.get("day"),
-      starting_period_value: formdata.get("starting_period_no"),
-      no_of_period_value: formdata.get("num_periods"),
-      room_number: formdata.get("room_number"),
-      season: "winter",
-      year: 4,
-    });
+    // console.log({
+    //   subject: formdata.get("subject"),
+    //   teacher: [formdata.get("teacher")],
+    //   session_type: formdata.get("session_type"),
+    //   course: formdata.get("course"),
+    //   day: formdata.get("day"),
+    //   starting_period_value: formdata.get("starting_period_no"),
+    //   no_of_period_value: formdata.get("num_periods"),
+    //   room_number: formdata.get("room_number"),
+    //   season: "winter",
+    //   year: 4,
+    // });
     
 
     const requestData={
       ...formstate,...formstate2,teacher:[formstate.teacher]
     }
     try {
-      const response = await axios.put('http://127.0.0.1:8000/api/routines/', requestData);
+      const response = await axios.patch('http://127.0.0.1:8000/api/routines/', requestData);
       console.log("Success:", response.data);
     } catch (error) {
       console.error("Error occurred while making the POST request:", error.response.data);
       setError(error.response.data);
     }
   };
-  console.log("formstate:", formstate);
-  console.log("formstate2:",formstate2);
+  // console.log("formstate:", formstate);
+  // console.log("formstate2:",formstate2);
   return (
     <>
       <CssBaseline />
       <Grid
         container
         style={{
-          background: "linear-gradient(to right, #8e2de2, #4a00e0)",
-          width: "100vw",
-          height: "100vh",
+          
+          width: "20vw",
           display: "flex",
           alignItems: "center",
+          height:"100%",
+          borderRadius:8,
+
         }}
       >
         <Grid
           container
           style={{
             margin: "0 0 0 20",
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%,-50%)",
+            
+            padding:16,
+            borderRadius:8,
+            height:"100%",
           }}
           sx={{ mr: 0 }}
         >
-          <Grid item sm={0} md={3} />
-          <Grid item md={6}>
-            <Typography variant="h1" color="white" align="center">
+          
+          <Grid item md={12}>
+            <Typography variant="h4" color="white" align="center">
               EDIT PERIOD
             </Typography>
             <Box
@@ -173,13 +192,13 @@ const EditRoutine = () => {
               sx={{ mt: 1 }}
             >
               <Grid container spacing={2}>
-              <Grid item xs={12} md={4}>
+              <Grid item xs={12} md={12}>
                   <YearInput value={formstate2.year} dispatch={dispatch2} />
               </Grid>
-              <Grid item xs={12} md={4}>
+              <Grid item xs={12} md={12}>
                   <YearPartInput value={formstate2.year_part} dispatch={dispatch2} />
               </Grid> 
-              <Grid item xs={12} md={4}>
+              <Grid item xs={12} md={12}>
                   <CourseInput value={formstate2.course} dispatch={dispatch2} />
               </Grid>
               
@@ -298,25 +317,12 @@ const EditRoutine = () => {
                     style={{ color: "#fff",minWidth:"100px" }}
                     sx={{ mt: 3, mb: 2, fontSize: 16, pt: 3, pb: 3 }}
                   >
-                    ADD
+                   UPDATE
                   </Button>
                 </Grid>
               </Grid>
 
-              <Box>
-                <Typography variant="h6" align="right" sx={{ marginTop: 4 }}>
-                  Back to Home page
-                  <Link to="/" style={{ color: "orange" }}>
-                    <Button
-                      variant="contained"
-                      startIcon={<KeyboardBackspaceIcon />}
-                      sx={{ marginLeft: 4 }}
-                    >
-                      Go back
-                    </Button>
-                  </Link>{" "}
-                </Typography>
-              </Box>
+             
             </Box>
           </Grid>
         </Grid>

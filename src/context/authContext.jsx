@@ -102,15 +102,15 @@ export const AuthProvider = ({children})=>{
         console.log("response",response);
 
         if(response.status === 200){
-            console.log("ok response")
+            // console.log("ok response")
             setAuthenticated(true);
             setTokendata(data);
             setUser(jwtDecode(data.access));
             localStorage.setItem('authTokens',JSON.stringify(data));
             history('/');
         }else{
-            console.log("request failed")
-            console.log(response);
+            // console.log("request failed")
+            // console.log(response);
             logoutUser();
         }
 
@@ -133,7 +133,7 @@ export const AuthProvider = ({children})=>{
              }else{
  
              }
-         },1)
+         },5000)
  
          return ()=>clearInterval(interval);
  

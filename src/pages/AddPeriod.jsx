@@ -92,6 +92,7 @@ const reducerfunction2 = (state, action) => {
 };
 
 const AddPeriod = () => {
+  
   const [selectedOptions, setSelectedOptions] = useState();
   const [formstate, dispatch] = useReducer(reducerfunction, initialState);
   const [formstate2,dispatch2]=useReducer(reducerfunction2,initialStateGlobal);
@@ -99,18 +100,18 @@ const AddPeriod = () => {
   let handleSubmit = async (e) => {
     e.preventDefault();
     const formdata = new FormData(e.currentTarget);
-    console.log({
-      subject: formdata.get("subject"),
-      teacher: [formdata.get("teacher")],
-      session_type: formdata.get("session_type"),
-      course: formdata.get("course"),
-      day: formdata.get("day"),
-      starting_period_value: formdata.get("starting_period_no"),
-      no_of_period_value: formdata.get("num_periods"),
-      room_number: formdata.get("room_number"),
-      season: "winter",
-      year: 4,
-    });
+    // console.log({
+    //   subject: formdata.get("subject"),
+    //   teacher: [formdata.get("teacher")],
+    //   session_type: formdata.get("session_type"),
+    //   course: formdata.get("course"),
+    //   day: formdata.get("day"),
+    //   starting_period_value: formdata.get("starting_period_no"),
+    //   no_of_period_value: formdata.get("num_periods"),
+    //   room_number: formdata.get("room_number"),
+    //   season: "winter",
+    //   year: 4,
+    // });
     
 
     const requestData={
@@ -119,13 +120,13 @@ const AddPeriod = () => {
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/routines/', requestData);
       console.log("Success:", response.data);
-    } catch (error) {
-      console.error("Error occurred while making the POST request:", error.response.data);
-      setError(error.response.data);
+    } catch (err) {
+      console.error("Error occurred while making the POST request:", err);
+      setError(err.response.data);
     }
   };
-  console.log("formstate:", formstate);
-  console.log("formstate2:",formstate2);
+  // console.log("formstate:", formstate);
+  // console.log("formstate2:",formstate2);
   return (
     <>
       <CssBaseline />

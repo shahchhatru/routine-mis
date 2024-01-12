@@ -22,6 +22,7 @@ import ViewTeacherRoutine from './pages/ViewTeacherRoutine';
 import ClassRoutine from './pages/ClassRoutine';
 import ResetPassword from './pages/ResetPassword';
 import EditRoutine from './pages/EditRoutine';
+import {UpdatertProvider} from './context/updatertContext';
 
 
 function App() {
@@ -37,7 +38,6 @@ function App() {
     }
   )
   
- 
 
   return (
     <>
@@ -45,6 +45,7 @@ function App() {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
     <ThemeProvider theme={theme}>
     <AuthProvider>
+      <UpdatertProvider>
       <CssBaseline/>
      
       
@@ -64,6 +65,7 @@ function App() {
         <Route path="/add_user" element={<AddUser/>} />
         <Route path="/edit_period/:id" element={<EditRoutine/>} />
       </Routes>
+    </UpdatertProvider>
     </AuthProvider>
     </ThemeProvider>
     </LocalizationProvider>
