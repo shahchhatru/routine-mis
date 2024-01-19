@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef ,useContext} from "react";
 import { Grid, CssBaseline, Box, Card, Typography } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -31,8 +31,9 @@ import colors from "../constants/colors";
 import useWindowDimensions from "../customhooks/useWindowDimensions";
 import TraditionalCard from "../components/TraditionalCard";
 import TraditionalRoutine from "../components/TraditionalRoutine";
-
+import UpdatertContext from "../context/updatertContext";
 const Routine = (props) => {
+  const {editOpen}=useContext(UpdatertContext);
   const tablular_rtine = {
     sun: {
       1: {},
@@ -166,7 +167,7 @@ const Routine = (props) => {
     };
     fetchRoutines();
     console.log("rooutine_obj:", routine_oobj);
-  }, [ele]);
+  }, [ele,editOpen]);
 
   const [value, setValue] = React.useState("1");
 

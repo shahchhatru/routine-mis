@@ -36,15 +36,17 @@ export const AuthProvider = ({children})=>{
             }
         })
 
-        let data =  response.data.token;
+        let data =  response.data;
 
         if(response.status===200){
+            console.log({"data":response.data});
             setTokendata(data);
             setUser(jwtDecode(data.access))
             localStorage.setItem('authTokens',JSON.stringify(data))
-
+            setAuthenticated(true);
         }else{
             logoutUser();
+            setAuthenticated(false);
         }
 
         
@@ -133,13 +135,13 @@ export const AuthProvider = ({children})=>{
              }else{
  
              }
-         },5000)
+         },5000*60*5)
  
          return ()=>clearInterval(interval);
  
      },[tokendata,loading])
 
-     console.log(contextData);
+     console.log("from authcontext",contextData);
      return(
         <AuthContext.Provider value={contextData}>
             {children}

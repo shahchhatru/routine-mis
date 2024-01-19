@@ -23,7 +23,7 @@ import ClassRoutine from './pages/ClassRoutine';
 import ResetPassword from './pages/ResetPassword';
 import EditRoutine from './pages/EditRoutine';
 import {UpdatertProvider} from './context/updatertContext';
-
+import { TimingContextProvider } from './context/winSumTimingContext';
 
 function App() {
   
@@ -45,7 +45,8 @@ function App() {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
     <ThemeProvider theme={theme}>
     <AuthProvider>
-      <UpdatertProvider>
+    <UpdatertProvider>
+    <TimingContextProvider>
       <CssBaseline/>
      
       
@@ -65,6 +66,7 @@ function App() {
         <Route path="/add_user" element={<AddUser/>} />
         <Route path="/edit_period/:id" element={<EditRoutine/>} />
       </Routes>
+    </TimingContextProvider>
     </UpdatertProvider>
     </AuthProvider>
     </ThemeProvider>

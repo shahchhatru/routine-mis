@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef,useContext } from "react";
 import { Grid, CssBaseline, Box, Card, Typography } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -30,9 +30,10 @@ import PeriodCard from "../components/PeriodCard";
 import colors from "../constants/colors";
 import useWindowDimensions from "../customhooks/useWindowDimensions";
 import TraditionalCard from "../components/TraditionalCard";
-
+import UpdatertContext from "../context/updatertContext";
 
 const TraditionalRoutine = (props) => {
+  const {editOpen} =useContext(UpdatertContext);
   const tablular_rtine = {
     sun: { 1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: '' },
     mon: { 1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: '' },
@@ -70,13 +71,7 @@ const TraditionalRoutine = (props) => {
   };
 
   
-//   console.log("routine_oobj", routine_oobj);
-//   console.log("tabular_routine", tablular_rtine);
-  // slide_per_view.current=1;
-  
 
-  
-  //const { id } = useParams();
   const id=props.id;
   const section=props.section;
   const year=props.year;
@@ -112,7 +107,7 @@ const TraditionalRoutine = (props) => {
     };
     fetchRoutines();
    
-  }, []);
+  }, [editOpen]);
 
   console.log("tabular_object",tabular_object)
   

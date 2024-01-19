@@ -100,26 +100,14 @@ const AddPeriod = () => {
   let handleSubmit = async (e) => {
     e.preventDefault();
     const formdata = new FormData(e.currentTarget);
-    // console.log({
-    //   subject: formdata.get("subject"),
-    //   teacher: [formdata.get("teacher")],
-    //   session_type: formdata.get("session_type"),
-    //   course: formdata.get("course"),
-    //   day: formdata.get("day"),
-    //   starting_period_value: formdata.get("starting_period_no"),
-    //   no_of_period_value: formdata.get("num_periods"),
-    //   room_number: formdata.get("room_number"),
-    //   season: "winter",
-    //   year: 4,
-    // });
-    
+
 
     const requestData={
       ...formstate,...formstate2,
     }
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/routines/', requestData);
-      console.log("Success:", response.data);
+      window.alert("Success:", response.data);
     } catch (err) {
       console.error("Error occurred while making the POST request:", err);
       setError(err.response.data);

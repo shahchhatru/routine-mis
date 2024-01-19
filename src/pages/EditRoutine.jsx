@@ -7,11 +7,10 @@ import {
   CssBaseline,
   Grid,
   Box,
-  
 } from "@mui/material";
 import { Link, redirect } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
+import MultiTeacherSelect from "../components/MultiTeacherSelect";
 import axios from "axios";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import TeacherInput from "../components/TeacherInput";
@@ -93,7 +92,7 @@ const reducerfunction2 = (state, action) => {
 };
 
 const EditRoutine = () => {
-  const {routine_id} = useContext(UpdatertContext);
+  const {routine_id,toggleEditOpen} = useContext(UpdatertContext);
   const navigate =useNavigate();
   const{user}=useContext(AuthContext);
   useEffect(()=>{
@@ -128,26 +127,17 @@ const EditRoutine = () => {
   let handleSubmit = async (e) => {
     e.preventDefault();
     const formdata = new FormData(e.currentTarget);
-    // console.log({
-    //   subject: formdata.get("subject"),
-    //   teacher: [formdata.get("teacher")],
-    //   session_type: formdata.get("session_type"),
-    //   course: formdata.get("course"),
-    //   day: formdata.get("day"),
-    //   starting_period_value: formdata.get("starting_period_no"),
-    //   no_of_period_value: formdata.get("num_periods"),
-    //   room_number: formdata.get("room_number"),
-    //   season: "winter",
-    //   year: 4,
-    // });
+    
     
 
     const requestData={
-      ...formstate,...formstate2,teacher:[formstate.teacher]
+      ...formstate,...formstate2
     }
+    console.log({requestData})
     try {
       const response = await axios.put(`http://127.0.0.1:8000/api/routines/${routine_id}/`, requestData);
-      console.log("Success:", response.data);
+      window.alert("Success:", response.data);
+      toggleEditOpen();
     } catch (error) {
       console.error("Error occurred while making the POST request:", error.response.data);
       setError(error.response.data);
@@ -265,8 +255,9 @@ const EditRoutine = () => {
               sx={{ mt: 1 }}
             >
               <SubjectInput value={formstate.subject} dispatch={dispatch} />
-              <TeacherInput value={formstate.teacher} dispatch={dispatch} />
-
+              {/* <TeacherInput value={formstate.teacher} dispatch={dispatch} />
+ */}
+              <MultiTeacherSelect dispatch={dispatch}/>
               <Grid container spacing={2}>
                
                 <Grid item xs={12} md={4}>
