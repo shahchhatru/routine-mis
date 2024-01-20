@@ -12,10 +12,12 @@ import TTeacherRoutine from "./TTeacherRoutine";
 import ViewRoutine from "./ViewRoutine";
 import AuthContext from "../context/authContext";
 import { Grid ,Button} from "@mui/material";
+import TimingContext from "../context/winSumTimingContext";
 
 export default function ViewTeacherRoutine() {
   const navigate=useNavigate();
   const [teacher,setTeacher]=React.useState();
+  const {isWinTrue,ToggleTiming}=useContext(TimingContext);
   const {user,logoutUser}=useContext(AuthContext);
   const {id}=useParams();
   const [iId,setId]=React.useState();
@@ -60,6 +62,11 @@ export default function ViewTeacherRoutine() {
         </Grid>
         ):<></>
       }
+       <Box sx={{width:'100%',}}>
+    <Button variant='contained' onClick={()=>ToggleTiming()} style={{float:'right',marginRight:8}}>
+      {isWinTrue?'summer':'winter'}
+    </Button>
+    </Box>
      
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>

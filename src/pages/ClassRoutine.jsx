@@ -4,6 +4,7 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
+import { Button } from '@mui/material';
 import Routine from './Routine';
 import TraditionalRoutine from './TraditionalRoutine';
 import { useParams } from 'react-router-dom';
@@ -11,8 +12,9 @@ import {motion} from 'framer-motion'
 import EditRoutine from './EditRoutine';
 import UpdatertContext from '../context/updatertContext';
 import { UpdatertProvider } from '../context/updatertContext';
-
+import  TimingContext from '../context/winSumTimingContext';
 export default function ClassRoutine() {
+  const {ToggleTiming,isWinTrue} = React.useContext(TimingContext)
   const {editOpen} =React.useContext(UpdatertContext);
   console.log({editOpen})
   const { id ,section,year,year_part} = useParams();
@@ -29,6 +31,11 @@ export default function ClassRoutine() {
     animate={{width:editOpen?'80vw':'100vw'}}
   transition={{duration:0.5}}
   >
+    <Box sx={{width:'100%',}}>
+    <Button variant='contained' onClick={()=>ToggleTiming()} style={{float:'right',marginRight:8}}>
+      {isWinTrue?'summer':'winter'}
+    </Button>
+    </Box>
     <Box sx={{ width: '100%', typography: 'body1' }}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>

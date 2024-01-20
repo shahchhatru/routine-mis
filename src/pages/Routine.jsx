@@ -32,8 +32,11 @@ import useWindowDimensions from "../customhooks/useWindowDimensions";
 import TraditionalCard from "../components/TraditionalCard";
 import TraditionalRoutine from "../components/TraditionalRoutine";
 import UpdatertContext from "../context/updatertContext";
+import TimingContext from "../context/winSumTimingContext"; 
+
 const Routine = (props) => {
   const {editOpen}=useContext(UpdatertContext);
+  const {isWinTrue,get_summer_timing,get_winter_timing}=useContext(TimingContext)
   const tablular_rtine = {
     sun: {
       1: {},
@@ -156,7 +159,7 @@ const Routine = (props) => {
           `http://127.0.0.1:8000/api/routines/get_routines_by_course_and_year_section_part/?course_id=${course_id}&year=${year}&year_part=${year_part}&section=${section}`
         );
 
-        console.log(response.data);
+        // console.log(response.data);
         //setPeriodsArray(response.data);
         periodsarray.current = response.data;
         set_routine_oobj(periodsarray.current);
@@ -231,14 +234,16 @@ const Routine = (props) => {
                   onSwiper={(swiper) => console.log(swiper)}
                   onSlideChange={() => console.log("slide change")}
                 >
+                  {console.log({"sundayrt":routine_obj["sun"]},parseInt(routine_obj["sun"][0].starting_period_value))
+                  }
                   {routine_obj["sun"].map((rtine) => (
                     <SwiperSlide key={rtine.url}>
                       <PeriodCard
                         url={rtine.url}
                         teacher_list={rtine.teacher}
                         subject={rtine.subject}
-                        start_time={rtine.time_start}
-                        end_time={rtine.time_end}
+                        start_time={isWinTrue?`${get_winter_timing(parseInt(rtine.starting_period_value)-1)}`:`${get_summer_timing(parseInt(rtine.starting_period_value)-1)}`}
+                        end_time={isWinTrue?`${get_winter_timing(parseInt(rtine.no_of_period_value)+parseInt(rtine.starting_period_value)-1)}`:`${get_summer_timing(parseInt(rtine.no_of_period_value)-1+parseInt(rtine.starting_period_value))}`}
                         session_type={rtine.session_type}
                         room_number={rtine.room_number}
                       />
