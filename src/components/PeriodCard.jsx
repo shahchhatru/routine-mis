@@ -9,18 +9,20 @@ import {
   TextField,
 } from "@mui/material";
 import { motion } from "framer-motion";
-//import { useNavigate } from "react-router-dom";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import axios from "axios";
 import EngineeringIcon from "@mui/icons-material/Engineering";
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import TimerOffIcon from "@mui/icons-material/TimerOff";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import CloseIcon from "@mui/icons-material/Close";
 import UpdatertContext from "../context/updatertContext";
+import { RefreshPeriodContext } from "../context";
 import { useContext } from "react";
 
 export default function PeriodCard(props) {
+  const {togglePRefresh}=useContext(RefreshPeriodContext)
   const mainPageIndex = 6;
-  // const navigate=useNavigate();
   const {setRoutineId,toggleEditOpen,editOpen}=useContext(UpdatertContext);
 
   const [activePage, setActivePage] = useState(6);
@@ -62,6 +64,20 @@ export default function PeriodCard(props) {
       setRoutineId(getId(url))
     }
     
+ }
+
+ const deletePeriod=()=>{
+  const Delete= async ()=>{
+    try{
+      const response = await axios.delete(`http://127.0.0.1:8000/api/routines/${getId(url)}/`)
+      console.log(response)
+      togglePRefresh();
+    }
+    catch(err){
+      console.log(err);
+    }
+  }
+  Delete();
  }
   return (
     <Grid style={{ position: "relative", height: "240px", width: "310px" }}>
@@ -518,7 +534,12 @@ export default function PeriodCard(props) {
               <EditNoteIcon />
               Edit
             </Button>
+            <Button onClick={()=>deletePeriod()} style={{color:"#f00"}}>
+              <DeleteForeverIcon color="red" />
+             
+            </Button>
           </Grid>
+         
         </Grid>
         <Grid container fullWidth>
           <Grid item sx={6} p={1} style={{cursor:'pointer'}} onClick={() => handleCardTransition(2)}>

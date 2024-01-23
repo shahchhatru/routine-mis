@@ -50,7 +50,7 @@ export default function ClassRoutine() {
       </TabContext>
     </Box>
     </motion.div>
-    <motion.div style={{position:'fixed',left:(editOpen && !showaddModel)?`${'80vw'}`:'100vw',top:'2vh',background:'linear-gradient(to right, #8e2de2, #4a00e0)'}}
+    {/* <motion.div style={{position:'fixed',left:(editOpen && !showaddModel)?`${'80vw'}`:'100vw',top:'2vh',background:'linear-gradient(to right, #8e2de2, #4a00e0)'}}
       animate={{left:editOpen && !showaddModel?'80vw':'100vw'}}
       transition={{duration:'0.5'}}
     >
@@ -61,6 +61,20 @@ export default function ClassRoutine() {
     transition={{duration:'0.5'}}
     >
     <AddPeriodTab/>
+  </motion.div> */}
+  <motion.div style={{position:"fixed",left:(editOpen || showaddModel)?`${'80vw'}`:`100vw`,top:'2vh',background:'linear-gradient(to right, #8e2de2, #4a00e0)'}}
+    animate={{left:(editOpen ||showaddModel)?'80vw':'100vw'}}
+    transition={{duration:'0.5'}}
+  >
+    <motion.div style={{position:'relative',width:'100%',height:'100%'}}>
+      <motion.div style={{position:'absolute',top:'0',left:'0',width:'100%',visibility:(editOpen && !showaddModel)?'visible':'hidden'}} animate={{zIndex:editOpen?'10':'-10'}} transition={{duration:'0.5'}}>
+        <EditRoutine/>
+      </motion.div>
+      <motion.div style={{position:'absolute',top:'0',left:'0',width:'100s%',visibility:showaddModel?'visible':'hidden'}} animate={{zIndex:showaddModel?'10':'-10'}} transition={{duration:'0.5'}}>
+      <AddPeriodTab/>
+      </motion.div>
+    </motion.div>
+
   </motion.div>
     </div>
    

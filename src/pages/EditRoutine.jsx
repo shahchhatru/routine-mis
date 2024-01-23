@@ -255,8 +255,7 @@ const EditRoutine = () => {
               sx={{ mt: 1 }}
             >
               <SubjectInput value={formstate.subject} dispatch={dispatch} />
-              {/* <TeacherInput value={formstate.teacher} dispatch={dispatch} />
- */}
+              
               <MultiTeacherSelect dispatch={dispatch}/>
               <Grid container spacing={2}>
                
@@ -299,7 +298,7 @@ const EditRoutine = () => {
                     CLEAR
                   </Button>
                 </Grid>
-                <Grid item sx={6}>
+                <Grid item sx={3}>
                   <Button
                     type="submit"
                     fullWidth
@@ -309,6 +308,19 @@ const EditRoutine = () => {
                   >
                    UPDATE
                   </Button>
+                  
+                </Grid>
+                <Grid item sx={3}>
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    style={{ color: "#fff",minWidth:"100px",background:"#f00" }}
+                    sx={{ mt: 3, mb: 2, fontSize: 16, pt: 3, pb: 3 }}
+                  >
+                  EXIT
+                  </Button>
+                  
                 </Grid>
               </Grid>
 

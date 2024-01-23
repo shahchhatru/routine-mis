@@ -32,9 +32,10 @@ import colors from "../constants/colors";
 import useWindowDimensions from "../customhooks/useWindowDimensions";
 import TraditionalCard from "../components/TraditionalCard";
 import UpdatertContext from "../context/updatertContext";
-import { AddPeriodContext } from "../context";
+import { AddPeriodContext,RefreshPeriodContext } from "../context";
 
 const TraditionalRoutine = (props) => {
+  const {periodlistrefresh}=useContext(RefreshPeriodContext);
   const tablular_rtine_occupied = {
     sun: {
       1: false,
@@ -199,29 +200,10 @@ const TraditionalRoutine = (props) => {
       }
     };
     fetchRoutines();
-  }, [editOpen,showaddModel]);
+  }, [editOpen,showaddModel,periodlistrefresh]);
 
-  console.log("tabular_object", tabular_object);
-
-  const renderNextKey = (myObject) => {
-    if (myObject === "") {
-      return <TableCell style={{ minWidth: minWidth }}>{""}</TableCell>;
-    } else {
-      return (
-        <TableCell>
-          <PeriodCard
-            teacher_list={myObject.teacher}
-            subject={myObject.subject}
-            start_time={myObject.time_start}
-            end_time={myObject.time_end}
-            session_type={myObject.session_type}
-            room_number={myObject.room_number}
-            url={myObject.url}
-          />
-        </TableCell>
-      );
-    }
-  };
+  
+  
 
   const newNextRender = (myObject, day, period_index) => {
     if (myObject == "") {

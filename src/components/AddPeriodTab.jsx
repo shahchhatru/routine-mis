@@ -7,11 +7,7 @@ import {
     Grid,
     Box,
 } from "@mui/material";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import { SubjectInput, DayInput, CourseInput, StartPeriodInput, NumPeriodINput, LectureTypeInp, YearInput, YearPartInput,MultiTeacherSelect } from './'
-
 import { AddPeriodContext } from "../context";
 
 
@@ -29,20 +25,27 @@ const AddPeriodTab = () => {
     return (
         <>
             <CssBaseline />
-                 <Grid
-                    container
-                    sx={{ mr: 0 }}
-                >
-                    <Grid item sm={0} md={3} />
-                    <Grid item md={6}>
+      <Grid
+        container
+        style={{
+          
+          width: "20vw",
+          display: "flex",
+          alignItems: "center",
+          height:"100%",
+          borderRadius:8,
+
+        }}
+      >
+                    <Grid item md={12}>
                         <Typography variant="h4" color="white" align="center">
                             ADD PERIOD
                         </Typography>
                         <Box
-                            component="form"
-                            // onSubmit={handleSubmit}
-                            noValidate
-                        >
+              component="form"
+              noValidate
+              sx={{ mt: 1 }}
+            >
                             <Grid container>
                                 <Grid item xs={12} md={6}>
                                     <YearInput value={formstate2.year} dispatch={dispatch2} />
