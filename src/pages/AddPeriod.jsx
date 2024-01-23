@@ -93,7 +93,7 @@ const reducerfunction2 = (state, action) => {
 
 const AddPeriod = () => {
   
-  const [selectedOptions, setSelectedOptions] = useState();
+ 
   const [formstate, dispatch] = useReducer(reducerfunction, initialState);
   const [formstate2,dispatch2]=useReducer(reducerfunction2,initialStateGlobal);
   const [error, setError] = useState();

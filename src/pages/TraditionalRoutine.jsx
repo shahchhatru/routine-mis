@@ -32,6 +32,7 @@ import colors from "../constants/colors";
 import useWindowDimensions from "../customhooks/useWindowDimensions";
 import TraditionalCard from "../components/TraditionalCard";
 import UpdatertContext from "../context/updatertContext";
+import { AddPeriodContext } from "../context";
 
 const TraditionalRoutine = (props) => {
   const tablular_rtine_occupied = {
@@ -98,6 +99,7 @@ const TraditionalRoutine = (props) => {
   };
   const [freePeriod, setFreePeriod] = useState({ ...tablular_rtine_occupied });
   const { editOpen } = useContext(UpdatertContext);
+  const { showaddModel }=useContext(AddPeriodContext);
   const minWidth = "200px";
 
   const tablular_rtine = {
@@ -122,10 +124,7 @@ const TraditionalRoutine = (props) => {
   const set_routine_oobj = (perArray) => {
     perArray.forEach((period) => {
       const { day, url, starting_period_value } = period;
-      // console.log("starting_period_value:", day, starting_period_value);
-
-      // Check if the URL is not already present in the day's list
-      if (routine_oobj[day]) {
+       if (routine_oobj[day]) {
         const isDuplicate = routine_oobj[day].some((p) => p.url === url);
 
         if (!isDuplicate) {
@@ -200,7 +199,7 @@ const TraditionalRoutine = (props) => {
       }
     };
     fetchRoutines();
-  }, [editOpen]);
+  }, [editOpen,showaddModel]);
 
   console.log("tabular_object", tabular_object);
 
@@ -226,12 +225,12 @@ const TraditionalRoutine = (props) => {
 
   const newNextRender = (myObject, day, period_index) => {
     if (myObject == "") {
-      if (freePeriod[day][period_index] === false) {
+      if (freePeriod[day][period_index+1] === false) {
         return (
           <TableCell style={{ minWidth: minWidth }}>
             <AddPeriodCard
               day={day}
-              start_period_index={period_index}
+              start_period_index={period_index+1}
               course_id={props.id}
               section={section}
               year={year}
@@ -358,8 +357,7 @@ const TraditionalRoutine = (props) => {
                     newNextRender(tabular_object["mon"][item],"mon",index)
                   )
                     : ""
-                  // renderNextKey(tabular_object['fri'][1])
-                }
+                  }
               </TableRow>
 
               <TableRow>
