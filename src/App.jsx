@@ -21,7 +21,7 @@ import ResetPassword from './pages/ResetPassword';
 import EditRoutine from './pages/EditRoutine';
 import { UpdatertProvider } from './context/updatertContext';
 import { TimingContextProvider } from './context/winSumTimingContext';
-import { AddPeriodProvider, RefreshPeriodContextProvider } from './context';
+import { AddPeriodProvider, RefreshPeriodContextProvider ,EditPeriodProvider} from './context';
 function App() {
 
   const theme = createTheme(
@@ -46,6 +46,7 @@ function App() {
               <TimingContextProvider>
                 <AddPeriodProvider>
                   <RefreshPeriodContextProvider>
+                    <EditPeriodProvider>
                     <CssBaseline />
 
 
@@ -65,6 +66,7 @@ function App() {
                       <Route path="/add_user" element={<AddUser />} />
                       <Route path="/edit_period/:id" element={<EditRoutine />} />
                     </Routes>
+                    </EditPeriodProvider>
                   </RefreshPeriodContextProvider>
                 </AddPeriodProvider>
 

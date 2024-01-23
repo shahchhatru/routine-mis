@@ -17,10 +17,11 @@ import TimerOffIcon from "@mui/icons-material/TimerOff";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import CloseIcon from "@mui/icons-material/Close";
 import UpdatertContext from "../context/updatertContext";
-import { RefreshPeriodContext } from "../context";
+import { RefreshPeriodContext,EditPeriodContext } from "../context";
 import { useContext } from "react";
 
 export default function PeriodCard(props) {
+  const {formstate,formstate2,dispatch,dispatch2,fetchPeriodData,updateData}=useContext(EditPeriodContext)
   const {togglePRefresh}=useContext(RefreshPeriodContext)
   const mainPageIndex = 6;
   const {setRoutineId,toggleEditOpen,editOpen}=useContext(UpdatertContext);
