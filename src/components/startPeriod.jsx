@@ -56,7 +56,7 @@ const StartPeriodInput =({value,dispatch})=>{
     }
 
     return (
-        <Box sx={{mb:2}}>
+        <Box sx={{mb:2}} style={{background:"#000"}}>
             <TextField
             required
             label='Select Starting Period'

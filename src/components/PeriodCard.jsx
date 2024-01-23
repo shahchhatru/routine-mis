@@ -16,20 +16,20 @@ import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import TimerOffIcon from "@mui/icons-material/TimerOff";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import CloseIcon from "@mui/icons-material/Close";
+import MultiTeacherSelect from "./MultiTeacherSelect";
 import UpdatertContext from "../context/updatertContext";
 import { RefreshPeriodContext,EditPeriodContext } from "../context";
 import { useContext } from "react";
+import SubjectInput from "./SubjectInput";
+import NumPeriodINput from "./numPeriod";
+import StartPeriodInput from "./startPeriod";
+
 
 export default function PeriodCard(props) {
   const {formstate,formstate2,dispatch,dispatch2,fetchPeriodData,updateData}=useContext(EditPeriodContext)
   const {togglePRefresh}=useContext(RefreshPeriodContext)
   const mainPageIndex = 6;
   const {setRoutineId,toggleEditOpen,editOpen}=useContext(UpdatertContext);
-
-  const [activePage, setActivePage] = useState(6);
-  const handleCardTransition = (cardIndex) => {
-    setActivePage(cardIndex);
-  };
   const url = props.url;
   function getId(url) {
     var urlParts = url.split("/");
@@ -41,6 +41,20 @@ export default function PeriodCard(props) {
     console.log(urlParts);
     return urlParts[urlParts.length - 1];
   }
+
+  const [activePage, setActivePage] = useState(6);
+  const handleCardTransition = (cardIndex) => {
+    setActivePage(cardIndex);
+    fetchPeriodData(getId(url));
+
+  };
+
+  const handleSubmit=(e)=>{
+    updateData(e,getId(url));
+    handleCardTransition(mainPageIndex);
+    togglePRefresh();
+  }
+ 
 
   function initialsAfterSpace(inputString) {
     // Split the input string into words
@@ -143,12 +157,10 @@ export default function PeriodCard(props) {
                     }}
                     noValidate
                     autoComplete="off"
+                    onSubmit={(e)=>handleSubmit(e)}
                   >
-                    <TextField
-                      id="outlined-basic"
-                      label="Teacher Name"
-                      variant="outlined"
-                    />
+                   <MultiTeacherSelect dispatch={dispatch}/>
+           
                     <Button type="submit" sx={4}>
                       UPDATE
                     </Button>
@@ -223,12 +235,11 @@ export default function PeriodCard(props) {
                     }}
                     noValidate
                     autoComplete="off"
+                    onSubmit={(e)=>handleSubmit(e)}
                   >
-                    <TextField
-                      id="outlined-basic"
-                      label="Subject Name"
-                      variant="outlined"
-                    />
+                      <SubjectInput value={formstate.subject} dispatch={dispatch} />
+              
+         
                     <Button type="submit" sx={4}>
                       UPDATE
                     </Button>
@@ -301,25 +312,44 @@ export default function PeriodCard(props) {
                     }}
                     noValidate
                     autoComplete="off"
+                    onSubmit={(e)=>handleSubmit(e)}
                   >
                     <Grid container fullWidth>
                       <Grid item sm={6}>
-                    <TextField
-                      id="outlined-basic"
+                      <TextField
+                      style={{background:"black"}}
+                      fullWidth
+                      id="room_number"
                       label="Room No"
-                      variant="outlined"
-                     
+                      name="room_number"
+                      autoComplete="room_number"
+                      autoFocus
+                      value={formstate2.room_number}
+                      onChange={(e) =>
+                        dispatch2({
+                          type: "UPDATE",
+                          payload: { room_number: e.target.value },
+                        })
+                      }
                     />
                     </Grid>
                     <Grid item sm={6}>
-                  <TextField
-                      id="session_type"
-                      label="Session type"
-                      variant="outlined"
-                      name="session_type"
-                      style={{color:'#111',width:'50%'}}
-                      sm={6}
-                    />
+                    <TextField
+                     style={{background:"black"}}
+                     fullWidth
+                     id="section"
+                     label="section"
+                     name="section"
+                     autoComplete="section"
+                     autoFocus
+                     value={formstate2.section}
+                     onChange={(e) =>
+                       dispatch2({
+                         type: "UPDATE",
+                         payload: {section: e.target.value },
+                       })
+                     }
+                   />
                     </Grid>
                     </Grid>
                     <Button type="submit" sx={4}>
@@ -392,12 +422,12 @@ export default function PeriodCard(props) {
                     }}
                     noValidate
                     autoComplete="off"
+                    onSubmit={(e)=>handleSubmit(e)}
                   >
-                    <TextField
-                      id="outlined-basic"
-                      label="Start Period"
-                      variant="outlined"
-                    />
+                    <StartPeriodInput
+                    value={formstate.starting_period_value}
+                    dispatch={dispatch}
+                  />
                     <Button type="submit" sx={4}>
                       UPDATE
                     </Button>
@@ -473,12 +503,12 @@ export default function PeriodCard(props) {
                     }}
                     noValidate
                     autoComplete="off"
+                    onSubmit={(e)=>handleSubmit(e)}
                   >
-                    <TextField
-                      id="outlined-basic"
-                      label="Num Period"
-                      variant="outlined"
-                    />
+                    <NumPeriodINput
+                    value={formstate.no_of_period_value}
+                    dispatch={dispatch}
+                  />
                     <Button type="submit" sx={4}>
                       UPDATE
                     </Button>

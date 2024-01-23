@@ -23,13 +23,12 @@ const SubjectInput =({value,dispatch})=>{
         fetchitemList();
       },[]);
     const handleChange=(e)=>{
-        // setitem(e.target.value);
-        // console.log(e.target.value);
+       
         dispatch({type:"UPDATE",payload:{subject:e.target.value}})
     }
 
     return (
-        <Box sx={{mb:2}}>
+        <Box sx={{mb:2,background:"black"}}>
             <TextField
             required
             label='Select Subject'

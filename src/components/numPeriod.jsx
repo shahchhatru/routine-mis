@@ -49,6 +49,7 @@ const NumPeriodINput =({value,dispatch})=>{
             value={value}
             onChange={handleChange}
             fullWidth
+            style={{background:"#000"}}
             >
           
           { 
