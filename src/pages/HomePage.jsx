@@ -13,8 +13,6 @@ const Home = () => {
   useEffect(() => {
     if ((user == undefined) | (user == null)) {
       if (!localStorage.getItem("authTokens")) {
-        // updateToken();
-        
         return navigate("/login");
       }
     }

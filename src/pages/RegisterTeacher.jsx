@@ -15,6 +15,7 @@ import UserInput from '../components/UserInput';
 import FileUploadInput from '../components/FileUploadInput';
 import { Directions } from '@mui/icons-material';
 import SearchableUserInput from '../components/SearchableUserInput';
+import OutofDepInput from '../components/OutofDepInput';
 
 const RegisterTeacher = () => {
   const [error,setError]=useState({})
@@ -25,6 +26,7 @@ const RegisterTeacher = () => {
     address:'',
     phone:'',
     user:'',
+    out_of_department:'0',
   }
   const reducer=(state,action)=>{
     switch(action.type){
@@ -177,6 +179,7 @@ const RegisterTeacher = () => {
            {/* <UserInput value={formstate.user} dispatch={dispatch}/>
              */}
              <SearchableUserInput statevalue={formstate.user} dispatch={dispatch}/>
+             <OutofDepInput value={formstate.out_of_department} dispatch={dispatch} />
             <Button
               type="submit"
               fullWidth

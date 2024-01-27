@@ -69,7 +69,7 @@ function SearchableUserInput({statevalue,dispatch}) {
     <Box sx={{mb:2}}>
         <Select styles={customStyles}
         options={options}
-        placeholder='Select Teachers'
+        placeholder='Assign User'
         value={value}
         onChange={handleSelect}
         isSearchable={true}

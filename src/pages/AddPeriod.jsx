@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
-
+import ChooseSectionInput from "../components/ChooseSection";
 import axios from "axios";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import TeacherInput from "../components/TeacherInput";
@@ -182,7 +182,7 @@ const AddPeriod = () => {
                     </Grid>
                     <Grid item xs={12} md={4}>
                   <Box sx={{ mb: 2 }}>
-                    <TextField
+                    {/* <TextField
                       fullWidth
                       id="section"
                       label="Section"
@@ -195,8 +195,10 @@ const AddPeriod = () => {
                           type: "UPDATE",
                           payload: { section: e.target.value },
                         })
-                      }
-                    />
+                      } 
+
+                    />*/}
+                    <ChooseSectionInput value={formstate2.section} dispatch={dispatch2}/>
                     </Box>
                     </Grid>
                     <Grid item xs={12} md={4}>

@@ -59,6 +59,63 @@ function createData(id,name, url) {
       year_id:5,
 
     }
+    ,
+    {
+      id:4,
+      year:'1st',
+      name:'BCTAB',
+      section:'AB',
+      year_id:2,
+      course_id:1,
+      part:2,
+    },
+    {
+      id:5,
+      year:'1st',
+      name:'BCTCD',
+      section:'CD',
+      year_id:2,
+      course_id:1,
+      part:1,
+    },
+    {
+      id:6,
+      year:'2nd',
+      name:'BCTCD',
+      section:'CD',
+      year_id:3,
+      course_id:2,
+      part:1,
+    }
+    ,
+    {
+      id:7,
+      year:'2nd',
+      name:'BCTAB',
+      section:'AB',
+      year_id:3,
+      course_id:2,
+      part:1,
+    }
+    ,{
+      id:8,
+      year:'3rd',
+      name:'BCTCD',
+      section:'CD',
+      year_id:3,
+      course_id:2,
+      part:1,
+    }
+    ,
+    {
+      id:9,
+      year:'3rd',
+      name:'BCTAB',
+      section:'AB',
+      year_id:3,
+      course_id:2,
+      part:1,
+    }
 
   ]
 const MuiTable = () => {
@@ -119,56 +176,6 @@ const MuiTable = () => {
                     <TableHead>
                         <TableRow>
                             {
-                                columns.map((column)=>(
-                                    <TableCell key={column.id}>
-                                       <Typography variant="h6" >{column.name}</Typography> 
-                                    </TableCell>
-                                ))
-                            }
-                            <TableCell colSpan={2} align='right'>
-                            <Link to="/register_teacher">
-                                <Button variant="outlined" startIcon={<PersonAddAltIcon/>}>
-                                    ADD 
-                                </Button>
-                                </Link>
-                            </TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-          {teacherslist.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              
-            >
-              <TableCell component="th" scope="row">
-                {row.id}
-              </TableCell>
-              <TableCell align="right"><Typography>{row.name}</Typography></TableCell>
-              <TableCell align='center'>
-                    <Link to={"/view_routine_t/"+row.id}>
-                    <Button variant="outlined" startIcon={<CalendarMonthIcon/>}>
-                                   View Routine
-                    </Button>
-                    </Link>
-                </TableCell>
-                <TableCell align="center">
-                    <Button variant="outlined" startIcon={<DriveFileRenameOutlineIcon/>}>
-                                   Edit Details
-                    </Button>
-                </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-                </Table>
-             </TableContainer>
-        </Paper>
-        <Paper sx={{width:"80%",marginTop:10}}>
-             <TableContainer>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            {
                                 classes.map((column)=>(
                                     <TableCell key={column.id}>
                                        <Typography variant="h6" >{column.name}</Typography> 
@@ -214,6 +221,57 @@ const MuiTable = () => {
                 </Table>
              </TableContainer>
         </Paper>
+        <Paper sx={{width:"80%",marginTop:10}}>
+             <TableContainer>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            {
+                                columns.map((column)=>(
+                                    <TableCell key={column.id}>
+                                       <Typography variant="h6" >{column.name}</Typography> 
+                                    </TableCell>
+                                ))
+                            }
+                            <TableCell colSpan={2} align='right'>
+                            <Link to="/register_teacher">
+                                <Button variant="outlined" startIcon={<PersonAddAltIcon/>}>
+                                    ADD 
+                                </Button>
+                                </Link>
+                            </TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+          {teacherslist.map((row) => (
+            <TableRow
+              key={row.name}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              
+            >
+              <TableCell component="th" scope="row">
+                {row.id}
+              </TableCell>
+              <TableCell align="right"><Typography>{row.name}</Typography></TableCell>
+              <TableCell align='center'>
+                    <Link to={"/view_routine_t/"+row.id}>
+                    <Button variant="outlined" startIcon={<CalendarMonthIcon/>}>
+                                   View Routine
+                    </Button>
+                    </Link>
+                </TableCell>
+                <TableCell align="center">
+                    <Button variant="outlined" startIcon={<DriveFileRenameOutlineIcon/>}>
+                                   Edit Details
+                    </Button>
+                </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+                </Table>
+             </TableContainer>
+        </Paper>
+       
    </Box>
   )
 }

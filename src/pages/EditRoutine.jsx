@@ -317,6 +317,7 @@ const EditRoutine = () => {
                     variant="contained"
                     style={{ color: "#fff",minWidth:"100px",background:"#f00" }}
                     sx={{ mt: 3, mb: 2, fontSize: 16, pt: 3, pb: 3 }}
+                    onClick={()=>toggleEditOpen()}
                   >
                   EXIT
                   </Button>

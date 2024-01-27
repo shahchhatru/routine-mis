@@ -3,7 +3,9 @@ import { Grid,Card,CardContent,Box ,Typography,Button} from "@mui/material";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import { AddPeriodContext } from '../context';
+import ChooseSectionInput from './ChooseSection';
 import axios from 'axios';
+
 const AddPeriodCard = (props) => {
   const [yearsData,setYearsData]=useState();
   const [courseData,setcourseData]=useState()

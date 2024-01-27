@@ -50,18 +50,6 @@ export default function ClassRoutine() {
       </TabContext>
     </Box>
     </motion.div>
-    {/* <motion.div style={{position:'fixed',left:(editOpen && !showaddModel)?`${'80vw'}`:'100vw',top:'2vh',background:'linear-gradient(to right, #8e2de2, #4a00e0)'}}
-      animate={{left:editOpen && !showaddModel?'80vw':'100vw'}}
-      transition={{duration:'0.5'}}
-    >
-      <EditRoutine/>
-    </motion.div>
-    <motion.div style={{position:'fixed',left:showaddModel?`${'80vw'}`:'100vw',top:'2vh',zIndex:(!editOpen && showaddModel)?"5":'-5'}}
-    animate={{left:showaddModel?'80vw':'100vw'}}
-    transition={{duration:'0.5'}}
-    >
-    <AddPeriodTab/>
-  </motion.div> */}
   <motion.div style={{position:"fixed",left:(editOpen || showaddModel)?`${'80vw'}`:`100vw`,top:'2vh',background:'linear-gradient(to right, #8e2de2, #4a00e0)'}}
     animate={{left:(editOpen ||showaddModel)?'80vw':'100vw'}}
     transition={{duration:'0.5'}}
