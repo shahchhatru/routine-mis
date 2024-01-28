@@ -21,7 +21,7 @@ import ResetPassword from './pages/ResetPassword';
 import EditRoutine from './pages/EditRoutine';
 import { UpdatertProvider } from './context/updatertContext';
 import { TimingContextProvider } from './context/winSumTimingContext';
-import { AddPeriodProvider, RefreshPeriodContextProvider ,EditPeriodProvider} from './context';
+import { AddPeriodProvider, RefreshPeriodContextProvider ,EditPeriodProvider, ZoomContextProvider} from './context';
 function App() {
 
   const theme = createTheme(
@@ -43,10 +43,12 @@ function App() {
         <ThemeProvider theme={theme}>
           <AuthProvider>
             <UpdatertProvider>
-              <TimingContextProvider>
+            <TimingContextProvider>
+              <ZoomContextProvider>
                 <AddPeriodProvider>
                   <RefreshPeriodContextProvider>
                     <EditPeriodProvider>
+                   
                     <CssBaseline />
 
 
@@ -69,7 +71,7 @@ function App() {
                     </EditPeriodProvider>
                   </RefreshPeriodContextProvider>
                 </AddPeriodProvider>
-
+                </ZoomContextProvider>
               </TimingContextProvider>
             </UpdatertProvider>
           </AuthProvider>

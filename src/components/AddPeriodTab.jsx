@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { SubjectInput, DayInput, CourseInput, StartPeriodInput, NumPeriodINput, LectureTypeInp, YearInput, YearPartInput,MultiTeacherSelect } from './'
 import { AddPeriodContext } from "../context";
+import ChooseSectionInput from "./ChooseSection";
 
 
 
@@ -78,21 +79,8 @@ const AddPeriodTab = () => {
                                 </Grid>
                                 <Grid item xs={12} md={6}>
                                     <Box sx={{ mb: 2 }}>
-                                        <TextField
-                                            fullWidth
-                                            id="section"
-                                            label="Section"
-                                            name="section"
-                                            autoComplete="section"
-                                            autoFocus
-                                            value={formstate2.section}
-                                            onChange={(e) =>
-                                                dispatch2({
-                                                    type: "UPDATE",
-                                                    payload: { section: e.target.value },
-                                                })
-                                            }
-                                        />
+                                        
+                                        <ChooseSectionInput value={formstate2.section} dispatch={dispatch2}/>
                                     </Box>
                                 </Grid>
                                 <Grid item xs={12} md={12}>

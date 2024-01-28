@@ -24,6 +24,7 @@ import YearInput from "../components/YearInput";
 import YearPartInput from "../components/PartYear";
 import AuthContext from "../context/authContext";
 import UpdatertContext from "../context/updatertContext";
+import ChooseSectionInput from "../components/ChooseSection";
 
 const initialState = {
   teacher: "",
@@ -212,22 +213,8 @@ const EditRoutine = () => {
                     </Grid>
                     <Grid item xs={12} md={4}>
                   <Box sx={{ mb: 2 }}>
-                    <TextField
-                     
-                      fullWidth
-                      id="section"
-                      label="section"
-                      name="section"
-                      autoComplete="section"
-                      autoFocus
-                      value={formstate2.section}
-                      onChange={(e) =>
-                        dispatch2({
-                          type: "UPDATE",
-                          payload: {section: e.target.value },
-                        })
-                      }
-                    />
+                   
+                    <ChooseSectionInput value={formstate2.section} dispatch={dispatch2}/>
                     </Box>
                     </Grid>
                     <Grid item xs={12} md={4}>
@@ -312,7 +299,6 @@ const EditRoutine = () => {
                 </Grid>
                 <Grid item sx={3}>
                   <Button
-                    type="submit"
                     fullWidth
                     variant="contained"
                     style={{ color: "#fff",minWidth:"100px",background:"#f00" }}
