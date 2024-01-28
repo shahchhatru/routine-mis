@@ -32,9 +32,11 @@ import colors from "../constants/colors";
 import useWindowDimensions from "../customhooks/useWindowDimensions";
 import TraditionalCard from "../components/TraditionalCard";
 import UpdatertContext from "../context/updatertContext";
-import { AddPeriodContext,RefreshPeriodContext } from "../context";
+import { AddPeriodContext,RefreshPeriodContext ,ZoomContext} from "../context";
+import {motion} from "framer-motion";
 
 const TraditionalRoutine = (props) => {
+  const {scalesize}=useContext(ZoomContext);
   const {periodlistrefresh}=useContext(RefreshPeriodContext);
   const tablular_rtine_occupied = {
     sun: {
@@ -245,6 +247,7 @@ const TraditionalRoutine = (props) => {
   };
 
   return (
+   
     <Grid
       container
       style={{
@@ -259,6 +262,7 @@ const TraditionalRoutine = (props) => {
         justifyContent: "space-around",
       }}
     >
+      
       <Grid
         container
         style={{
@@ -268,8 +272,10 @@ const TraditionalRoutine = (props) => {
           borderRadius: 8,
         }}
       >
-        <TableContainer>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      
+        <TableContainer component={motion.div}>
+          <motion.table animate={{scale:scalesize}}>
+           
             <TableHead>
               <TableRow>
                 <TableCell>Days \ Time</TableCell>
@@ -387,10 +393,13 @@ const TraditionalRoutine = (props) => {
                 }
               </TableRow>
             </TableBody>
-          </Table>
+          </motion.table>
         </TableContainer>
+       
       </Grid>
+      
     </Grid>
+   
   );
 };
 
