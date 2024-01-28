@@ -4,6 +4,7 @@ import TimingContext, { TimingContextProvider } from "./winSumTimingContext";
 import AuthContext, { AuthProvider } from "./authContext";
 import RefreshPeriodContext, { RefreshPeriodContextProvider } from "./refreshPeriodContext";
 import EditPeriodContext,{EditPeriodProvider} from "./EditPeriodContext";
+import ZoomContext,{ZoomContextProvider} from "./zoomContext";
 export {
     AddPeriodContext,
      AddPeriodProvider,
@@ -17,4 +18,6 @@ export {
      RefreshPeriodContextProvider,
      EditPeriodContext,
      EditPeriodProvider,
+     ZoomContext,
+     ZoomContextProvider,
 }
