@@ -22,7 +22,7 @@ import EditRoutine from './pages/EditRoutine';
 import {motion} from 'framer-motion';
 import { UpdatertProvider } from './context/updatertContext';
 import { TimingContextProvider } from './context/winSumTimingContext';
-import { AddPeriodProvider, RefreshPeriodContextProvider ,EditPeriodProvider, ZoomContextProvider,ScreenOrientationContextProvider} from './context';
+import { AddPeriodProvider, RefreshPeriodContextProvider ,EditPeriodProvider, ZoomContextProvider,ScreenOrientationContextProvider,OutofDepartmentContextProvider} from './context';
 function App() {
 
   const theme = createTheme(
@@ -50,6 +50,7 @@ function App() {
                   <RefreshPeriodContextProvider>
                   <EditPeriodProvider>
                    <ScreenOrientationContextProvider>
+                    <OutofDepartmentContextProvider>
                     <CssBaseline />
                    
                     <Routes>
@@ -68,7 +69,7 @@ function App() {
                       <Route path="/add_user" element={<AddUser />} />
                       <Route path="/edit_period/:id" element={<EditRoutine />} />
                     </Routes>
-                   
+                    </OutofDepartmentContextProvider>
                     </ScreenOrientationContextProvider>
                     </EditPeriodProvider>
                   </RefreshPeriodContextProvider>

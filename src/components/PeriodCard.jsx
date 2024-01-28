@@ -18,19 +18,24 @@ import EditNoteIcon from "@mui/icons-material/EditNote";
 import CloseIcon from "@mui/icons-material/Close";
 import MultiTeacherSelect from "./MultiTeacherSelect";
 import UpdatertContext from "../context/updatertContext";
-import { RefreshPeriodContext,EditPeriodContext } from "../context";
+import { RefreshPeriodContext,EditPeriodContext ,OutofDepartmentContext} from "../context";
 import { useContext } from "react";
 import SubjectInput from "./SubjectInput";
 import NumPeriodINput from "./numPeriod";
 import StartPeriodInput from "./startPeriod";
 
 
+
 export default function PeriodCard(props) {
+  const {checkOutofDep} =useContext(OutofDepartmentContext);
   const {formstate,formstate2,dispatch,dispatch2,fetchPeriodData,updateData}=useContext(EditPeriodContext)
   const {togglePRefresh}=useContext(RefreshPeriodContext)
   const mainPageIndex = 6;
+
   const {setRoutineId,toggleEditOpen,editOpen}=useContext(UpdatertContext);
   const url = props.url;
+  const isOutofDep=checkOutofDep(props.teacher_list);
+  console.log({isOutofDep})
   function getId(url) {
     var urlParts = url.split("/");
 
@@ -44,15 +49,21 @@ export default function PeriodCard(props) {
 
   const [activePage, setActivePage] = useState(6);
   const handleCardTransition = (cardIndex) => {
+    if(!isOutofDep){
     setActivePage(cardIndex);
     fetchPeriodData(getId(url));
+    }
+    
 
   };
 
   const handleSubmit=(e)=>{
-    updateData(e,getId(url));
-    handleCardTransition(mainPageIndex);
-    togglePRefresh();
+    if(!isOutofDep){
+      updateData(e,getId(url));
+      handleCardTransition(mainPageIndex);
+      togglePRefresh();
+    }
+   
   }
  
 
@@ -70,7 +81,7 @@ export default function PeriodCard(props) {
   }
 
   const handleEditButton=()=>{
-   
+   if(!isOutofDep){
     if(editOpen){
       setRoutineId('');
       toggleEditOpen();
@@ -79,6 +90,8 @@ export default function PeriodCard(props) {
       setRoutineId(getId(url))
     }
     
+   }
+   
  }
 
  const deletePeriod=()=>{
@@ -92,6 +105,7 @@ export default function PeriodCard(props) {
       console.log(err);
     }
   }
+  
   Delete();
  }
   return (
@@ -111,7 +125,7 @@ export default function PeriodCard(props) {
         transition={{ duration: 0.5 }}
       >
         <Card
-          sx={{ width: "300px", height: "200px", background: "white", mb: 4 }}
+          sx={{ width: "300px", height: "200px", background: isOutofDep?"#f00":"white", mb: 4 }}
         >
           <CardContent>
             <Grid
@@ -533,7 +547,7 @@ export default function PeriodCard(props) {
         }}
         transition={{ duration: 0.5 }}
       >
-         <Card sx={{ width: "300px", background: "white" }}>
+         <Card sx={{ width: "300px", background: isOutofDep?"rgba(255,255,0,0.2)":"white" }}>
       <CardContent>
         <Grid
           container
@@ -560,7 +574,7 @@ export default function PeriodCard(props) {
               </Typography>
             </Box>
           </Grid>
-          <Grid item sx={4}>
+          <Grid item sx={4} style={{visibility:isOutofDep?'hidden':'visible'}}>
             <Button onClick={()=>handleEditButton()}>
               <EditNoteIcon />
               Edit

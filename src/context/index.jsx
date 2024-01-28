@@ -6,7 +6,7 @@ import RefreshPeriodContext, { RefreshPeriodContextProvider } from "./refreshPer
 import EditPeriodContext,{EditPeriodProvider} from "./EditPeriodContext";
 import ZoomContext,{ZoomContextProvider} from "./zoomContext";
 import ScreenOrientationContext,{ScreenOrientationContextProvider} from "./ScreenOrientationContext";
-
+import OutofDepartmentContext,{OutofDepartmentContextProvider} from "./OutofDepartment";
 export {
     AddPeriodContext,
      AddPeriodProvider,
@@ -24,4 +24,6 @@ export {
      ZoomContextProvider,
      ScreenOrientationContext,
      ScreenOrientationContextProvider,
+     OutofDepartmentContext,
+     OutofDepartmentContextProvider
 }

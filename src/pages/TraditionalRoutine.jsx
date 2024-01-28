@@ -27,7 +27,7 @@ import colors from "../constants/colors";
 import useWindowDimensions from "../customhooks/useWindowDimensions";
 import TraditionalCard from "../components/TraditionalCard";
 import UpdatertContext from "../context/updatertContext";
-import { AddPeriodContext,RefreshPeriodContext ,ZoomContext,TimingContext,ScreenOrientationContext} from "../context";
+import { AddPeriodContext,RefreshPeriodContext ,ZoomContext,TimingContext,ScreenOrientationContext,OutofDepartmentContext} from "../context";
 import {motion} from "framer-motion";
 
 const TraditionalRoutine = (props) => {
@@ -163,6 +163,11 @@ const TraditionalRoutine = (props) => {
     );
     setFreePeriod({ ...tablular_rtine_occupied });
   };
+
+  //check if any one of the teacher is out of d
+  //department.
+
+  
 
   const id = props.id;
   const section = props.section;
