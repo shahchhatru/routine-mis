@@ -27,10 +27,11 @@ import colors from "../constants/colors";
 import useWindowDimensions from "../customhooks/useWindowDimensions";
 import TraditionalCard from "../components/TraditionalCard";
 import UpdatertContext from "../context/updatertContext";
-import { AddPeriodContext,RefreshPeriodContext ,ZoomContext,TimingContext} from "../context";
+import { AddPeriodContext,RefreshPeriodContext ,ZoomContext,TimingContext,ScreenOrientationContext} from "../context";
 import {motion} from "framer-motion";
 
 const TraditionalRoutine = (props) => {
+  const {screenRotate}=useContext(ScreenOrientationContext)
   const {scalesize}=useContext(ZoomContext);
   const {periodlistrefresh}=useContext(RefreshPeriodContext);
   const {isWinTrue,get_summer_timing,get_winter_timing}=useContext(TimingContext)
@@ -269,8 +270,8 @@ const TraditionalRoutine = (props) => {
         }}
       >
       
-        <TableContainer component={motion.div}>
-          <motion.table animate={{scale:scalesize}}>
+        <TableContainer component={motion.div} style={{height:'fit-content'}}>
+          <motion.table animate={{scale:scalesize,rotate:screenRotate?'90deg':'0deg',y:screenRotate?'400px':'0px'}}>
            
             <TableHead>
               <TableRow>

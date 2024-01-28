@@ -1,11 +1,14 @@
-import React, { useEffect, useContext, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useEffect, useContext } from "react";
+import {useNavigate} from "react-router-dom";
 import MuiTable from "../components/MuiTable";
 import AuthContext from "../context/authContext";
-import { Button, CssBaseline, Grid } from "@mui/material";
+import {CssBaseline} from "@mui/material";
 import NavBar from "../components/Navbar";
+import {ScreenOrientationContext } from "../context";
+import {motion} from 'framer-motion';
 
 const Home = () => {
+  
   const navigate = useNavigate();
   let { tokendata, user, logoutUser,updateToken } = useContext(AuthContext);
   console.log("user:=", user);
@@ -30,6 +33,7 @@ const Home = () => {
   return(
 
     <>
+    
     <NavBar/>
     <CssBaseline/>
      

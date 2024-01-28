@@ -12,7 +12,7 @@ export const AuthProvider = ({children})=>{
     let [tokendata,setTokendata]=useState(localStorage.getItem("authTokens")?JSON.parse(localStorage.getItem("authTokens")):null)
     const [user,setUser]=useState(localStorage.getItem("authTokens")?jwtDecode(JSON.parse(localStorage.getItem("authTokens")).access):null);
     const [loading,setLoading]=useState(true);
-    const [error,setError]=useState('');
+    const [error,rtinesetError]=useState('');
 
     let history=useNavigate();
 

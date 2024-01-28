@@ -39,10 +39,8 @@ const remove_duplicates=()=>{
 
 const set_routine_oobj = (perArray) => {
   perArray.forEach((period) => {
-    const { day, url } = period;
-    //routine_oobj[day].push(period);
-    // Check if the URL is not already present in the day's list
-    const isDuplicate = routine_oobj[day].some((p) => p.url === url);
+   const { day, url } = period;
+   const isDuplicate = routine_oobj[day].some((p) => p.url === url);
 
     if (!isDuplicate) {
       routine_oobj[day].push(period);

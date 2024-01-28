@@ -19,9 +19,10 @@ import ViewTeacherRoutine from './pages/ViewTeacherRoutine';
 import ClassRoutine from './pages/ClassRoutine';
 import ResetPassword from './pages/ResetPassword';
 import EditRoutine from './pages/EditRoutine';
+import {motion} from 'framer-motion';
 import { UpdatertProvider } from './context/updatertContext';
 import { TimingContextProvider } from './context/winSumTimingContext';
-import { AddPeriodProvider, RefreshPeriodContextProvider ,EditPeriodProvider, ZoomContextProvider} from './context';
+import { AddPeriodProvider, RefreshPeriodContextProvider ,EditPeriodProvider, ZoomContextProvider,ScreenOrientationContextProvider} from './context';
 function App() {
 
   const theme = createTheme(
@@ -47,11 +48,10 @@ function App() {
               <ZoomContextProvider>
                 <AddPeriodProvider>
                   <RefreshPeriodContextProvider>
-                    <EditPeriodProvider>
-                   
+                  <EditPeriodProvider>
+                   <ScreenOrientationContextProvider>
                     <CssBaseline />
-
-
+                   
                     <Routes>
                       <Route path="/" element={<Home />}>
                       </Route>
@@ -68,6 +68,8 @@ function App() {
                       <Route path="/add_user" element={<AddUser />} />
                       <Route path="/edit_period/:id" element={<EditRoutine />} />
                     </Routes>
+                   
+                    </ScreenOrientationContextProvider>
                     </EditPeriodProvider>
                   </RefreshPeriodContextProvider>
                 </AddPeriodProvider>

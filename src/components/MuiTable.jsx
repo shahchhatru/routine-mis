@@ -1,7 +1,8 @@
-import { Typography,Box, Paper, Button } from '@mui/material'
-import React,{useState,useEffect} from 'react';
+import { Typography,Box, Paper, Button ,Grid} from '@mui/material'
+import React,{useState,useEffect, useContext} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import {ScreenOrientationContext} from '../context'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -11,7 +12,7 @@ import TableRow from '@mui/material/TableRow';
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
-
+import ScreenRotationIcon from '@mui/icons-material/ScreenRotation';
 
 function createData(id,name, url) {
     return { id, name, url };
@@ -119,6 +120,7 @@ function createData(id,name, url) {
 
   ]
 const MuiTable = () => {
+    const {togglescreenRotate}=useContext(ScreenOrientationContext)
     const [teacherslist,setTeacherList]=useState([])
     //const [courses,setCourses]=useState([]);
     useEffect(()=>{
@@ -170,6 +172,8 @@ const MuiTable = () => {
   return (
    <Box align="center">
         <Typography variant='h2'>Routine MIS</Typography>
+         
+           
         <Paper sx={{width:"80%",marginTop:10}}>
              <TableContainer>
                 <Table>
@@ -271,6 +275,7 @@ const MuiTable = () => {
                 </Table>
              </TableContainer>
         </Paper>
+        
        
    </Box>
   )

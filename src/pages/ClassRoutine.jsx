@@ -9,9 +9,12 @@ import AddPeriodTab from '../components/AddPeriodTab';
 import EditRoutine from './EditRoutine';
 import Routine from './Routine';
 import TraditionalRoutine from './TraditionalRoutine';
-import { AddPeriodContext,TimingContext ,UpdatertContext,ZoomContext} from '../context';
+import { AddPeriodContext,TimingContext ,UpdatertContext,ZoomContext,ScreenOrientationContext} from '../context';
+import ScreenRotationIcon from '@mui/icons-material/ScreenRotation';
+
 
 export default function ClassRoutine() {
+  const { togglescreenRotate}=useContext(ScreenOrientationContext);
   const {ToggleTiming,isWinTrue} = useContext(TimingContext)
   const {editOpen} =useContext(UpdatertContext);
   const {zoomOut,zoomIn}=useContext(ZoomContext);
@@ -44,9 +47,10 @@ export default function ClassRoutine() {
     <button className="button-33" role="button" onClick={()=>zoomOut()}>
       <ZoomOutIcon/>
     </button>
-    <Button>
+    <Button className="button-56" role="button" onClick={()=>togglescreenRotate()}>
+    <ScreenRotationIcon />
+  </Button>
 
-    </Button>
     </Box>
     <Box sx={{ width: '100%', typography: 'body1' }}>
       <TabContext value={value}>
@@ -57,9 +61,10 @@ export default function ClassRoutine() {
            
           </TabList>
         </Box>
+       
         <TabPanel value="1"><TraditionalRoutine id={id} section={section} year={year} year_part={year_part}/></TabPanel>
        <TabPanel value="2"><Routine id={id} section={section} year={year} year_part={year_part}/></TabPanel>
-       
+      
       </TabContext>
     </Box>
     </motion.div>
@@ -77,7 +82,7 @@ export default function ClassRoutine() {
     </motion.div>
 
   </motion.div>
-    </div>
+  </div>
    
   );
 }
