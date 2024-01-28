@@ -29,12 +29,12 @@ import { useParams } from "react-router-dom";
 import PeriodCard from "../components/PeriodCard";
 import colors from "../constants/colors";
 import useWindowDimensions from "../customhooks/useWindowDimensions";
-import TraditionalCard from "../components/TraditionalCard";
-import TraditionalRoutine from "../components/TraditionalRoutine";
 import UpdatertContext from "../context/updatertContext";
 import TimingContext from "../context/winSumTimingContext"; 
-
+import { ZoomContext } from "../context";
+import {motion} from 'framer-motion';
 const Routine = (props) => {
+  const {scalesize}=useContext(ZoomContext);
   const {editOpen}=useContext(UpdatertContext);
   const {isWinTrue,get_summer_timing,get_winter_timing}=useContext(TimingContext)
   const tablular_rtine = {
@@ -211,6 +211,7 @@ const Routine = (props) => {
             }}
             ref={ele}
           >
+          
             {routine_obj["sun"].length > 0 ? (
               <Grid item container p={2}>
                 <Typography>Sunday</Typography>
@@ -234,8 +235,8 @@ const Routine = (props) => {
                   onSwiper={(swiper) => console.log(swiper)}
                   onSlideChange={() => console.log("slide change")}
                 >
-                  {console.log({"sundayrt":routine_obj["sun"]},parseInt(routine_obj["sun"][0].starting_period_value))
-                  }
+                  {/* {console.log({"sundayrt":routine_obj["sun"]},parseInt(routine_obj["sun"][0].starting_period_value))
+                  } */}
                   {routine_obj["sun"].map((rtine) => (
                     <SwiperSlide key={rtine.url}>
                       <PeriodCard
@@ -284,9 +285,9 @@ const Routine = (props) => {
                         url={rtine.url}
                         teacher_list={rtine.teacher}
                         subject={rtine.subject}
-                        start_time={rtine.time_start}
-                        end_time={rtine.time_end}
-                        session_type={rtine.session_type}
+                        start_time={isWinTrue?`${get_winter_timing(parseInt(rtine.starting_period_value)-1)}`:`${get_summer_timing(parseInt(rtine.starting_period_value)-1)}`}
+                        end_time={isWinTrue?`${get_winter_timing(parseInt(rtine.no_of_period_value)+parseInt(rtine.starting_period_value)-1)}`:`${get_summer_timing(parseInt(rtine.no_of_period_value)-1+parseInt(rtine.starting_period_value))}`}
+                       session_type={rtine.session_type}
                         room_number={rtine.room_number}
                       />
                     </SwiperSlide>
@@ -326,8 +327,9 @@ const Routine = (props) => {
                         url={rtine.url}
                         teacher_list={rtine.teacher}
                         subject={rtine.subject}
-                        start_time={rtine.time_start}
-                        end_time={rtine.time_end}
+                        start_time={isWinTrue?`${get_winter_timing(parseInt(rtine.starting_period_value)-1)}`:`${get_summer_timing(parseInt(rtine.starting_period_value)-1)}`}
+                        end_time={isWinTrue?`${get_winter_timing(parseInt(rtine.no_of_period_value)+parseInt(rtine.starting_period_value)-1)}`:`${get_summer_timing(parseInt(rtine.no_of_period_value)-1+parseInt(rtine.starting_period_value))}`}
+                       
                         session_type={rtine.session_type}
                         room_number={rtine.room_number}
                       />
@@ -368,8 +370,9 @@ const Routine = (props) => {
                         url={rtine.url}
                         teacher_list={rtine.teacher}
                         subject={rtine.subject}
-                        start_time={rtine.time_start}
-                        end_time={rtine.time_end}
+                        start_time={isWinTrue?`${get_winter_timing(parseInt(rtine.starting_period_value)-1)}`:`${get_summer_timing(parseInt(rtine.starting_period_value)-1)}`}
+                        end_time={isWinTrue?`${get_winter_timing(parseInt(rtine.no_of_period_value)+parseInt(rtine.starting_period_value)-1)}`:`${get_summer_timing(parseInt(rtine.no_of_period_value)-1+parseInt(rtine.starting_period_value))}`}
+                       
                         session_type={rtine.session_type}
                         room_number={rtine.room_number}
                       />
@@ -410,8 +413,9 @@ const Routine = (props) => {
                         url={rtine.url}
                         teacher_list={rtine.teacher}
                         subject={rtine.subject}
-                        start_time={rtine.time_start}
-                        end_time={rtine.time_end}
+                        start_time={isWinTrue?`${get_winter_timing(parseInt(rtine.starting_period_value)-1)}`:`${get_summer_timing(parseInt(rtine.starting_period_value)-1)}`}
+                        end_time={isWinTrue?`${get_winter_timing(parseInt(rtine.no_of_period_value)+parseInt(rtine.starting_period_value)-1)}`:`${get_summer_timing(parseInt(rtine.no_of_period_value)-1+parseInt(rtine.starting_period_value))}`}
+                       
                         session_type={rtine.session_type}
                         room_number={rtine.room_number}
                       />
@@ -451,18 +455,21 @@ const Routine = (props) => {
                         url={rtine.url}
                         teacher_list={rtine.teacher}
                         subject={rtine.subject}
-                        start_time={rtine.time_start}
-                        end_time={rtine.time_end}
+                        start_time={isWinTrue?`${get_winter_timing(parseInt(rtine.starting_period_value)-1)}`:`${get_summer_timing(parseInt(rtine.starting_period_value)-1)}`}
+                        end_time={isWinTrue?`${get_winter_timing(parseInt(rtine.no_of_period_value)+parseInt(rtine.starting_period_value)-1)}`:`${get_summer_timing(parseInt(rtine.no_of_period_value)-1+parseInt(rtine.starting_period_value))}`}
+                       
                         session_type={rtine.session_type}
                         room_number={rtine.room_number}
                       />
                     </SwiperSlide>
                   ))}
                 </Swiper>
+               
               </Grid>
             ) : (
               <></>
             )}
+           
           </Grid>
         </Grid>
       </Box>

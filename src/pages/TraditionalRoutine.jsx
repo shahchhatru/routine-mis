@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
 import { Grid, CssBaseline, Box, Card, Typography } from "@mui/material";
-import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
@@ -9,10 +8,6 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
-import Tab from "@mui/material/Tab";
-import TabContext from "@mui/lab/TabContext";
-import TabList from "@mui/lab/TabList";
-import TabPanel from "@mui/lab/TabPanel";
 import AddPeriodCard from "../components/AddPeriodCard";
 import {
   Navigation,
@@ -32,12 +27,13 @@ import colors from "../constants/colors";
 import useWindowDimensions from "../customhooks/useWindowDimensions";
 import TraditionalCard from "../components/TraditionalCard";
 import UpdatertContext from "../context/updatertContext";
-import { AddPeriodContext,RefreshPeriodContext ,ZoomContext} from "../context";
+import { AddPeriodContext,RefreshPeriodContext ,ZoomContext,TimingContext} from "../context";
 import {motion} from "framer-motion";
 
 const TraditionalRoutine = (props) => {
   const {scalesize}=useContext(ZoomContext);
   const {periodlistrefresh}=useContext(RefreshPeriodContext);
+  const {isWinTrue,get_summer_timing,get_winter_timing}=useContext(TimingContext)
   const tablular_rtine_occupied = {
     sun: {
       1: false,
@@ -211,7 +207,7 @@ const TraditionalRoutine = (props) => {
     if (myObject == "") {
       if (freePeriod[day][period_index+1] === false) {
         return (
-          <TableCell style={{ minWidth: minWidth }}>
+          <TableCell style={{minWidth:minWidth}}>
             <AddPeriodCard
               day={day}
               start_period_index={period_index+1}
@@ -224,7 +220,7 @@ const TraditionalRoutine = (props) => {
         );
       } else {
         return(
-          <TableCell style={{minWidth:minWidth}}>
+          <TableCell>
             {""}
           </TableCell>
         )
@@ -235,8 +231,8 @@ const TraditionalRoutine = (props) => {
           <PeriodCard
             teacher_list={myObject.teacher}
             subject={myObject.subject}
-            start_time={myObject.time_start}
-            end_time={myObject.time_end}
+            start_time={isWinTrue?`${get_winter_timing(parseInt(myObject.starting_period_value)-1)}`:`${get_summer_timing(parseInt(myObject.starting_period_value)-1)}`}
+            end_time={isWinTrue?`${get_winter_timing(parseInt(myObject.no_of_period_value)+parseInt(myObject.starting_period_value)-1)}`:`${get_summer_timing(parseInt(myObject.no_of_period_value)-1+parseInt(myObject.starting_period_value))}`}
             session_type={myObject.session_type}
             room_number={myObject.room_number}
             url={myObject.url}
