@@ -18,7 +18,7 @@ import EditNoteIcon from "@mui/icons-material/EditNote";
 import CloseIcon from "@mui/icons-material/Close";
 import MultiTeacherSelect from "./MultiTeacherSelect";
 import UpdatertContext from "../context/updatertContext";
-import { RefreshPeriodContext,EditPeriodContext ,OutofDepartmentContext} from "../context";
+import { RefreshPeriodContext,EditPeriodContext ,OutofDepartmentContext,AuthContext} from "../context";
 import { useContext } from "react";
 import SubjectInput from "./SubjectInput";
 import NumPeriodINput from "./numPeriod";
@@ -28,6 +28,9 @@ import StartPeriodInput from "./startPeriod";
 
 export default function PeriodCard(props) {
   const {checkOutofDep} =useContext(OutofDepartmentContext);
+  
+  const {user}=useContext(AuthContext);
+  // console.log("user from  period card:",user)
   const {formstate,formstate2,dispatch,dispatch2,fetchPeriodData,updateData}=useContext(EditPeriodContext)
   const {togglePRefresh}=useContext(RefreshPeriodContext)
   const mainPageIndex = 6;
@@ -35,7 +38,7 @@ export default function PeriodCard(props) {
   const {setRoutineId,toggleEditOpen,editOpen}=useContext(UpdatertContext);
   const url = props.url;
   const isOutofDep=checkOutofDep(props.teacher_list);
-  console.log({isOutofDep})
+  // console.log({isOutofDep})
   function getId(url) {
     var urlParts = url.split("/");
 
@@ -49,10 +52,13 @@ export default function PeriodCard(props) {
 
   const [activePage, setActivePage] = useState(6);
   const handleCardTransition = (cardIndex) => {
-    if(!isOutofDep){
-    setActivePage(cardIndex);
-    fetchPeriodData(getId(url));
+    if(user.tc){
+      if(!isOutofDep){
+        setActivePage(cardIndex);
+        fetchPeriodData(getId(url));
+        }
     }
+    
     
 
   };
@@ -574,7 +580,7 @@ export default function PeriodCard(props) {
               </Typography>
             </Box>
           </Grid>
-          <Grid item sx={4} style={{visibility:isOutofDep?'hidden':'visible'}}>
+          <Grid item sx={4} style={{visibility:isOutofDep ||(!user.tc)?'hidden':'visible'}}>
             <Button onClick={()=>handleEditButton()}>
               <EditNoteIcon />
               Edit

@@ -104,9 +104,9 @@ export const EditPeriodProvider = ({ children }) => {
             const response = await axios.put(`http://127.0.0.1:8000/api/routines/${routine_id}/`, requestData);
             window.alert("Success:", response.data);
         } catch (error) {
-            console.error("Error occurred while making the POST request:", error.response.data);
-            setError(error.response.data);
-            window.alert(error.response.data.error)
+            console.error("Error occurred while making the POST request:", error);
+            setError(error.response);
+            window.alert(JSON.stringify(error.response.data));
 
         }
 

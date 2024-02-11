@@ -38,7 +38,7 @@ export default function ViewTeacherRoutine() {
     const func = async()=>{
         if(user){
             if(user.tc==false){
-                const response = await axios(`http://127.0.0.1:8000/user/getteacher/${user.user_id}`)
+                const response = await axios.get(`http://127.0.0.1:8000/user/getteacher/${id}`)
                 console.log(response);
                 setId(response.data.id);
             }
@@ -46,12 +46,11 @@ export default function ViewTeacherRoutine() {
                 setId(id);
             }
     }
-    else{
-       return navigate('/login')
-    }
+   
 }
    func() ;
-  },[])
+  },[user])
+
   const [value, setValue] = React.useState("1");
   
   const handleChange = (event, newValue) => {
@@ -110,20 +109,35 @@ export default function ViewTeacherRoutine() {
       </TabContext>
     </Box>
     </motion.div>
-  <motion.div style={{position:"fixed",left:(editOpen || showaddModel)?`${'80vw'}`:`100vw`,top:'2vh',background:'linear-gradient(to right, #8e2de2, #4a00e0)'}}
+  
+    <motion.div style={{position:"fixed",left:(editOpen || showaddModel)?`${'80vw'}`:`100vw`,top:'2vh',background:'linear-gradient(to right, #8e2de2, #4a00e0)'}}
     animate={{left:(editOpen ||showaddModel)?'80vw':'100vw'}}
     transition={{duration:'0.5'}}
   >
     <motion.div style={{position:'relative',width:'100%',height:'100%'}}>
       <motion.div style={{position:'absolute',top:'0',left:'0',width:'100%',visibility:(editOpen && !showaddModel)?'visible':'hidden'}} animate={{zIndex:editOpen?'10':'-10'}} transition={{duration:'0.5'}}>
-        <EditRoutine/>
+        {
+          user.tc?
+          <EditRoutine/>:<></>
+        }
+        
       </motion.div>
       <motion.div style={{position:'absolute',top:'0',left:'0',width:'100s%',visibility:showaddModel?'visible':'hidden'}} animate={{zIndex:showaddModel?'10':'-10'}} transition={{duration:'0.5'}}>
-      <AddPeriodTab/>
+      
+      {
+         user.tc?
+         <AddPeriodTab/>:<></>
+
+      }
       </motion.div>
     </motion.div>
 
-  </motion.div>
+  </motion.div>:
+  <></>
+
+
+  
+  
   </div>:
   <></>
    

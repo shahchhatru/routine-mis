@@ -31,11 +31,12 @@ import PeriodCard from "../components/PeriodCard";
 import colors from "../constants/colors";
 import useWindowDimensions from "../customhooks/useWindowDimensions";
 import TraditionalCard from "../components/TraditionalCard";
-import { AddPeriodContext,RefreshPeriodContext ,ZoomContext,TimingContext,ScreenOrientationContext} from "../context";
+import { AddPeriodContext,RefreshPeriodContext ,ZoomContext,TimingContext,ScreenOrientationContext,AuthContext} from "../context";
 import {motion} from 'framer-motion'
 
 const TTeacherRoutine = (props) => {
   const minWidth = "200px";
+  const {user}=useContext(AuthContext)
   const {screenRotate}=useContext(ScreenOrientationContext)
   const {scalesize}=useContext(ZoomContext);
   const tablular_rtine_occupied = {
@@ -232,7 +233,7 @@ const TTeacherRoutine = (props) => {
 
   const newNextRender = (myObject, day, period_index) => {
     if (myObject == "") {
-      if (freePeriod[day][period_index+1] === false) {
+      if ((freePeriod[day][period_index+1] === false) && (user.tc==true)) {
         return (
           <TableCell style={{minWidth:minWidth}}>
             <AddPeriodCard

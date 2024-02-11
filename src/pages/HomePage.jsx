@@ -14,7 +14,7 @@ const Home = () => {
   console.log("user:=", user);
 
   useEffect(() => {
-    if ((user == undefined) | (user == null)) {
+    if ((user === undefined) | (user === null)) {
       if (!localStorage.getItem("authTokens")) {
         return navigate("/login");
       }
@@ -27,7 +27,7 @@ const Home = () => {
         }
       }
     }
-  });
+  },[user]);
 
   
   return(
