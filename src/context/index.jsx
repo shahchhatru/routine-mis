@@ -7,6 +7,7 @@ import EditPeriodContext,{EditPeriodProvider} from "./EditPeriodContext";
 import ZoomContext,{ZoomContextProvider} from "./zoomContext";
 import ScreenOrientationContext,{ScreenOrientationContextProvider} from "./ScreenOrientationContext";
 import OutofDepartmentContext,{OutofDepartmentContextProvider} from "./OutofDepartment";
+import GetTeacherContext,{GetTeacherContextProvider} from "./GetTeacherContext";
 export {
     AddPeriodContext,
      AddPeriodProvider,
@@ -25,5 +26,7 @@ export {
      ScreenOrientationContext,
      ScreenOrientationContextProvider,
      OutofDepartmentContext,
-     OutofDepartmentContextProvider
+     OutofDepartmentContextProvider,
+     GetTeacherContext,
+     GetTeacherContextProvider,
 }

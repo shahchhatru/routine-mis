@@ -19,11 +19,11 @@ import ViewTeacherRoutine from './pages/ViewTeacherRoutine';
 import ClassRoutine from './pages/ClassRoutine';
 import ResetPassword from './pages/ResetPassword';
 import EditRoutine from './pages/EditRoutine';
-import {motion} from 'framer-motion';
 import ViewClassandTeacher from './pages/ViewClassandTeacher';
+
 import { UpdatertProvider } from './context/updatertContext';
 import { TimingContextProvider } from './context/winSumTimingContext';
-import { AddPeriodProvider, RefreshPeriodContextProvider ,EditPeriodProvider, ZoomContextProvider,ScreenOrientationContextProvider,OutofDepartmentContextProvider} from './context';
+import { AddPeriodProvider, RefreshPeriodContextProvider ,EditPeriodProvider, ZoomContextProvider,ScreenOrientationContextProvider,OutofDepartmentContextProvider,GetTeacherContext,GetTeacherContextProvider} from './context';
 function App() {
 
   const theme = createTheme(
@@ -48,6 +48,7 @@ function App() {
             <TimingContextProvider>
               <ZoomContextProvider>
                 <AddPeriodProvider>
+                  <GetTeacherContextProvider>
                   <RefreshPeriodContextProvider>
                   <EditPeriodProvider>
                    <ScreenOrientationContextProvider>
@@ -75,6 +76,7 @@ function App() {
                     </ScreenOrientationContextProvider>
                     </EditPeriodProvider>
                   </RefreshPeriodContextProvider>
+                  </GetTeacherContextProvider>
                 </AddPeriodProvider>
                 </ZoomContextProvider>
               </TimingContextProvider>
