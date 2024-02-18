@@ -1,21 +1,22 @@
 import  React,{useContext,useState} from 'react';
 import { Box,Tab ,Button } from '@mui/material';
 import {TabContext,TabList,TabPanel} from '@mui/lab'
-import { useParams ,useNavigate} from 'react-router-dom';
-import {motion} from 'framer-motion'
+import { useParams } from 'react-router-dom'
+import {motion} from 'framer-motion';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import ZoomOutIcon from '@mui/icons-material/ZoomOut';
-import AddPeriodTab from '../components/AddPeriodTab';
-import EditRoutine from './EditRoutine';
-import Routine from './Routine';
-import ScreenShareIcon from '@mui/icons-material/ScreenShare';
-import TraditionalRoutine from './TraditionalRoutine';
-import { AddPeriodContext,TimingContext ,UpdatertContext,ZoomContext,ScreenOrientationContext} from '../context';
 import ScreenRotationIcon from '@mui/icons-material/ScreenRotation';
 
+import AddPeriodTab from '../components/AddPeriodTab';
+import EditRoutine from './EditRoutine';
+import TraditionalRoutine from './TraditionalRoutine';
 
-export default function ClassRoutine() {
-  const navigate =useNavigate();
+import { AddPeriodContext,TimingContext ,UpdatertContext,ZoomContext,ScreenOrientationContext} from '../context';
+import TraditionalRoutineSmall from './TraditionalRoutineSmall';
+
+
+const ViewClassandTeacher = () => {
+
   const { togglescreenRotate}=useContext(ScreenOrientationContext);
   const {ToggleTiming,isWinTrue} = useContext(TimingContext)
   const {editOpen} =useContext(UpdatertContext);
@@ -29,14 +30,9 @@ export default function ClassRoutine() {
     setValue(newValue);
   };
 
-  const handleRedirection=()=>{
-    navigate(`/view_routine_course_teacher/${id}/${section}/${year}/${year_part}`)
-
-  }
 
   return (
-  
-  <div style={{position:'relative',width:'100vw',height:'100vh',background:'linear-gradient(to right, #8e2de2, #4a00e0)'}}>
+    <div style={{position:'relative',width:'100vw',height:'100vh',background:'linear-gradient(to right, #8e2de2, #4a00e0)'}}>
   
   <motion.div style={{position:'absolute',top:0,left:0,width:editOpen||showaddModel?'80vw':'100vw',background:'linear-gradient(to right, #8e2de2, #4a00e0)'}}
     animate={{width:editOpen || showaddModel?'80vw':'100vw'}}
@@ -45,9 +41,6 @@ export default function ClassRoutine() {
     <Box sx={{width:'100%',paddingRight:"10px"}}>
     <Button variant='contained' onClick={()=>ToggleTiming()} style={{float:'right',marginRight:8}}>
       {isWinTrue?'summer':'winter'}
-    </Button >
-    <Button variant='contained' color="success" onClick={()=>handleRedirection()} style={{float:'right',marginRight:8}}>
-       <ScreenShareIcon /> Divide Screen
     </Button >
     </Box>
     <Box sx={{width:'100%', paddingRight:"10px"}}>
@@ -62,21 +55,19 @@ export default function ClassRoutine() {
   </Button>
 
     </Box>
-    <Box sx={{ width: '100%', typography: 'body1' }}>
-      <TabContext value={value}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <TabList onChange={handleChange} aria-label="lab API tabs example">
-            <Tab label="Normal" value="1" />
-            <Tab label="Swippable" value="2" />
-           
-          </TabList>
-        </Box>
+    <motion.div style={{width:'100%',display:'flex',flexDirection:'row'}}>
+    <motion.div style={{flex:1,background: "linear-gradient(to right, #8e2de2, #4a00e0)"}}>
+    <TraditionalRoutineSmall id={id} section={section} year={year} year_part={year_part}/>
+    
+    </motion.div>
+    <motion.div style={{flex:1,background: "linear-gradient(to right, #8e2de2, #4a00e0)"}}>
+    <TraditionalRoutineSmall id={id} section={section} year={year} year_part={year_part}/>
+    
+    </motion.div>
+    
+    </motion.div>
+    
        
-        <TabPanel value="1"><TraditionalRoutine id={id} section={section} year={year} year_part={year_part}/></TabPanel>
-       <TabPanel value="2"><Routine id={id} section={section} year={year} year_part={year_part}/></TabPanel>
-      
-      </TabContext>
-    </Box>
     </motion.div>
   <motion.div style={{position:"fixed",left:(editOpen || showaddModel)?`${'80vw'}`:`100vw`,top:'2vh',background:'linear-gradient(to right, #8e2de2, #4a00e0)'}}
     animate={{left:(editOpen ||showaddModel)?'80vw':'100vw'}}
@@ -93,6 +84,7 @@ export default function ClassRoutine() {
 
   </motion.div>
   </div>
-   
-  );
+  )
 }
+
+export default ViewClassandTeacher
