@@ -607,11 +607,11 @@ export default function PeriodCard(props) {
           </Grid>
         </Grid>
         <Grid container fullWidth>
-          <Grid item sx={1} p={1} color="lightgreen">
+          <Grid item sx={1} p={1} color="lightgreen" style={{cursor:'pointer'}} onClick={()=>handleCardTransition(1)}>
             <EngineeringIcon />
           </Grid>
           <Grid item sx={3} p={1} color="lightgreen"  style={{cursor:'pointer'}}
-              onClick={()=>handleCardTransition(1)}>
+             >
             <Typography
               variant="body2"
               color="#000"
