@@ -37,8 +37,8 @@ export default function PeriodCard(props) {
 
   const {setRoutineId,toggleEditOpen,editOpen}=useContext(UpdatertContext);
   const url = props.url;
-  // const isOutofDep=checkOutofDep(props.teacher_list);
-  const isOutofDep=false;
+  const isOutofDep=checkOutofDep(props.teacher_list);
+  //const isOutofDep=false;
   // console.log({isOutofDep})
   function getId(url) {
     var urlParts = url.split("/");
