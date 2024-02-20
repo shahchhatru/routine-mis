@@ -18,7 +18,7 @@ import EditNoteIcon from "@mui/icons-material/EditNote";
 import CloseIcon from "@mui/icons-material/Close";
 import MultiTeacherSelect from "./MultiTeacherSelect";
 import UpdatertContext from "../context/updatertContext";
-import { RefreshPeriodContext,EditPeriodContext ,OutofDepartmentContext,AuthContext} from "../context";
+import { RefreshPeriodContext,EditPeriodContext ,OutofDepartmentContext,AuthContext,GetTeacherContext} from "../context";
 import { useContext } from "react";
 import SubjectInput from "./SubjectInput";
 import NumPeriodINput from "./numPeriod";
@@ -28,7 +28,7 @@ import StartPeriodInput from "./startPeriod";
 
 export default function PeriodCard(props) {
   const {checkOutofDep} =useContext(OutofDepartmentContext);
-  
+  const {updateTeacher} =useContext(GetTeacherContext)
   const {user}=useContext(AuthContext);
   // console.log("user from  period card:",user)
   const {formstate,formstate2,dispatch,dispatch2,fetchPeriodData,updateData}=useContext(EditPeriodContext)
@@ -37,7 +37,8 @@ export default function PeriodCard(props) {
 
   const {setRoutineId,toggleEditOpen,editOpen}=useContext(UpdatertContext);
   const url = props.url;
-  const isOutofDep=checkOutofDep(props.teacher_list);
+  // const isOutofDep=checkOutofDep(props.teacher_list);
+  const isOutofDep=false;
   // console.log({isOutofDep})
   function getId(url) {
     var urlParts = url.split("/");
@@ -619,7 +620,7 @@ export default function PeriodCard(props) {
               gutterBottom
             >
               {props.teacher_list?.map((t) => (
-                <span>{initialsAfterSpace(t) + " "}</span>
+                <span onClick={()=>updateTeacher(t)} style={{pointer:'cursor'}}>{initialsAfterSpace(t) + " "}</span>
               ))}
             </Typography>
           </Grid>

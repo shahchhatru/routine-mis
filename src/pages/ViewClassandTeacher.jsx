@@ -9,14 +9,13 @@ import ScreenRotationIcon from '@mui/icons-material/ScreenRotation';
 
 import AddPeriodTab from '../components/AddPeriodTab';
 import EditRoutine from './EditRoutine';
-import TraditionalRoutine from './TraditionalRoutine';
-
-import { AddPeriodContext,TimingContext ,UpdatertContext,ZoomContext,ScreenOrientationContext} from '../context';
+import TeacherRoutineTab from './TeacherRoutineTab';
+import { AddPeriodContext,TimingContext ,UpdatertContext,ZoomContext,ScreenOrientationContext,GetTeacherContext} from '../context';
 import TraditionalRoutineSmall from './TraditionalRoutineSmall';
 
 
 const ViewClassandTeacher = () => {
-
+  const {teacherId}=useContext(GetTeacherContext);
   const { togglescreenRotate}=useContext(ScreenOrientationContext);
   const {ToggleTiming,isWinTrue} = useContext(TimingContext)
   const {editOpen} =useContext(UpdatertContext);
@@ -61,8 +60,7 @@ const ViewClassandTeacher = () => {
     
     </motion.div>
     <motion.div style={{flex:1,background: "linear-gradient(to right, #8e2de2, #4a00e0)"}}>
-    <TraditionalRoutineSmall id={id} section={section} year={year} year_part={year_part}/>
-    
+    <TeacherRoutineTab id={teacherId} />
     </motion.div>
     
     </motion.div>

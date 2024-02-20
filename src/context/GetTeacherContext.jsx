@@ -7,7 +7,7 @@ export default GetTeacherContext;
 export const GetTeacherContextProvider =({children})=>{
     let [teacherlist,setTeacherList]=useState([]);
     let [teacherIdmap,setTeacherIdmap]=useState();
-    let [teacherId,setTeacherId]=useState();
+    let [teacherId,setTeacherId]=useState(2);
 
     const fetchTeachers= async()=>{
         try{
@@ -19,6 +19,7 @@ export const GetTeacherContextProvider =({children})=>{
                 my_dict[i["name"]]=i["id"]
             }
             setTeacherIdmap({...my_dict})
+            console.log("teacherlist",teacherlist);
 
         }catch(err){
             console.log(err);
@@ -28,7 +29,7 @@ export const GetTeacherContextProvider =({children})=>{
     useEffect(()=>{
         fetchTeachers();
         
-    },[])
+    },[teacherId])
 
     const mapTeacherNameToId=(teacherName)=>{
         return teacherIdmap[teacherName];
@@ -37,6 +38,7 @@ export const GetTeacherContextProvider =({children})=>{
     const updateTeacher=(teacherName)=>{
         const id=mapTeacherNameToId(teacherName);
         setTeacherId(id);
+        console.log("from get teachercontext id"+id+" teacherId "+teacherId)
     }
 
     
@@ -44,6 +46,7 @@ export const GetTeacherContextProvider =({children})=>{
     let contextData={
         updateTeacher,
         teacherId,
+        setTeacherId,
     }
 
     return (

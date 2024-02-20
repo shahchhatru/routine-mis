@@ -141,7 +141,7 @@ export const AuthProvider = ({children})=>{
  
      },[tokendata,loading])
 
-     console.log("from authcontext",contextData);
+    //  console.log("from authcontext",contextData);
      return(
         <AuthContext.Provider value={contextData}>
             {children}
