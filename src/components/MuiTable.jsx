@@ -85,7 +85,7 @@ function createData(id,name, url) {
       name:'BCTCD',
       section:'CD',
       year_id:3,
-      course_id:2,
+      course_id:1,
       part:1,
     }
     ,
@@ -95,7 +95,7 @@ function createData(id,name, url) {
       name:'BCTAB',
       section:'AB',
       year_id:3,
-      course_id:2,
+      course_id:1,
       part:1,
     }
     ,{
@@ -104,7 +104,7 @@ function createData(id,name, url) {
       name:'BCTCD',
       section:'CD',
       year_id:3,
-      course_id:2,
+      course_id:1,
       part:1,
     }
     ,
@@ -114,7 +114,7 @@ function createData(id,name, url) {
       name:'BCTAB',
       section:'AB',
       year_id:3,
-      course_id:2,
+      course_id:1,
       part:1,
     }
 

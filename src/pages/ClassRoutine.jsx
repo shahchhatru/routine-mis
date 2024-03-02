@@ -12,9 +12,13 @@ import ScreenShareIcon from '@mui/icons-material/ScreenShare';
 import TraditionalRoutine from './TraditionalRoutine';
 import { AddPeriodContext,TimingContext ,UpdatertContext,ZoomContext,ScreenOrientationContext} from '../context';
 import ScreenRotationIcon from '@mui/icons-material/ScreenRotation';
+import { useRef } from 'react';
+import generatePDF from 'react-to-pdf';
 
 
 export default function ClassRoutine() {
+  const targetRef = useRef();
+  
   const navigate =useNavigate();
   const { togglescreenRotate}=useContext(ScreenOrientationContext);
   const {ToggleTiming,isWinTrue} = useContext(TimingContext)
@@ -29,7 +33,7 @@ export default function ClassRoutine() {
     setValue(newValue);
   };
 
-  const handleRedirection=()=>{
+ const handleRedirection=()=>{
     navigate(`/view_routine_course_teacher/${id}/${section}/${year}/${year_part}`)
 
   }
@@ -58,9 +62,10 @@ export default function ClassRoutine() {
       <ZoomOutIcon/>
     </button>
     <Button className="button-56" role="button" onClick={()=>togglescreenRotate()}>
+
     <ScreenRotationIcon />
   </Button>
-
+  <button onClick={() => generatePDF(targetRef, {filename: 'page.pdf'})}>Download PDF</button>
     </Box>
     <Box sx={{ width: '100%', typography: 'body1' }}>
       <TabContext value={value}>
@@ -72,7 +77,8 @@ export default function ClassRoutine() {
           </TabList>
         </Box>
        
-        <TabPanel value="1"><TraditionalRoutine id={id} section={section} year={year} year_part={year_part}/></TabPanel>
+        <TabPanel value="1">
+          <div id="routine-pprt" ref={targetRef }><TraditionalRoutine id={id} section={section} year={year} year_part={year_part} /></div></TabPanel>
        <TabPanel value="2"><Routine id={id} section={section} year={year} year_part={year_part}/></TabPanel>
       
       </TabContext>

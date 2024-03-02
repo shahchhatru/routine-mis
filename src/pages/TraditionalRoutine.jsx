@@ -249,7 +249,7 @@ const TraditionalRoutine = (props) => {
   };
 
   return (
-   
+  
     <Grid
       container
       style={{
@@ -263,6 +263,7 @@ const TraditionalRoutine = (props) => {
         alignItems: "center",
         justifyContent: "space-around",
       }}
+      
     >
       
       <Grid
@@ -401,6 +402,7 @@ const TraditionalRoutine = (props) => {
       </Grid>
       
     </Grid>
+    
    
   );
 };
