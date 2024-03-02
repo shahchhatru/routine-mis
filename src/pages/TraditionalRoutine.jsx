@@ -274,10 +274,12 @@ const TraditionalRoutine = (props) => {
           height: "fit-content",
           borderRadius: 8,
         }}
+        ref={props.targetref}
       >
+        
       
         <TableContainer component={motion.div} style={{height:'fit-content'}}>
-          <motion.table animate={{scale:scalesize,rotate:screenRotate?'90deg':'0deg',y:screenRotate?'400px':'0px'}}>
+          <motion.table animate={{scale:scalesize,rotate:screenRotate?'90deg':'0deg',y:screenRotate?'400px':'0px'}} >
            
             <TableHead>
               <TableRow>

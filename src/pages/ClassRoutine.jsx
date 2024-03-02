@@ -78,7 +78,7 @@ export default function ClassRoutine() {
         </Box>
        
         <TabPanel value="1">
-          <div id="routine-pprt" ref={targetRef }><TraditionalRoutine id={id} section={section} year={year} year_part={year_part} /></div></TabPanel>
+<TraditionalRoutine id={id} section={section} year={year} year_part={year_part} targetref={targetRef}/></TabPanel>
        <TabPanel value="2"><Routine id={id} section={section} year={year} year_part={year_part}/></TabPanel>
       
       </TabContext>

@@ -103,7 +103,7 @@ function createData(id,name, url) {
       year:'3rd',
       name:'BCTCD',
       section:'CD',
-      year_id:3,
+      year_id:4,
       course_id:1,
       part:1,
     }
@@ -113,7 +113,7 @@ function createData(id,name, url) {
       year:'3rd',
       name:'BCTAB',
       section:'AB',
-      year_id:3,
+      year_id:4,
       course_id:1,
       part:1,
     }

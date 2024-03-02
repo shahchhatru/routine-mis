@@ -89,8 +89,8 @@ export const AddPeriodProvider=({children})=>{
         const response = await axios.post('http://127.0.0.1:8000/api/routines/', requestData);
         window.alert("Success:", response.data);
       } catch (err) {
-        console.error("Error occurred while making the POST request:", err);
-        setError(err.response.data);
+        window.error("Error occurred while making the POST request:", err);
+        // setError(err.response.data);
       }
     };
 
