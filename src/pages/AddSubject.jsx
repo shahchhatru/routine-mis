@@ -15,6 +15,7 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 const AddSubject = () => {
     const [error,setError] =useState({});
+    const [subjectName,setSubjectName]=useState('');
     const [subjects,setSubjects]=useState([]);
     const [options,setOptions]=useState([]);
     const [value,setValue]=useState({label:'',value:''})
@@ -48,18 +49,19 @@ const AddSubject = () => {
     let handleSubmit = async (e)=>{
         e.preventDefault();
         const formdata = new FormData(e.currentTarget);
-        // const response= await axios.post("http://127.0.0.1:8000/api/subjects/",
-        // {
-        //     "name":formdata.get("subject"),
-        // }   
-        // )
-        // if(response.status==201){
-        //     console.log(response);
-        //     console.log("request success");
-        // }else{
-        //     setError(response.data);
-        //     console.log(response.data);
-        // }
+        const response= await axios.post("http://127.0.0.1:8000/api/subjects/",
+        {
+            "name":subjectName,
+        }   
+        )
+        if(response.status==201){
+            console.log(response);
+            console.log("request success");
+            setSubjectName(" ")
+        }else{
+            setError(response.data);
+            console.log(response.data);
+        }
         console.log(formdata.get("subject"))
 
        
@@ -110,6 +112,8 @@ const AddSubject = () => {
               name="subject"
               autoComplete="subject"
               autoFocus
+              value={subjectName}
+              onChange={(e)=>setSubjectName(e.target.value)}
             /> 
 
 <Autocomplete
