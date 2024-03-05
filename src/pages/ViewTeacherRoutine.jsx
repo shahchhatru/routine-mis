@@ -16,7 +16,7 @@ import EditRoutine from './EditRoutine';
 import ViewRoutine from "./ViewRoutine";
 import AuthContext from "../context/authContext";
 import { Grid ,Button} from "@mui/material";
-import { AddPeriodContext,TimingContext ,UpdatertContext,ZoomContext,ScreenOrientationContext} from '../context';
+import { AddPeriodContext,TimingContext ,UpdatertContext,ZoomContext,ScreenOrientationContext, GetTeacherContext} from '../context';
 import ScreenRotationIcon from '@mui/icons-material/ScreenRotation';
 import {motion} from 'framer-motion'
 
@@ -25,7 +25,7 @@ export default function ViewTeacherRoutine() {
   const { togglescreenRotate}=useContext(ScreenOrientationContext);
   const {ToggleTiming,isWinTrue} = useContext(TimingContext)
   const {showaddModel}=useContext(AddPeriodContext)
-
+  const {mapTeacherIdToName}=useContext(GetTeacherContext);
   const {editOpen} =useContext(UpdatertContext);
   const {zoomOut,zoomIn}=useContext(ZoomContext);
   const navigate=useNavigate();
@@ -94,6 +94,9 @@ export default function ViewTeacherRoutine() {
 
     </Box>
     <Box sx={{ width: '100%', typography: 'body1' }}>
+    <Box sx={{width:'100%',display:'flex', justifyContent:'center' , textTransform:'uppercase',fontSize:'2rem'}}>
+        {`${ mapTeacherIdToName(iId)} `}
+      </Box>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChange} aria-label="lab API tabs example">

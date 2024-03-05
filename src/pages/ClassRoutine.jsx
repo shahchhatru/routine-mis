@@ -10,7 +10,7 @@ import EditRoutine from './EditRoutine';
 import Routine from './Routine';
 import ScreenShareIcon from '@mui/icons-material/ScreenShare';
 import TraditionalRoutine from './TraditionalRoutine';
-import { AddPeriodContext,TimingContext ,UpdatertContext,ZoomContext,ScreenOrientationContext} from '../context';
+import { AddPeriodContext,TimingContext ,UpdatertContext,ZoomContext,ScreenOrientationContext,GetCourseNameContext} from '../context';
 import ScreenRotationIcon from '@mui/icons-material/ScreenRotation';
 import { useRef } from 'react';
 import generatePDF from 'react-to-pdf';
@@ -25,8 +25,8 @@ export default function ClassRoutine() {
   const {editOpen} =useContext(UpdatertContext);
   const {zoomOut,zoomIn}=useContext(ZoomContext);
   const { id ,section,year,year_part} = useParams();
-  const {showaddModel}=useContext(AddPeriodContext)
-
+  const {showaddModel}=useContext(AddPeriodContext);
+  const {mapIdtoCourseName}=useContext(GetCourseNameContext);
   const [value, setValue] = useState('1');
   console.log(`id ${id} ,section ${section},year ${year} ,year_part ${year_part}`);
   const handleChange = (event, newValue) => {
@@ -68,6 +68,9 @@ export default function ClassRoutine() {
   <button onClick={() => generatePDF(targetRef, {filename: 'page.pdf'})}>Download PDF</button>
     </Box>
     <Box sx={{ width: '100%', typography: 'body1' }}>
+      <Box sx={{width:'100%',display:'flex', justifyContent:'center' , textTransform:'uppercase',fontSize:'2rem'}}>
+        {`${mapIdtoCourseName(id)} ${section},  ${year-1} year ,${year_part}part `}
+      </Box>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChange} aria-label="lab API tabs example">

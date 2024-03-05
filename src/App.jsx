@@ -23,7 +23,7 @@ import ViewClassandTeacher from './pages/ViewClassandTeacher';
 
 import { UpdatertProvider } from './context/updatertContext';
 import { TimingContextProvider } from './context/winSumTimingContext';
-import { AddPeriodProvider, RefreshPeriodContextProvider ,EditPeriodProvider, ZoomContextProvider,ScreenOrientationContextProvider,OutofDepartmentContextProvider,GetTeacherContext,GetTeacherContextProvider} from './context';
+import { AddPeriodProvider, RefreshPeriodContextProvider ,EditPeriodProvider, ZoomContextProvider,ScreenOrientationContextProvider,OutofDepartmentContextProvider,GetTeacherContextProvider, GetCourseNameProvider} from './context';
 function App() {
 
   const theme = createTheme(
@@ -47,6 +47,7 @@ function App() {
             <UpdatertProvider>
             <TimingContextProvider>
               <ZoomContextProvider>
+                <GetCourseNameProvider>
                 <AddPeriodProvider>
                   <GetTeacherContextProvider>
                   <RefreshPeriodContextProvider>
@@ -78,6 +79,7 @@ function App() {
                   </RefreshPeriodContextProvider>
                   </GetTeacherContextProvider>
                 </AddPeriodProvider>
+                </GetCourseNameProvider>
                 </ZoomContextProvider>
               </TimingContextProvider>
             </UpdatertProvider>

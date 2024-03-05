@@ -8,6 +8,7 @@ import ZoomContext,{ZoomContextProvider} from "./zoomContext";
 import ScreenOrientationContext,{ScreenOrientationContextProvider} from "./ScreenOrientationContext";
 import OutofDepartmentContext,{OutofDepartmentContextProvider} from "./OutofDepartment";
 import GetTeacherContext,{GetTeacherContextProvider} from "./GetTeacherContext";
+import GetCourseNameContext,{GetCourseNameProvider} from "./IdtocourseName";
 export {
     AddPeriodContext,
      AddPeriodProvider,
@@ -29,4 +30,7 @@ export {
      OutofDepartmentContextProvider,
      GetTeacherContext,
      GetTeacherContextProvider,
+     GetCourseNameContext,
+     GetCourseNameProvider
+
 }
