@@ -31,7 +31,7 @@ export default function ViewTeacherRoutine() {
   const navigate=useNavigate();
   const [teacher,setTeacher]=React.useState();
   const {user,logoutUser}=useContext(AuthContext);
-  const {id}=useParams();
+  const {id,part}=useParams();
   const [iId,setId]=React.useState();
   React.useEffect(()=>{
 
@@ -106,7 +106,7 @@ export default function ViewTeacherRoutine() {
           </TabList>
         </Box>
        
-        <TabPanel value="1"> <TTeacherRoutine id={iId} /></TabPanel>
+        <TabPanel value="1"> <TTeacherRoutine id={iId} part={part} /></TabPanel>
        <TabPanel value="2"> <ViewRoutine id={iId} /></TabPanel>
       
       </TabContext>

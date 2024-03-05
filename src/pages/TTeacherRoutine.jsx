@@ -36,6 +36,7 @@ import {motion} from 'framer-motion'
 
 const TTeacherRoutine = (props) => {
   const minWidth = "200px";
+  const part =props.part;
   const {user}=useContext(AuthContext)
   const {screenRotate}=useContext(ScreenOrientationContext)
   const {scalesize}=useContext(ZoomContext);
@@ -186,7 +187,7 @@ const TTeacherRoutine = (props) => {
       const teacher_id = id;
       try {
         const response = await axios.get(
-            `http://127.0.0.1:8000/api/routines/get_routines_by_teacher/?teacher_id=${teacher_id}`
+            `http://127.0.0.1:8000//api/routines/get_routines_by_teacher_and_year_part/?teacher_id=${teacher_id}&year_part=${part}`
         );
 
         console.log(response.data);
