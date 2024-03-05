@@ -53,3 +53,8 @@ For example if I click on the telecommunication card. I will get a form inside c
 ![subjectfieldupdate](/imgs/updatesubjectfield.png)
 
 similary for other fields on card as well.
+
+
+![dualscreen](/imgs/Dualscreen.png)
+
+Simailarly we can divide screen to view both teachers and class routine . left side shows the class routine and right hand side shows the respective teacher routine. If we click on the teacher item of card on the left side routine , The right side teacher routine will change to the routine of the new teacher on which we clickeds.
