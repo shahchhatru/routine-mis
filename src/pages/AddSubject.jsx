@@ -56,10 +56,10 @@ const AddSubject = () => {
         )
         if(response.status==201){
             console.log(response);
-            console.log("request success");
+            window.alert("request success" +JSON.parse(response.data));
             setSubjectName(" ")
         }else{
-            setError(response.data);
+            window.alert(JSON.parse(response.data));
             console.log(response.data);
         }
         console.log(formdata.get("subject"))
