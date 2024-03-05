@@ -12,6 +12,7 @@ const initialState = {
     starting_period_value: "",
     no_of_period_value: "",
    
+
   };
   
   const initialStateGlobal={
@@ -83,14 +84,14 @@ export const AddPeriodProvider=({children})=>{
     let addPeriod = async (e) => {
       e.preventDefault();
       const requestData={
-        ...formstate,...formstate2,
+        ...formstate,...formstate2, season:"winter"
       }
       try {
         const response = await axios.post('http://127.0.0.1:8000/api/routines/', requestData);
-        window.alert("Success:", response.data);
+        window.alert("Success:"+JSON.stringify(response.data));
       } catch (err) {
-        window.error("Error occurred while making the POST request:", err);
-        // setError(err.response.data);
+        window.alert("Error occurred while making the POST request:"+ JSON.stringify(err.response));
+         setError(err.response.data);
       }
     };
 
