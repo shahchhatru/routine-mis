@@ -11,7 +11,7 @@ const initialState = {
     session_type: "",
     starting_period_value: "",
     no_of_period_value: "",
-    season:"winter"
+   
   };
   
   const initialStateGlobal={
@@ -37,7 +37,7 @@ const reducerfunction = (state, action) => {
           teacher: "",
           subject: "",
           session_type: "",
-          season: "winter",
+          
           starting_period_value: "",
           no_of_period_value: "",
         };

@@ -208,16 +208,18 @@ const MuiTable = () => {
               <TableCell><Typography>{row.year}</Typography></TableCell>
               <TableCell><Typography>{row.name}</Typography></TableCell>
               <TableCell align='center'>
-                <Link to={`/view_routine_course/${row.course_id}/${row.section}/${row.year_id}/${row.part}`} >
+                <Link to={`/view_routine_course/${row.course_id}/${row.section}/${row.year_id}/${1}`} >
                     <Button variant="outlined" startIcon={<CalendarMonthIcon/>}>
-                                   View Routine
+                                    1st Part
                     </Button>
                     </Link>
                 </TableCell>
                 <TableCell align="center">
-                    <Button variant="outlined" startIcon={<DriveFileRenameOutlineIcon/>}>
-                                   Edit Details
+                <Link to={`/view_routine_course/${row.course_id}/${row.section}/${row.year_id}/${2}`} >
+                    <Button variant="outlined" startIcon={<CalendarMonthIcon/>}>
+                                   2nd Part
                     </Button>
+                    </Link>
                 </TableCell>
             </TableRow>
           ))}
