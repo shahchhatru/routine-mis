@@ -18,18 +18,7 @@ function createData(id,name, url) {
     return { id, name, url };
   }
   
-  const rows = [
-    createData(122,'Arun Kumar Timalsina', '/routine'),
-    createData(237,'Basanta Joshi','/routine'),
-    createData(262,'Dibakar Raj Panta','/routine'),
-    createData(305,'Nischal Acharya','/routine'),
-  ];
-
-  const classrows=[
-    createData('001',"076BEI",'/routine'),
-    createData('002','076BCTAB','/routine'),
-    createData('003','076BCTCD','/routine')
-  ]
+ 
 
   const courses=[
     {
