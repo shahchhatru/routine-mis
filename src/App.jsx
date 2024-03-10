@@ -20,7 +20,7 @@ import ClassRoutine from './pages/ClassRoutine';
 import ResetPassword from './pages/ResetPassword';
 import EditRoutine from './pages/EditRoutine';
 import ViewClassandTeacher from './pages/ViewClassandTeacher';
-
+import TeacherViewRoutine from './pages/TeacherViewRoutine';
 import { UpdatertProvider } from './context/updatertContext';
 import { TimingContextProvider } from './context/winSumTimingContext';
 import { AddPeriodProvider, RefreshPeriodContextProvider ,EditPeriodProvider, ZoomContextProvider,ScreenOrientationContextProvider,OutofDepartmentContextProvider,GetTeacherContextProvider, GetCourseNameProvider} from './context';
@@ -67,6 +67,7 @@ function App() {
                       <Route path="/add_subject" element={<AddSubject />} />
                       <Route path="/add_period" element={<AddPeriod />} />
                       <Route path="/view_routine_t/:id/:part" element={<ViewTeacherRoutine />} />
+                      <Route path="/view_routine_t/:id" element={<TeacherViewRoutine />} />
                       <Route path="/view_routine_course_teacher/:id/:section/:year/:year_part" element={<ViewClassandTeacher/>} />
                       <Route path="/view_routine_course/:id/:section/:year/:year_part" element={<ClassRoutine />} />
                       <Route path="/changepassword" element={<ResetPassword />} />

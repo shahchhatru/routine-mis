@@ -59,10 +59,10 @@ export default function ViewTeacherRoutine() {
 
   return (
     iId?
-  <div style={{position:'relative',width:'100vw',height:'100vh',background:'linear-gradient(to right, #8e2de2, #4a00e0)'}}>
+  <div style={{position:'relative',width:'100vw',height:'100vh',background:'linear-gradient(to right, #8e2de2, #4a00e0)',padding:8}}>
    {
-        id!=iId?(
-          <Grid container style={{width:'100vw',display:'flex',paddding:4}} spacing={4}>
+        id!==iId?(
+          <Grid container style={{width:'100vw',display:'flex',paddding:4,}} spacing={4}>
           <Grid item sx={12}>
             <Button onClick={()=>navigate('/changepassword')}>Change password</Button>
           </Grid>
@@ -71,6 +71,16 @@ export default function ViewTeacherRoutine() {
           </Grid>
         </Grid>
         ):<></>
+
+        // <Grid container style={{width:'100vw',display:'flex',paddding:4,}} spacing={4}>
+        //    <Grid item sx={12}>
+        //     <Button onClick={()=>navigate('/changepassword')}>Change password</Button>
+        //    </Grid>
+        //   <Grid item sx={12} >
+        //      <Button variant="contained" onClick={()=>logoutUser()}>Logout</Button>
+        //   </Grid>
+        //  </Grid>
+        
       }
   <motion.div style={{position:'absolute',top:0,left:0,width:editOpen||showaddModel?'80vw':'100vw',background:'linear-gradient(to right, #8e2de2, #4a00e0)'}}
     animate={{width:editOpen || showaddModel?'80vw':'100vw'}}
