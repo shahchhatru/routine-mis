@@ -98,6 +98,7 @@ export default function ViewTeacherRoutine() {
     <button className="button-33" role="button" onClick={()=>zoomOut()}>
       <ZoomOutIcon/>
     </button>
+    <Button variant="contained" onClick={()=>logoutUser()}>Logout</Button>
     <Button className="button-56" role="button" onClick={()=>togglescreenRotate()}>
     <ScreenRotationIcon />
   </Button>

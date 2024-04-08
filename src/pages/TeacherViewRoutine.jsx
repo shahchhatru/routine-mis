@@ -1,9 +1,12 @@
-import React from "react";
+import React,{useContext} from "react";
 import { Button } from "@mui/material";
 import { Link, useParams } from "react-router-dom";
+import { AuthContext } from "../context";
 
 const TeacherViewRoutine = () => {
   const { id } = useParams();
+  const {logoutUser}=useContext(AuthContext);
+
   return (
     <div
       style={{
@@ -23,6 +26,9 @@ const TeacherViewRoutine = () => {
         <div>
           <Link to={`/view_routine_t/${id}/2`}> <Button variant="contained">2nd Part</Button></Link>
         </div>
+      </div>
+      <div style={{ display: "flex",  justifyItems: "space-between",padding:16}}>
+      <Button variant="contained" onClick={logoutUser}> Logout</Button>
       </div>
     </div>
   );
