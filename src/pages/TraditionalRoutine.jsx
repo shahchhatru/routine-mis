@@ -249,24 +249,71 @@ const TraditionalRoutine = (props) => {
   };
 
 
-  const periodListRender=(periodlist,day,period_index)=>{
-    console.log("preoidlist",periodlist)
-    if(periodlist){
-      return(
-        <TableCell style={{display:"flex",flexDirection:"column"}}>
-          {
-            periodlist.map((item,index)=>{
-              newNextRender(item,day,period_index)
-              //console.log(item,period_index)
-            })
-          }
-        </TableCell>
-      )
+  // const periodListRender=(periodlist,day,period_index)=>{
+  //   console.log("preoidlist",periodlist)
+  //   if(periodlist.length>0){
+      
+  //     return(
+  //       <TableCell style={{display:"flex",flexDirection:"column"}}>
+  //         {
+  //           periodlist.map((item,index)=>{
+  //             return newNextRender(item,day,period_index)
+  //             //console.log(item,period_index)
+  //           })
+  //         }
+  //       </TableCell>
+  //     )
     
-    }
+  //   }
    
-  }
+  // }
 
+
+  const periodListRender=(periodlist,day,period_index)=>{
+    if (periodlist.length === 0) {
+      if (freePeriod[day][period_index+1] === false) {
+        return (
+          <TableCell style={{minWidth:minWidth}}>
+            <AddPeriodCard
+              day={day}
+              start_period_index={period_index+1}
+              course_id={props.id}
+              section={section}
+              year={year}
+              year_part={year_part}
+            />
+          </TableCell>
+        );
+      } else {
+        return(
+          <TableCell>
+            {""}
+          </TableCell>
+        )
+      }
+    }else{
+      return (
+          <TableCell style={{display:"flex",flexDirection:"column"}}>
+            {
+              periodlist.map((myObject,index)=>{
+            return (
+            <PeriodCard
+            teacher_list={myObject.teacher}
+            subject={myObject.subject}
+            start_time={isWinTrue?`${get_winter_timing(parseInt(myObject.starting_period_value)-1)}`:`${get_summer_timing(parseInt(myObject.starting_period_value)-1)}`}
+            end_time={isWinTrue?`${get_winter_timing(parseInt(myObject.no_of_period_value)+parseInt(myObject.starting_period_value)-1)}`:`${get_summer_timing(parseInt(myObject.no_of_period_value)-1+parseInt(myObject.starting_period_value))}`}
+            session_type={myObject.session_type}
+            room_number={myObject.room_number}
+            url={myObject.url}
+          />
+                )
+              })
+            }
+          </TableCell>
+        
+      );
+    }
+  }
 
   console.log(tabular_object)
   return (
