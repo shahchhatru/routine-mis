@@ -55,10 +55,10 @@ export default function PeriodCard(props) {
   const [activePage, setActivePage] = useState(6);
   const handleCardTransition = (cardIndex) => {
     if(user.tc){
-      if(!isOutofDep){
+      
         setActivePage(cardIndex);
         fetchPeriodData(getId(url));
-        }
+        
     }
     
     
