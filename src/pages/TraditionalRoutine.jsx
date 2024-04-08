@@ -103,12 +103,12 @@ const TraditionalRoutine = (props) => {
   const minWidth = "200px";
 
   const tablular_rtine = {
-    sun: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
-    mon: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
-    tue: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
-    wed: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
-    thu: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
-    fri: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
+    sun: { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [] },
+    mon: { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [] },
+    tue: { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [] },
+    wed: { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [] },
+    thu: { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [] },
+    fri: { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [] },
   };
   let routine_oobj = {
     sun: [],
@@ -129,7 +129,7 @@ const TraditionalRoutine = (props) => {
 
         if (!isDuplicate) {
           routine_oobj[day].push(period);
-          tablular_rtine[day][starting_period_value] = { ...period };
+          tablular_rtine[day][starting_period_value].push({ ...period });
         }
       }
     });
@@ -233,7 +233,7 @@ const TraditionalRoutine = (props) => {
       }
     }else{
       return (
-        <TableCell>
+        
           <PeriodCard
             teacher_list={myObject.teacher}
             subject={myObject.subject}
@@ -243,11 +243,32 @@ const TraditionalRoutine = (props) => {
             room_number={myObject.room_number}
             url={myObject.url}
           />
-        </TableCell>
+        
       );
     }
   };
 
+
+  const periodListRender=(periodlist,day,period_index)=>{
+    console.log("preoidlist",periodlist)
+    if(periodlist){
+      return(
+        <TableCell style={{display:"flex",flexDirection:"column"}}>
+          {
+            periodlist.map((item,index)=>{
+              newNextRender(item,day,period_index)
+              //console.log(item,period_index)
+            })
+          }
+        </TableCell>
+      )
+    
+    }
+   
+  }
+
+
+  console.log(tabular_object)
   return (
   
     <Grid
@@ -338,7 +359,7 @@ const TraditionalRoutine = (props) => {
                 <TableCell>Sunday</TableCell>
                 {Object.keys(tabular_object["sun"]).length > 0
                   ? Object.keys(tabular_object["sun"]).map((item,index) =>
-                      newNextRender(tabular_object["sun"][item],"sun",index)
+                  periodListRender(tabular_object["sun"][item],"sun",index)
                     )
                   : ""}
               </TableRow>
@@ -347,7 +368,7 @@ const TraditionalRoutine = (props) => {
                 {
                   Object.keys(tabular_object["mon"]).length > 0
                     ? Object.keys(tabular_object["mon"]).map((item,index) =>
-                    newNextRender(tabular_object["mon"][item],"mon",index)
+                    periodListRender(tabular_object["mon"][item],"mon",index)
                   )
                     : ""
                   }
@@ -358,7 +379,7 @@ const TraditionalRoutine = (props) => {
                 {
                   Object.keys(tabular_object["tue"]).length > 0
                     ? Object.keys(tabular_object["tue"]).map((item,index) =>
-                    newNextRender(tabular_object["tue"][item],"tue",index)
+                    periodListRender(tabular_object["tue"][item],"tue",index)
                   )
                     : ""
                   // renderNextKey(tabular_object['fri'][1])
@@ -369,7 +390,7 @@ const TraditionalRoutine = (props) => {
                 {
                   Object.keys(tabular_object["wed"]).length > 0
                     ? Object.keys(tabular_object["wed"]).map((item,index) =>
-                    newNextRender(tabular_object["wed"][item],"wed",index)
+                    periodListRender(tabular_object["wed"][item],"wed",index)
                   )
                     : ""
                   // renderNextKey(tabular_object['fri'][1])
@@ -380,7 +401,7 @@ const TraditionalRoutine = (props) => {
                 {
                   Object.keys(tabular_object["thu"]).length > 0
                     ? Object.keys(tabular_object["thu"]).map((item,index) =>
-                    newNextRender(tabular_object["thu"][item],"thu",index)
+                    periodListRender(tabular_object["thu"][item],"thu",index)
                   )
                     : ""
                   // renderNextKey(tabular_object['fri'][1])
@@ -391,7 +412,7 @@ const TraditionalRoutine = (props) => {
                 {
                   Object.keys(tabular_object["fri"]).length > 0
                     ? Object.keys(tabular_object["fri"]).map((item,index) =>
-                    newNextRender(tabular_object["fri"][item],"fri",index)
+                    periodListRender(tabular_object["fri"][item],"fri",index)
                   )
                     : ""
                   // renderNextKey(tabular_object['fri'][1])
