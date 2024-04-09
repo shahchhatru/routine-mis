@@ -134,7 +134,7 @@ const TraditionalRoutine = (props) => {
       }
     });
   };
-
+console.log(routine_obj)
   const get_khali_period = (period_list) => {
     // console.log("inside get_khali_period",period_list);
     Object.keys(period_list).forEach((day) => {
@@ -232,8 +232,40 @@ const TraditionalRoutine = (props) => {
 
 
   const periodListRender=(periodlist,day,period_index)=>{
-    if (periodlist.length === 0) {
-      if (freePeriod[day][period_index+1] === false) {
+    if (periodlist.length === 1) {
+     
+          return (
+            <>
+          <TableCell style={{display:"flex",flexDirection:"column"}}>
+            {
+              
+              periodlist.map((myObject,index)=>{
+                if((periodlist[0].starting_period_value)===myObject.starting_period_value){
+                  return (
+                    <PeriodCard
+                    teacher_list={myObject.teacher}
+                    subject={myObject.subject}
+                    start_time={isWinTrue?`${get_winter_timing(parseInt(myObject.starting_period_value)-1)}`:`${get_summer_timing(parseInt(myObject.starting_period_value)-1)}`}
+                    end_time={isWinTrue?`${get_winter_timing(parseInt(myObject.no_of_period_value)+parseInt(myObject.starting_period_value)-1)}`:`${get_summer_timing(parseInt(myObject.no_of_period_value)-1+parseInt(myObject.starting_period_value))}`}
+                    session_type={myObject.session_type}
+                    room_number={myObject.room_number}
+                    url={myObject.url}
+                    note={myObject.note}
+                  />
+                        )
+                }
+            
+              })
+            }
+          </TableCell>
+          </>
+        
+      );
+      
+      
+     
+    }else{
+       if (freePeriod[day][period_index+1] === false) {
         return (
           <TableCell style={{minWidth:minWidth}}>
             <AddPeriodCard
@@ -253,32 +285,12 @@ const TraditionalRoutine = (props) => {
           </TableCell>
         )
       }
-    }else{
-      return (
-          <TableCell style={{display:"flex",flexDirection:"column"}}>
-            {
-              periodlist.map((myObject,index)=>{
-            return (
-            <PeriodCard
-            teacher_list={myObject.teacher}
-            subject={myObject.subject}
-            start_time={isWinTrue?`${get_winter_timing(parseInt(myObject.starting_period_value)-1)}`:`${get_summer_timing(parseInt(myObject.starting_period_value)-1)}`}
-            end_time={isWinTrue?`${get_winter_timing(parseInt(myObject.no_of_period_value)+parseInt(myObject.starting_period_value)-1)}`:`${get_summer_timing(parseInt(myObject.no_of_period_value)-1+parseInt(myObject.starting_period_value))}`}
-            session_type={myObject.session_type}
-            room_number={myObject.room_number}
-            url={myObject.url}
-            note={myObject.note}
-          />
-                )
-              })
-            }
-          </TableCell>
-        
-      );
+     
+    
     }
   }
 
-  console.log(tabular_object)
+  console.log("tabular_object",tabular_object)
   return (
   
     <Grid
