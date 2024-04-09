@@ -209,44 +209,6 @@ const TraditionalRoutine = (props) => {
   
   
 
-  const newNextRender = (myObject, day, period_index) => {
-    if (myObject == "") {
-      if (freePeriod[day][period_index+1] === false) {
-        return (
-          <TableCell style={{minWidth:minWidth}}>
-            <AddPeriodCard
-              day={day}
-              start_period_index={period_index+1}
-              course_id={props.id}
-              section={section}
-              year={year}
-              year_part={year_part}
-            />
-          </TableCell>
-        );
-      } else {
-        return(
-          <TableCell>
-            {""}
-          </TableCell>
-        )
-      }
-    }else{
-      return (
-        
-          <PeriodCard
-            teacher_list={myObject.teacher}
-            subject={myObject.subject}
-            start_time={isWinTrue?`${get_winter_timing(parseInt(myObject.starting_period_value)-1)}`:`${get_summer_timing(parseInt(myObject.starting_period_value)-1)}`}
-            end_time={isWinTrue?`${get_winter_timing(parseInt(myObject.no_of_period_value)+parseInt(myObject.starting_period_value)-1)}`:`${get_summer_timing(parseInt(myObject.no_of_period_value)-1+parseInt(myObject.starting_period_value))}`}
-            session_type={myObject.session_type}
-            room_number={myObject.room_number}
-            url={myObject.url}
-          />
-        
-      );
-    }
-  };
 
 
   // const periodListRender=(periodlist,day,period_index)=>{
@@ -305,6 +267,7 @@ const TraditionalRoutine = (props) => {
             session_type={myObject.session_type}
             room_number={myObject.room_number}
             url={myObject.url}
+            note={myObject.note}
           />
                 )
               })

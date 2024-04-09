@@ -14,6 +14,7 @@ import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
+import SearchTeacher from "../components/SearchTeacher";
 import {
   Navigation,
   Pagination,
@@ -225,6 +226,7 @@ const TeacherRoutineTab = (props) => {
                     session_type={myObject.session_type}
                     room_number={myObject.room_number}
                     url={myObject.url}
+                    note={myObject.note}
                     /></TableCell>
     )
   }
@@ -264,6 +266,7 @@ const TeacherRoutineTab = (props) => {
             session_type={myObject.session_type}
             room_number={myObject.room_number}
             url={myObject.url}
+            note={myObject.note}
           />
         </TableCell>
       );
@@ -294,6 +297,10 @@ const TeacherRoutineTab = (props) => {
         borderRadius: 8,
       }}
     >
+      <Grid sm={12} m={2} p={2}>
+      <SearchTeacher/>
+      </Grid>
+      
       <TableContainer component={motion.div} style={{height:'fit-content'}}>
           <motion.table animate={{scale:scalesize,rotate:screenRotate?'90deg':'0deg',y:screenRotate?'400px':'0px'}}>
          

@@ -20,6 +20,7 @@ const initialStateGlobal = {
     section:"",
     room_number: "",
     year_part: "",
+    note:""
 }
 
 const reducerfunction = (state, action) => {
@@ -64,7 +65,8 @@ const reducerfunction2 = (state, action) => {
                 day: "",
                 section:"",
                 room_number: "",
-                year_part: ""
+                year_part: "",
+                note:""
             };
         default:
             return {
@@ -85,7 +87,7 @@ export const EditPeriodProvider = ({ children }) => {
                 const response = await axios.get(`http://127.0.0.1:8000/api/routines/${Id}/`);
                 const ndata = response.data;
                 dispatch({ type: "UPDATE", payload: { teacher: ndata.teacher, subject: ndata.subject, session_type: ndata.session_type, starting_period_value: ndata.starting_period_value, no_of_period_value: ndata.no_of_period_value } })
-                dispatch2({ type: "UPDATE", payload: { year: ndata.year, course: ndata.course, day: ndata.day, room_number: ndata.room_number, year_part: ndata.year_part ,section:ndata.section} })
+                dispatch2({ type: "UPDATE", payload: { year: ndata.year, course: ndata.course, day: ndata.day, room_number: ndata.room_number, year_part: ndata.year_part ,section:ndata.section,note:ndata.note} })
 
             } catch (err) {
                 console.log(err);

@@ -8,6 +8,7 @@ import {
   Button,
   TextField,
 } from "@mui/material";
+import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import { motion } from "framer-motion";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import axios from "axios";
@@ -23,6 +24,7 @@ import { useContext } from "react";
 import SubjectInput from "./SubjectInput";
 import NumPeriodINput from "./numPeriod";
 import StartPeriodInput from "./startPeriod";
+import NoteINput from "./NoteInput";
 
 
 
@@ -37,7 +39,8 @@ export default function PeriodCard(props) {
 
   const {setRoutineId,toggleEditOpen,editOpen}=useContext(UpdatertContext);
   const url = props.url;
-  console.log("props.teacherlist",props)
+  console.log("note,",props.note)
+  // console.log("props.teacherlist",props)
   const isOutofDep=checkOutofDep(props.teacher_list);
   //const isOutofDep=false;
   // console.log({isOutofDep})
@@ -546,6 +549,87 @@ export default function PeriodCard(props) {
           position: "absolute",
           top: "0%",
           left: "0%",
+          zIndex: 0, opacity: 0
+        }}
+        animate={{
+          opacity: activePage === 7 ? 1 : 0,
+          zIndex: activePage === 7 ? 1 : -1,
+        }}
+        transition={{ duration: 0.5 }}
+      >
+        <Card
+          sx={{
+            width: "300px",
+            height: "200px",
+            background: "white",
+            mb: 4,
+
+          }}
+        >
+          <CardContent>
+            <Grid
+              container
+              fullWidth
+              mb={1}
+              style={{ justifyContent: "space-between" }}
+            >
+              <Grid item sx={2}>
+                <Box
+                  sx={{
+                    background: "#f1eeff",
+                    textTransform: "capitalize",
+                    border: "2px solid #6558d3",
+                    borderRadius: 1,
+                    fontWeight: 600,
+                    fontSize: "0.875rem",
+                    padding: "0.5em 0.75em",
+                    lineHeight: 1,
+                  }}
+                >
+                  
+                  <Typography variant="h7" color="#6558d3">
+                    {"Notes"}
+                  </Typography>
+
+                </Box>
+              </Grid>
+              <Grid item sx={4} style={{ color: "red" }}>
+                <Button onClick={() => handleCardTransition(mainPageIndex)} style={{ color: "#ff0000" }}>
+                  {/* edit_period/${getId(url)} */}
+                  <CloseIcon />
+                  Close
+                </Button>
+              </Grid>
+              <Grid container fullWidth>
+                <Grid item sx={12} p={1}>
+                  <Box
+                    component="form"
+                    sx={{
+                      "& > :not(style)": { m: 1, width: "100%" },
+                    }}
+                    noValidate
+                    autoComplete="off"
+                    onSubmit={(e)=>handleSubmit(e)}
+                  >
+                    <NoteINput
+                    value={formstate2.note}
+                    dispatch={dispatch2}
+                  />
+                    <Button type="submit" sx={4}>
+                      UPDATE
+                    </Button>
+                  </Box>
+                </Grid>
+              </Grid>
+            </Grid>
+          </CardContent>
+        </Card>
+      </motion.div>
+      <motion.div
+        style={{
+          position: "absolute",
+          top: "0%",
+          left: "0%",
           zIndex: activePage === 6 ? 1 : 0,
           opacity: activePage === 6 ? 1 : 0,
         }}
@@ -625,6 +709,23 @@ export default function PeriodCard(props) {
               ))}
             </Typography>
           </Grid>
+          <Grid item sx={3} p={1} color="lightgreen" style={{cursor:'pointer'}} onClick={()=>handleCardTransition(7)}>
+            <CircleNotificationsIcon/>
+          </Grid>
+          <Grid item sx={3} p={1} color="#f10000"  style={{cursor:'pointer'}}
+             >
+            <Typography
+              variant="body2"
+              color="#f00"
+              sx={{ fontFamily: "Spline Sans", fontWeight: "500", }}
+              gutterBottom
+            >
+              {props.note}
+            </Typography>
+          </Grid>
+          
+              
+            
         </Grid>
         <Grid container fullWidth>
           <Grid item sx={2} p={1} color="lightgreen" style={{cursor:'pointer'}} onClick={()=>handleCardTransition(4)}>

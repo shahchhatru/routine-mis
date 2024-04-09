@@ -29,6 +29,7 @@ import TraditionalCard from "../components/TraditionalCard";
 import UpdatertContext from "../context/updatertContext";
 import { AddPeriodContext,RefreshPeriodContext ,ZoomContext,TimingContext,ScreenOrientationContext,OutofDepartmentContext} from "../context";
 import {motion} from "framer-motion";
+import SearchTeacher from "../components/SearchTeacher";
 
 const TraditionalRoutineSmall = (props) => {
   const {screenRotate}=useContext(ScreenOrientationContext)

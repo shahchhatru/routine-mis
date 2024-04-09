@@ -12,6 +12,7 @@ import EditRoutine from './EditRoutine';
 import TeacherRoutineTab from './TeacherRoutineTab';
 import { AddPeriodContext,TimingContext ,UpdatertContext,ZoomContext,ScreenOrientationContext,GetTeacherContext} from '../context';
 import TraditionalRoutineSmall from './TraditionalRoutineSmall';
+import SearchTeacher from '../components/SearchTeacher';
 
 
 const ViewClassandTeacher = () => {
