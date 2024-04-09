@@ -69,11 +69,11 @@ export default function PeriodCard(props) {
   };
 
   const handleSubmit=(e)=>{
-    if(!isOutofDep){
+    
       updateData(e,getId(url));
       handleCardTransition(mainPageIndex);
       togglePRefresh();
-    }
+    
    
   }
  
@@ -92,7 +92,7 @@ export default function PeriodCard(props) {
   }
 
   const handleEditButton=()=>{
-   if(!isOutofDep){
+   
     if(editOpen){
       setRoutineId('');
       toggleEditOpen();
@@ -101,7 +101,7 @@ export default function PeriodCard(props) {
       setRoutineId(getId(url))
     }
     
-   }
+   
    
  }
 
@@ -666,7 +666,7 @@ export default function PeriodCard(props) {
               </Typography>
             </Box>
           </Grid>
-          <Grid item sx={4} style={{visibility:isOutofDep ||(!user.tc)?'hidden':'visible'}}>
+          <Grid item sx={4} style={{visibility:(!user.tc)?'hidden':'visible'}}>
             <Button onClick={()=>handleEditButton()}>
               <EditNoteIcon />
               Edit
