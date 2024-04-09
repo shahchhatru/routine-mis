@@ -13,6 +13,7 @@ import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 import ScreenRotationIcon from '@mui/icons-material/ScreenRotation';
+import SearchableTeacherRedirect from './SearchableTeacherRedirect';
 
 function createData(id,name, url) {
     return { id, name, url };
@@ -216,6 +217,9 @@ const MuiTable = () => {
                 </Table>
              </TableContainer>
         </Paper>
+        <Grid>
+          <SearchableTeacherRedirect/>
+          </Grid>
         <Paper sx={{width:"80%",marginTop:10}}>
              <TableContainer>
                 <Table>
