@@ -11,7 +11,7 @@ const initialState = {
     session_type: "",
     starting_period_value: "",
     no_of_period_value: "",
-   
+    
 
   };
   
@@ -21,7 +21,9 @@ const initialState = {
     day:"",
     room_number:"",
     year_part:"",
-    section:""
+    section:"",
+    alternate_bool:false,
+    note:""
   }
 
 
@@ -41,6 +43,7 @@ const reducerfunction = (state, action) => {
           
           starting_period_value: "",
           no_of_period_value: "",
+          
         };
       default:
         return {
@@ -65,7 +68,9 @@ const reducerfunction2 = (state, action) => {
           day: "",
           
           room_number: "",
-          year_part:""
+          year_part:"",
+          note:"",
+          alternate_bool:false,
         };
       default:
         return {

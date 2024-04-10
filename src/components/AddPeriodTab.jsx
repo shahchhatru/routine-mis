@@ -10,6 +10,7 @@ import {
 import { SubjectInput, DayInput, CourseInput, StartPeriodInput, NumPeriodINput, LectureTypeInp, YearInput, YearPartInput,MultiTeacherSelect } from './'
 import { AddPeriodContext } from "../context";
 import ChooseSectionInput from "./ChooseSection";
+import AlternateFieldInput from "./AlternateFieldInput";
 
 
 
@@ -81,6 +82,31 @@ const AddPeriodTab = () => {
                                     <Box sx={{ mb: 2 }}>
                                         
                                         <ChooseSectionInput value={formstate2.section} dispatch={dispatch2}/>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={12} md={6}>
+                                    <Box sx={{ mb: 2 }}>
+                                        
+                                        <AlternateFieldInput value={formstate2.alternate_bool} dispatch={dispatch2}/>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={12} md={6}>
+                                    <Box sx={{ mb: 2 }}>
+                                        <TextField
+                                            fullWidth
+                                            id="Note"
+                                            label="Note"
+                                            name="note"
+                                            autoComplete="note"
+                                            autoFocus
+                                            value={formstate2.note}
+                                            onChange={(e) =>
+                                                dispatch2({
+                                                    type: "UPDATE",
+                                                    payload: { room_number: e.target.value },
+                                                })
+                                            }
+                                        />
                                     </Box>
                                 </Grid>
                                 <Grid item xs={12} md={12}>

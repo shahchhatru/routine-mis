@@ -159,6 +159,8 @@ const TraditionalRoutine = (props) => {
       8: false,
     },
   };
+
+
   
   
   const [freePeriod, setFreePeriod] = useState({ ...tablular_rtine_occupied });
@@ -369,6 +371,8 @@ const TraditionalRoutine = (props) => {
               section={section}
               year={year}
               year_part={year_part}
+              alternate={false}
+              note={""}
             />
           </TableCell>
         );
@@ -390,6 +394,7 @@ const TraditionalRoutine = (props) => {
             session_type={myObject.session_type}
             room_number={myObject.room_number}
             url={myObject.url}
+            note={myObject.note}
           />
         </TableCell>
       );
@@ -408,6 +413,8 @@ const TraditionalRoutine = (props) => {
               section={section}
               year={year}
               year_part={year_part}
+              alternate={true}
+              note={""}
             />
           </TableCell>
         );
@@ -429,6 +436,7 @@ const TraditionalRoutine = (props) => {
             session_type={myObject.session_type}
             room_number={myObject.room_number}
             url={myObject.url}
+            note={myObject.note}
           />
         </TableCell>
       );

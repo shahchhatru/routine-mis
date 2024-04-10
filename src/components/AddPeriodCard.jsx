@@ -42,7 +42,7 @@ const AddPeriodCard = (props) => {
   const onhandleClick=()=>{
     setShowAddModel(true);
     dispatch({type:"UPDATE",payload:{session_type:"lecture",starting_period_value:props.start_period_index,no_of_period_value:'1'}})
-    dispatch2({type:"UPDATE",payload:{course:courseData.name,year:yearsData.year,year_part:props.year_part,day:props.day,section:props.section}})
+    dispatch2({type:"UPDATE",payload:{course:courseData.name,year:yearsData.year,year_part:props.year_part,day:props.day,section:props.section,note:props.note,alternate_bool:props.alternate}})
   }
    
   return (
