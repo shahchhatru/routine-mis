@@ -103,7 +103,7 @@ const AddPeriodTab = () => {
                                             onChange={(e) =>
                                                 dispatch2({
                                                     type: "UPDATE",
-                                                    payload: { room_number: e.target.value },
+                                                    payload: { note: e.target.value },
                                                 })
                                             }
                                         />
