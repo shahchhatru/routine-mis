@@ -11,8 +11,6 @@ const initialState = {
     session_type: "",
     starting_period_value: "",
     no_of_period_value: "",
-    
-
   };
   
   const initialStateGlobal={
