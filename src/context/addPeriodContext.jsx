@@ -6,7 +6,7 @@ const AddPeriodContext=createContext();
 export default AddPeriodContext;
 
 const initialState = {
-    teacher: "",
+    teacher: [],
     subject: "",
     session_type: "",
     starting_period_value: "",
@@ -37,7 +37,7 @@ const reducerfunction = (state, action) => {
         };
       case "CLEAR":
         return {
-          teacher: "",
+          teacher: [],
           subject: "",
           session_type: "",
           
