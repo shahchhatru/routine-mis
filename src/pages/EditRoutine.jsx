@@ -25,9 +25,10 @@ import YearPartInput from "../components/PartYear";
 import AuthContext from "../context/authContext";
 import UpdatertContext from "../context/updatertContext";
 import ChooseSectionInput from "../components/ChooseSection";
+import AlternateFieldInput from "../components/AlternateFieldInput";
 
 const initialState = {
-  teacher: "",
+  teacher: [],
   subject: "",
   session_type: "",
   starting_period_value: "",
@@ -41,6 +42,8 @@ const initialStateGlobal={
   day:"",
   room_number:"",
   year_part:"",
+  alternate_bool:false,
+  note:"",
 }
 
 const reducerfunction = (state, action) => {
@@ -53,7 +56,7 @@ const reducerfunction = (state, action) => {
       };
     case "CLEAR":
       return {
-        teacher: "",
+        teacher: [],
         subject: "",
         session_type: "",
         season: "winter",
@@ -83,7 +86,9 @@ const reducerfunction2 = (state, action) => {
         day: "",
         
         room_number: "",
-        year_part:""
+        year_part:"",
+        note:"",
+        alternate_bool:false,
       };
     default:
       return {
@@ -111,8 +116,8 @@ const EditRoutine = () => {
         const data = await axios.get(`http://127.0.0.1:8000/api/routines/${routine_id}/`)
         console.log({data:data.data})
         const ndata=data.data;
-        dispatch({type:"UPDATE",payload:{teacher:ndata.teacher[0],subject:ndata.subject,session_type:ndata.session_type,starting_period_value:ndata.starting_period_value,no_of_period_value:ndata.no_of_period_value}})
-        dispatch2({type:"UPDATE",payload:{year:ndata.year,course:ndata.course,day:ndata.day,room_number:ndata.room_number,year_part:ndata.year_part}})
+        dispatch({type:"UPDATE",payload:{teacher:ndata.teacher,subject:ndata.subject,session_type:ndata.session_type,starting_period_value:ndata.starting_period_value,no_of_period_value:ndata.no_of_period_value}})
+        dispatch2({type:"UPDATE",payload:{year:ndata.year,course:ndata.course,day:ndata.day,room_number:ndata.room_number,year_part:ndata.year_part,alternate_bool:ndata.alternate,note:ndata.note}})
      
       }catch(err){
         console.log(err);
@@ -220,6 +225,31 @@ const EditRoutine = () => {
                     <Grid item xs={12} md={4}>
                   <DayInput value={formstate2.day} dispatch={dispatch2} />
               </Grid>
+              <Grid item xs={12} md={6}>
+                                    <Box sx={{ mb: 2 }}>
+                                        
+                                        <AlternateFieldInput value={formstate2.alternate_bool} dispatch={dispatch2}/>
+                                    </Box>
+                                </Grid>
+              <Grid item xs={12} md={6}>
+                                    <Box sx={{ mb: 2 }}>
+                                        <TextField
+                                            fullWidth
+                                            id="Note"
+                                            label="Note"
+                                            name="note"
+                                            autoComplete="note"
+                                            autoFocus
+                                            value={formstate2.note}
+                                            onChange={(e) =>
+                                                dispatch2({
+                                                    type: "UPDATE",
+                                                    payload: { note: e.target.value },
+                                                })
+                                            }
+                                        />
+                                    </Box>
+                                </Grid>
                   
               
               <Grid item sx={6}>

@@ -11,7 +11,7 @@ export default GetTraditionalRoutineContext;
 export const GetTraditionalRoutineProvider=({children})=>{
     const {periodlistrefresh}=useContext(RefreshPeriodContext);
     const { editOpen } = useContext(UpdatertContext);
-  const { showaddModel }=useContext(AddPeriodContext);
+    const { showaddModel }=useContext(AddPeriodContext);
     const [id,setCourseId]=useState()
     const [section,setSection]=useState()
     const [year,setYear]=useState()

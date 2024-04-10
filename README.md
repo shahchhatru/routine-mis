@@ -30,7 +30,7 @@ We have just started out our project so currently it contains only Routine Manag
 
 ### Home Screen 
 
-![dashboard](/imgs/dashboard_img1.png)
+![dashboard](/imgs/homepage.png)
 
 if you aren't authenticated you will be directed to login page. For authentication mechanism we have used jwt 
 
@@ -39,6 +39,9 @@ if you aren't authenticated you will be directed to login page. For authenticati
 if you click on Routine under the class table you can view classRoutine. 
 
 ![classroutine](/imgs/classroutine.png)
+with zoom in and zoom out feature along with rotating feature.
+
+![classroutine2](/imgs/zoomoutclassrouitne.png)
 
 when you click on edit icon you get a model where you can update your model.
 
@@ -55,6 +58,7 @@ For example if I click on the telecommunication card. I will get a form inside c
 similary for other fields on card as well.
 
 
-![dualscreen](/imgs/Dualscreen.png)
+![dualscreen](/imgs/dualscreenpage.png)
+
 
 Simailarly we can divide screen to view both teachers and class routine . left side shows the class routine and right hand side shows the respective teacher routine. If we click on the teacher item of card on the left side routine , The right side teacher routine will change to the routine of the new teacher on which we clickeds.
