@@ -97,19 +97,101 @@ const TraditionalRoutine = (props) => {
       8: false,
     },
   };
+  const tablular_rtine_occupied_alternate = {
+    sun: {
+      1: false,
+      2: false,
+      3: false,
+      4: false,
+      5: false,
+      6: false,
+      7: false,
+      8: false,
+    },
+    mon: {
+      1: false,
+      2: false,
+      3: false,
+      4: false,
+      5: false,
+      6: false,
+      7: false,
+      8: false,
+    },
+    tue: {
+      1: false,
+      2: false,
+      3: false,
+      4: false,
+      5: false,
+      6: false,
+      7: false,
+      8: false,
+    },
+    wed: {
+      1: false,
+      2: false,
+      3: false,
+      4: false,
+      5: false,
+      6: false,
+      7: false,
+      8: false,
+    },
+    thu: {
+      1: false,
+      2: false,
+      3: false,
+      4: false,
+      5: false,
+      6: false,
+      7: false,
+      8: false,
+    },
+    fri: {
+      1: false,
+      2: false,
+      3: false,
+      4: false,
+      5: false,
+      6: false,
+      7: false,
+      8: false,
+    },
+  };
+  
+  
   const [freePeriod, setFreePeriod] = useState({ ...tablular_rtine_occupied });
+  const [freePeriodalternate, setFreePeriodAlternate] = useState({ ...tablular_rtine_occupied_alternate });
   const { editOpen } = useContext(UpdatertContext);
   const { showaddModel }=useContext(AddPeriodContext);
   const minWidth = "200px";
 
   const tablular_rtine = {
-    sun: { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [] },
-    mon: { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [] },
-    tue: { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [] },
-    wed: { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [] },
-    thu: { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [] },
-    fri: { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [] },
+    sun: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
+    mon: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
+    tue: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
+    wed: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
+    thu: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
+    fri: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
   };
+  const tablular_rtine_alternate = {
+    sun: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
+    mon: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
+    tue: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
+    wed: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
+    thu: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
+    fri: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
+  };
+  let routine_oobj_alternate={
+    sun: [],
+    mon: [],
+    tue: [],
+    wed: [],
+    thu: [],
+    fri: [],
+  }
+
   let routine_oobj = {
     sun: [],
     mon: [],
@@ -129,7 +211,20 @@ const TraditionalRoutine = (props) => {
 
         if (!isDuplicate) {
           routine_oobj[day].push(period);
-          tablular_rtine[day][starting_period_value].push({ ...period });
+          tablular_rtine[day][starting_period_value] = { ...period };
+        }
+      }
+    });
+  };
+  const set_routine_oobj_alt = (perArray) => {
+    perArray.forEach((period) => {
+      const { day, url, starting_period_value } = period;
+       if (routine_oobj_alternate[day]) {
+        const isDuplicate = routine_oobj_alternate[day].some((p) => p.url === url);
+
+        if (!isDuplicate) {
+          routine_oobj_alternate[day].push(period);
+          tablular_rtine_alternate[day][starting_period_value] = { ...period };
         }
       }
     });
@@ -164,6 +259,36 @@ const TraditionalRoutine = (props) => {
     setFreePeriod({ ...tablular_rtine_occupied });
   };
 
+  const get_khali_period_alternate = (period_list) => {
+    // console.log("inside get_khali_period",period_list);
+    Object.keys(period_list).forEach((day) => {
+      const routines = period_list[day];
+      //console.log("routines",routines);
+      routines.forEach((period) => {
+        // console.log("period",period);
+        // console.log(period.starting_period_value)
+        var ending_value =
+          parseInt(period.starting_period_value) +
+          parseInt(period.no_of_period_value);
+        // console.log(ending_value);
+        for (
+          var i = parseInt(period.starting_period_value);
+          i < ending_value;
+          i++
+        ) {
+          tablular_rtine_occupied_alternate[day][i] = true;
+        }
+      });
+    });
+
+    console.log(
+      "occupied period from get_khali_period",
+      tablular_rtine_occupied_alternate
+    );
+    setFreePeriodAlternate({ ...tablular_rtine_occupied_alternate });
+  };
+
+
   //check if any one of the teacher is out of d
   //department.
 
@@ -174,7 +299,19 @@ const TraditionalRoutine = (props) => {
   const year = props.year;
   const year_part = props.year_part;
   const periodsarray = useRef([]);
+  const periodsarray_alternate = useRef([]);
   const [tabular_object, set_tO] = useState({ ...tablular_rtine });
+  const [tabular_object_alternate, set_tOA] = useState({ ...tablular_rtine });
+  const [routine_objt, setROt] = useState({
+    sun: [],
+    mon: [],
+    tue: [],
+    wed: [],
+    thrus: [],
+    fri: [],
+    sat: [],
+  });
+
   const [routine_obj, setRO] = useState({
     sun: [],
     mon: [],
@@ -189,16 +326,26 @@ const TraditionalRoutine = (props) => {
       const course_id = id;
       try {
         const response = await axios.get(
-          `http://127.0.0.1:8000/api/routines/get_routines_by_course_and_year_section_part/?course_id=${course_id}&year=${year}&year_part=${year_part}&section=${section}`
+          `http://127.0.0.1:8000//api/routines/get_alternate_routines_by_year_part_year_id_course_id_and_section/?year_id=${year}&year_part=${year_part}&course_id=${course_id}&section=${section}&alternate=${'False'}`
+        );
+        console.log( `http://127.0.0.1:8000//api/routines/get_alternate_routines_by_year_part_year_id_course_id_and_section/?year_id=${year}&year_part=${year_part}&course_id=${course_id}&section=${section}&alternate=${'False'}`)
+
+        const response2 = await axios.get(
+        `http://127.0.0.1:8000//api/routines/get_alternate_routines_by_year_part_year_id_course_id_and_section/?year_id=${year}&year_part=${year_part}&course_id=${course_id}&section=${section}&alternate=${'True'}`
         );
 
         // console.log(response.data);
         periodsarray.current = response.data;
-
+        periodsarray_alternate.current = response2.data;
         set_routine_oobj(periodsarray.current);
+        set_routine_oobj_alt(periodsarray_alternate.current);
         setRO({ ...routine_oobj });
+        setROt({...routine_oobj_alternate})
         get_khali_period(routine_oobj);
+        get_khali_period_alternate(routine_oobj_alternate)
         set_tO({ ...tablular_rtine });
+        set_tOA({...tablular_rtine_alternate})
+      
       } catch (err) {
         console.log(err);
       }
@@ -207,32 +354,11 @@ const TraditionalRoutine = (props) => {
   }, [editOpen,showaddModel,periodlistrefresh]);
 
   
+  console.log(tablular_rtine_alternate);
   
 
-
-
-  // const periodListRender=(periodlist,day,period_index)=>{
-  //   console.log("preoidlist",periodlist)
-  //   if(periodlist.length>0){
-      
-  //     return(
-  //       <TableCell style={{display:"flex",flexDirection:"column"}}>
-  //         {
-  //           periodlist.map((item,index)=>{
-  //             return newNextRender(item,day,period_index)
-  //             //console.log(item,period_index)
-  //           })
-  //         }
-  //       </TableCell>
-  //     )
-    
-  //   }
-   
-  // }
-
-
-  const periodListRender=(periodlist,day,period_index)=>{
-    if (periodlist.length === 0) {
+  const newNextRender = (myObject, day, period_index) => {
+    if (myObject == "") {
       if (freePeriod[day][period_index+1] === false) {
         return (
           <TableCell style={{minWidth:minWidth}}>
@@ -255,11 +381,8 @@ const TraditionalRoutine = (props) => {
       }
     }else{
       return (
-          <TableCell style={{display:"flex",flexDirection:"column"}}>
-            {
-              periodlist.map((myObject,index)=>{
-            return (
-            <PeriodCard
+        <TableCell>
+          <PeriodCard
             teacher_list={myObject.teacher}
             subject={myObject.subject}
             start_time={isWinTrue?`${get_winter_timing(parseInt(myObject.starting_period_value)-1)}`:`${get_summer_timing(parseInt(myObject.starting_period_value)-1)}`}
@@ -267,16 +390,51 @@ const TraditionalRoutine = (props) => {
             session_type={myObject.session_type}
             room_number={myObject.room_number}
             url={myObject.url}
-            note={myObject.note}
           />
-                )
-              })
-            }
-          </TableCell>
-        
+        </TableCell>
       );
     }
-  }
+  };
+
+  const newNextRenderAlternate = (myObject, day, period_index) => {
+    if (myObject == "") {
+      if (freePeriodalternate[day][period_index+1] === false) {
+        return (
+          <TableCell style={{minWidth:minWidth}}>
+            <AddPeriodCard
+              day={day}
+              start_period_index={period_index+1}
+              course_id={props.id}
+              section={section}
+              year={year}
+              year_part={year_part}
+            />
+          </TableCell>
+        );
+      } else {
+        return(
+          <TableCell>
+            {""}
+          </TableCell>
+        )
+      }
+    }else{
+      return (
+        <TableCell>
+          <PeriodCard
+            teacher_list={myObject.teacher}
+            subject={myObject.subject}
+            start_time={isWinTrue?`${get_winter_timing(parseInt(myObject.starting_period_value)-1)}`:`${get_summer_timing(parseInt(myObject.starting_period_value)-1)}`}
+            end_time={isWinTrue?`${get_winter_timing(parseInt(myObject.no_of_period_value)+parseInt(myObject.starting_period_value)-1)}`:`${get_summer_timing(parseInt(myObject.no_of_period_value)-1+parseInt(myObject.starting_period_value))}`}
+            session_type={myObject.session_type}
+            room_number={myObject.room_number}
+            url={myObject.url}
+          />
+        </TableCell>
+      );
+    }
+  };
+
 
   console.log(tabular_object)
   return (
@@ -369,7 +527,15 @@ const TraditionalRoutine = (props) => {
                 <TableCell>Sunday</TableCell>
                 {Object.keys(tabular_object["sun"]).length > 0
                   ? Object.keys(tabular_object["sun"]).map((item,index) =>
-                  periodListRender(tabular_object["sun"][item],"sun",index)
+                  newNextRender(tabular_object["sun"][item],"sun",index)
+                    )
+                  : ""}
+              </TableRow>
+              <TableRow>
+                <TableCell>Sun (alt)</TableCell>
+                {Object.keys(tabular_object_alternate["sun"]).length > 0
+                  ? Object.keys(tabular_object_alternate["sun"]).map((item,index) =>
+                  newNextRenderAlternate(tabular_object_alternate["sun"][item],"sun",index)
                     )
                   : ""}
               </TableRow>
@@ -378,55 +544,94 @@ const TraditionalRoutine = (props) => {
                 {
                   Object.keys(tabular_object["mon"]).length > 0
                     ? Object.keys(tabular_object["mon"]).map((item,index) =>
-                    periodListRender(tabular_object["mon"][item],"mon",index)
+                    newNextRender(tabular_object["mon"][item],"mon",index)
                   )
                     : ""
                   }
               </TableRow>
-
+              <TableRow>
+                <TableCell>Mon (alt)</TableCell>
+                {Object.keys(tabular_object_alternate["mon"]).length > 0
+                  ? Object.keys(tabular_object_alternate["mon"]).map((item,index) =>
+                  newNextRenderAlternate(tabular_object_alternate["mon"][item],"mon",index)
+                    )
+                  : ""}
+              </TableRow>
               <TableRow>
                 <TableCell>Tuesday</TableCell>
                 {
                   Object.keys(tabular_object["tue"]).length > 0
                     ? Object.keys(tabular_object["tue"]).map((item,index) =>
-                    periodListRender(tabular_object["tue"][item],"tue",index)
+                    newNextRender(tabular_object["tue"][item],"tue",index)
                   )
                     : ""
                   // renderNextKey(tabular_object['fri'][1])
                 }
+              </TableRow>
+              <TableRow>
+                <TableCell>Tues (alt)</TableCell>
+                {Object.keys(tabular_object_alternate["tue"]).length > 0
+                  ? Object.keys(tabular_object_alternate["tue"]).map((item,index) =>
+                  newNextRenderAlternate(tabular_object_alternate["tue"][item],"tue",index)
+                    )
+                  : ""}
               </TableRow>
               <TableRow>
                 <TableCell>Wednesday</TableCell>
                 {
                   Object.keys(tabular_object["wed"]).length > 0
                     ? Object.keys(tabular_object["wed"]).map((item,index) =>
-                    periodListRender(tabular_object["wed"][item],"wed",index)
+                    newNextRender(tabular_object["wed"][item],"wed",index)
                   )
                     : ""
                   // renderNextKey(tabular_object['fri'][1])
                 }
+              </TableRow>
+              <TableRow>
+                <TableCell>Wed (alt)</TableCell>
+                {Object.keys(tabular_object_alternate["wed"]).length > 0
+                  ? Object.keys(tabular_object_alternate["wed"]).map((item,index) =>
+                  newNextRenderAlternate(tabular_object_alternate["wed"][item],"wed",index)
+                    )
+                  : ""}
               </TableRow>
               <TableRow>
                 <TableCell>Thrusday</TableCell>
                 {
                   Object.keys(tabular_object["thu"]).length > 0
                     ? Object.keys(tabular_object["thu"]).map((item,index) =>
-                    periodListRender(tabular_object["thu"][item],"thu",index)
+                    newNextRender(tabular_object["thu"][item],"thu",index)
                   )
                     : ""
                   // renderNextKey(tabular_object['fri'][1])
                 }
               </TableRow>
               <TableRow>
+                <TableCell>Thurs (alt)</TableCell>
+                {Object.keys(tabular_object_alternate["thu"]).length > 0
+                  ? Object.keys(tabular_object_alternate["thu"]).map((item,index) =>
+                  newNextRenderAlternate(tabular_object_alternate["thu"][item],"thu",index)
+                    )
+                  : ""}
+              </TableRow>
+              <TableRow>
                 <TableCell>Friday</TableCell>
                 {
                   Object.keys(tabular_object["fri"]).length > 0
                     ? Object.keys(tabular_object["fri"]).map((item,index) =>
-                    periodListRender(tabular_object["fri"][item],"fri",index)
+                    newNextRender(tabular_object["fri"][item],"fri",index)
                   )
                     : ""
                   // renderNextKey(tabular_object['fri'][1])
                 }
+              </TableRow>
+              <TableRow>
+                <TableCell>Fri (alt)</TableCell>
+                {Object.keys(tabular_object_alternate["tue"]).length > 0
+                  ? Object.keys(tabular_object_alternate["tue"]).map((item,index) =>
+                  newNextRenderAlternate(tabular_object_alternate["tue"][item],"tue",index)
+                    )
+                  : ""}
               </TableRow>
             </TableBody>
           </motion.table>
