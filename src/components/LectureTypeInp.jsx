@@ -15,11 +15,19 @@ const itemslist=[{
     id:3,
     name:"Tutorial",
     url:"tutorial"
-}
+},
+{
+    id:3,
+    name:"Lecture+Tutorial",
+    url:"lecture and tutorial"
+},
+
 
 ]
 
 const LectureTypeInp =({value,dispatch})=>{
+
+    
     /* const [item,setitem] = useState('');*/
     const handleChange=(e)=>{
         // setitem(e.target.value);

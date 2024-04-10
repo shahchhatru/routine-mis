@@ -177,6 +177,7 @@ const TraditionalRoutine = (props) => {
     thu: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
     fri: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
   };
+
   const tablular_rtine_alternate = {
     sun: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
     mon: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
@@ -185,6 +186,7 @@ const TraditionalRoutine = (props) => {
     thu: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
     fri: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
   };
+  
   let routine_oobj_alternate={
     sun: [],
     mon: [],
@@ -371,7 +373,7 @@ const TraditionalRoutine = (props) => {
               section={section}
               year={year}
               year_part={year_part}
-              alternate={false}
+              alternate={"0"}
               note={""}
             />
           </TableCell>
@@ -413,7 +415,7 @@ const TraditionalRoutine = (props) => {
               section={section}
               year={year}
               year_part={year_part}
-              alternate={true}
+              alternate={"1"}
               note={""}
             />
           </TableCell>
