@@ -33,9 +33,37 @@ export default function ViewTeacherRoutine() {
   const {user,logoutUser}=useContext(AuthContext);
   const {id,part}=useParams();
   const [iId,setId]=React.useState();
+
+  
+  const handleDownload = async () => {
+    try {
+      const filename=mapTeacherIdToName(iId) +"_routine_"+part;
+      const response = await axios.get('http://localhost:3001/teachers/download/', {
+        params: {
+          teacher_id:parseInt(iId),
+          part:part
+
+        },
+        responseType: 'blob', // Set the response type to 'blob' to handle binary data
+      });
+
+      // Create a temporary link to trigger the file download
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'routine.pdf');
+      document.body.appendChild(link);
+      link.click();
+
+      // Clean up the temporary link
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error('Error downloading file:', error);
+    }
+  };
   React.useEffect(()=>{
 
-    const func = async()=>{
+  const func = async()=>{
         if(user){
             if(user.tc==false){
                 const response = await axios.get(`http://127.0.0.1:8000/user/getteacher/${id}`)
@@ -49,7 +77,7 @@ export default function ViewTeacherRoutine() {
    
 }
    func() ;
-  },[user])
+},[user])
 
   const [value, setValue] = React.useState("1");
   
@@ -100,8 +128,10 @@ export default function ViewTeacherRoutine() {
     </button>
     <Button variant="contained" onClick={()=>logoutUser()}>Logout</Button>
     <Button className="button-56" role="button" onClick={()=>togglescreenRotate()}>
+    
     <ScreenRotationIcon />
   </Button>
+  <Button className="button-56" role="button" onClick={()=>handleDownload()} >Download pdf</Button>
 
     </Box>
     <Box sx={{ width: '100%', typography: 'body1' }}>

@@ -3,6 +3,7 @@ import { Box,Tab ,Button } from '@mui/material';
 import {TabContext,TabList,TabPanel} from '@mui/lab'
 import { useParams ,useNavigate} from 'react-router-dom';
 import {motion} from 'framer-motion'
+import axios from 'axios';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import ZoomOutIcon from '@mui/icons-material/ZoomOut';
 import AddPeriodTab from '../components/AddPeriodTab';
@@ -18,6 +19,8 @@ import generatePDF from 'react-to-pdf';
 
 export default function ClassRoutine() {
   const targetRef = useRef();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   
   const navigate =useNavigate();
   const { togglescreenRotate}=useContext(ScreenOrientationContext);
@@ -31,6 +34,35 @@ export default function ClassRoutine() {
   console.log(`id ${id} ,section ${section},year ${year} ,year_part ${year_part}`);
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+
+  const handleDownload = async () => {
+    try {
+      //const filename=mapTeacherIdToName(iId) +"_routine_"+part;
+      const response = await axios.get('http://localhost:3001/convert/', {
+        params: {
+          course_id:id,
+          year_part:year_part,
+          year:year,
+          section:section
+
+        },
+        responseType: 'blob', // Set the response type to 'blob' to handle binary data
+      });
+
+      // Create a temporary link to trigger the file download
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'routine.pdf');
+      document.body.appendChild(link);
+      link.click();
+
+      // Clean up the temporary link
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error('Error downloading file:', error);
+    }
   };
 
  const handleRedirection=()=>{
@@ -65,7 +97,7 @@ export default function ClassRoutine() {
 
     <ScreenRotationIcon />
   </Button>
-  <button onClick={() => generatePDF(targetRef, {filename: 'page.pdf'})}>Download PDF</button>
+  <button className='' onClick={() =>handleDownload()}>Download PDF</button>
     </Box>
     <Box sx={{ width: '100%', typography: 'body1' }}>
       <Box sx={{width:'100%',display:'flex', justifyContent:'center' , textTransform:'uppercase',fontSize:'2rem'}}>

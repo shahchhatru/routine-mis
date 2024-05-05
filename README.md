@@ -22,6 +22,14 @@ npm install
 npm run dev
 ```
 
+
+## Build instructions
+```
+npm run build
+```
+```
+npm run preview
+```
 ### this project consist the code for our frontend of MIS system for Department of Electronics and Computer Enginneering.
 
 We have just started out our project so currently it contains only Routine Management system of MIS. Other features would be added by our juniors who will come to 4th year.

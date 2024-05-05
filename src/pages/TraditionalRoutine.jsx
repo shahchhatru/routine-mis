@@ -233,7 +233,7 @@ const TraditionalRoutine = (props) => {
       }
     });
   };
-console.log(routine_obj)
+
   const get_khali_period = (period_list) => {
     // console.log("inside get_khali_period",period_list);
     Object.keys(period_list).forEach((day) => {
